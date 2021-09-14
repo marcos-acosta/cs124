@@ -1,0 +1,104 @@
+body {
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-size: 45px;
+}
+
+#pageContent {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  background-color: rgb(248, 248, 248);
+}
+
+#toDoHeader {
+  grid-row: 1;
+  grid-column: 1 / 4;
+  text-align: center;
+  background-color: white;
+}
+
+#mainContent {
+  grid-row: 2;
+  grid-column: 2;
+  background-color: white;
+  padding: 50px;
+}
+
+#addItemFooter {
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(49, 49, 209);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  font-size: 60px;
+  color: white;
+}
+
+.toDoItem {
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.toDoItem > .toDoItemInline > div {
+  display: inline;
+}
+
+.toDoItem input[type='checkbox'] {
+  height: 38px;
+  width: 38px;
+  margin-right: 20px;
+}
+
+.toDoItemMoreOptions {
+  float: right;
+  font-size: 30px;
+  border-radius: 50%;
+  border: none;
+  height: 60px;
+  width: 60px;
+  background-color: rgb(119, 119, 119);
+  color: white;
+  font-weight: bold;
+}
+
+.toDoItemMoreOptions.selected {
+  transform: rotate(90deg);
+  background-color: rgb(49, 49, 209);
+}
+
+.toDoItemActionButton {
+  border: none;
+  font-size: 40px;
+  padding: 10px;
+}
+
+.toDoItemOptions {
+  margin-top: 15px;
+  padding-left: 75px;
+}
+
+.deleteButton {
+  /* background-color: rgb(221, 94, 94);
+  color: white; */
+  background-color: transparent;
+  color: rgb(221, 94, 94);
+  text-decoration: underline;
+}
+
+.editButton {
+  background-color: transparent;
+  color: rgb(49, 49, 209);
+  text-decoration: underline;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: rgb(148, 147, 147)
+}
+
+.hidden {
+  visibility: hidden;
+}

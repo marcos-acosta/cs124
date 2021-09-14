@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lab 1</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="pageContent">
+      <div id="toDoHeader">
+        <h2>
+          todo
+        </h2>
+      </div>
+
+      <div id="mainContent">
+        <div class="toDoItem">
+          <div class="toDoItemInline">
+            <input type="checkbox" id="item-1">
+            <label for="item-1">
+              call dog
+            </label>
+            <button class="toDoItemMoreOptions">
+              ᐳ
+            </button>
+          </div>
+        </div>
+
+        <div class="toDoItem">
+          <div class="toDoItemInline">
+            <input type="checkbox" id="item-2">
+            <label for="item-2">
+              read book
+            </label>
+            <button class="toDoItemMoreOptions">
+              ᐳ
+            </button>
+          </div>
+        </div>
+
+        <div class="toDoItem">
+          <div class="toDoItemInline">
+            <input type="checkbox" id="item-3">
+            <label for="item-3">
+              water plants
+            </label>
+            <button class="toDoItemMoreOptions selected">
+              ᐳ
+            </button>
+          </div>
+          <div class="toDoItemOptions">
+            <button class="editButton toDoItemActionButton"> edit </button>
+            <button class="deleteButton toDoItemActionButton"> delete </button>
+          </div>
+        </div>
+
+        <div id="completedItemsHeader">
+          <h3>completed</h3>
+        </div>
+
+        <div class="toDoItem">
+          <div class="toDoItemInline">
+            <input type="checkbox" id="item-4" checked>
+            <label for="item-4" class="strikethrough">
+              feed rock
+            </label>
+            <button class="toDoItemMoreOptions hidden">
+              ᐳ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="addItemFooter">
+      + add item
+    </div>
+  </body>
+</html>
