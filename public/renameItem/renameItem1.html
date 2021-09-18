@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Rename item - view 2</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="pageContent">
+      <div id="toDoHeader">
+        <h2>
+          todo
+        </h2>
+      </div>
+    </div>
+    <hr>
+    <div id="mainContent">
+      <div class="toDoItem">
+        <div class="toDoItemInline">
+          <input type="checkbox" id="item-1">
+          <label for="item-1">
+            buy new John Grisham book
+          </label>
+          <button class="toDoItemMoreOptions">
+            ᐳ
+          </button>
+        </div>
+      </div>
+
+      <div class="toDoItem">
+        <div class="toDoItemInline">
+          <input type="checkbox" id="item-3">
+          <label for="item-3">
+            <input type="text" value="call john" class="nameTask" />
+          </label>
+          <button class="toDoItemMoreOptions selected">
+            ᐳ
+          </button>
+        </div>
+        <div class="toDoItemOptions">
+          <button class="editButton toDoItemActionButton grayText"> edit </button>
+          <button class="deleteButton toDoItemActionButton grayText"> delete </button>
+        </div>
+      </div>
+
+      <div class="toDoItem">
+        <div class="toDoItemInline">
+          <input type="checkbox" id="item-4">
+          <label for="item-4">
+            eat lunch
+          </label>
+          <button class="toDoItemMoreOptions">
+            ᐳ
+          </button>
+        </div>
+      </div>
+
+
+
+      <div id="completedItemsHeader">
+        <h3>
+          completed
+          <button id="clearCompleted">clear</button>
+        </h3>
+      </div>
+
+      <div class="toDoItem">
+        <div class="toDoItemInline">
+          <input type="checkbox" id="item-4" checked>
+          <label for="item-4" class="strikethrough">
+            call mom
+          </label>
+          <button class="toDoItemMoreOptions hidden">
+            ᐳ
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="addItemFooter">
+      + add item
+    </div>
+  </body>
+</html>

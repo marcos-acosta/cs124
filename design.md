@@ -1,15 +1,16 @@
+# CS 124 Lab 1: Design Doc
 
-[delete completed]
+## Design decisions
+Here are our design decisions.
 
-[_] call dog [pencil] [trash can]
-[_] call dog [...] or [>]
+## Alternative designs
+Here are some alternative designs
 
-+ Add item
+## Final designs
+Here are our final designs
 
-__________________________________
+## Challenges
+Here are some challenges we faced
 
-[_] [add task...] [done] (or tap out) --> [_] call dog [...] or [>]
-+ Add item
-
-~~~ Completed tasks ~~~ [clear]
-[x] Feed rock
+## Highlights
+Here are the parts of the design we are most proud of
