@@ -1,7 +1,7 @@
 # CS 124 Lab 1: Design Doc
 
 ## Design decisions
-Here are our design decisions.
+Here are some designs
 
 ## Alternative designs
 Here are some alternative designs
