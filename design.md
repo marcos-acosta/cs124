@@ -1,10 +1,33 @@
 # CS 124 Lab 1: Design Doc
 
 ## Design decisions
-Here are some designs
+We began thinking about the design by listing all of the things we knew
+that the web app was going to need to do. We decided the best way was
+to make it similar to how a hand-written to-do list might be designed.
+Here is a very early sketch of what we thought that might look like IMAGEEEE.
+From there we designed some more specifics about how to accomplish different tasks.
+We decided that to add an item, we would place a button at the bottom
+of the screen that would create a dummy item in an editing mode for the user
+to add a button. By doing this, we thought it would be very clear both what
+that button was for, and how to use it, since it is big, clearly labelled, and
+in an appropriate location for a mobile app. To edit or delete items, we
+didn't want those options to clutter up the main screen by being present for
+all tasks at all times, but we still wanted to make it task specific, so
+the user knows exactly what they are editing or deleting. So, we decided to
+create a menu attached to each task. So, first the user selects to view
+the menu, and then chooses the operation they want to perform. We chose
+this menu to look like an arrow so that it would signal it was pressable,
+and would provide a menu. For completed tasks, we decided that when the user
+clicked the checkbox to complete a task, it would check the box, cross through
+the task, and move it to a "completed" section.
+
 
 ## Alternative designs
-Here are some alternative designs
+A few alternative designs we considered were related to the task edit and
+deleted menus. We considered at one point using ellipses rather than an arrow
+that rotated when opened or closed. IMAGE We also considered having it come
+in from the side, rather than be below the task, and have symbols rather than
+words for the user to select the operation. IMAGE
 
 ## Final designs
 The general idea of our final design can be seen in this "template" page we developed:
