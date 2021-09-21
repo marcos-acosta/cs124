@@ -36,6 +36,10 @@ body {
   color: white;
 }
 
+#addItemFooter.grayedOutButton {
+  background-color: rgb(194, 194, 194);
+}
+
 .toDoItem {
   border: 1px solid rgb(219, 219, 219);
   border-radius: 10px;

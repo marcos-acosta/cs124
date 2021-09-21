@@ -9,7 +9,7 @@ From there we designed some more specifics about how to accomplish different tas
 We decided that to add an item, we would place a button at the bottom
 of the screen that would create a dummy item in an editing mode for the user
 to add a button. By doing this, we thought it would be very clear both what
-that button was for, and how to use it, since it is big, clearly labelled, and
+that button was for, and how to use it, since it is big, clearly labeled, and
 in an appropriate location for a mobile app. To edit or delete items, we
 didn't want those options to clutter up the main screen by being present for
 all tasks at all times, but we still wanted to make it task specific, so
@@ -73,7 +73,7 @@ Completed items are shown by default so that users can easily see what they've f
 To clear all completed items, the user simply presses the `clear` button, which makes the completed items disappear.
 
 ## Challenges
-Here are some challenges we faced
+
 
 ## Highlights
-Here are the parts of the design we are most proud of
+In addition to (what we think is) a clean, uncluttered design, we think the method for adding todo items is the most in line with direct manipulation, since users can see their next item appear directly in the list of items without being confronted with a popup menu first. It also removes unnecessary ("20%") options that the user won't need most of the time so they can add that task off the top of their head as quickly and intuitively as possible.
