@@ -4,7 +4,10 @@
 We began thinking about the design by listing all of the things we knew
 that the web app was going to need to do. We decided the best way was
 to make it similar to how a hand-written to-do list might be designed.
-Here is a very early sketch of what we thought that might look like IMAGEEEE.
+Here is a very early sketch of what we thought that might look like.
+
+<img src="images/designs/veryearlydesign.png" width="300px">
+
 From there we designed some more specifics about how to accomplish different tasks.
 We decided that to add an item, we would place a button at the bottom
 of the screen that would create a dummy item in an editing mode for the user
@@ -19,15 +22,21 @@ the menu, and then chooses the operation they want to perform. We chose
 this menu to look like an arrow so that it would signal it was pressable,
 and would provide a menu. For completed tasks, we decided that when the user
 clicked the checkbox to complete a task, it would check the box, cross through
-the task, and move it to a "completed" section.
+the task, and move it to a "completed" section. Here is an image of how we drew
+out our main design to be before coding.
+
+<img src="images/designs/initialdesignmockup.png" width="300px">
 
 
 ## Alternative designs
 A few alternative designs we considered were related to the task edit and
 deleted menus. We considered at one point using ellipses rather than an arrow
-that rotated when opened or closed. IMAGE We also considered having it come
+that rotated when opened or closed. We also considered having it come
 in from the side, rather than be below the task, and have symbols rather than
-words for the user to select the operation. IMAGE
+words for the user to select the operation. Here's an image of what we thought
+that might have looked like.
+
+<img src="images/designs/oldtaskmenudesign.png" width="200px">
 
 ## Final designs
 The general idea of our final design can be seen in this "template" page we developed:
@@ -73,6 +82,13 @@ Completed items are shown by default so that users can easily see what they've f
 To clear all completed items, the user simply presses the `clear` button, which makes the completed items disappear.
 
 ## Challenges
+We had a few challenges when it came to the implementation of our design. In the
+initial designs we had a decorative gray border on the sides, but it was more difficult
+that anticipated to keep those in where their length wouldn't be dependent on the
+number of tasks uncompleted. We eventually decided just to take those out. Getting
+the arrows for the item menus to be styled correctly also took more time than we thought
+it would initially. But most challenges we faced were small, and we problem-solved or changed
+the design as needed.
 
 
 ## Highlights
