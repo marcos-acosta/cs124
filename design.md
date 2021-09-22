@@ -6,7 +6,7 @@ that the web app was going to need to do. We decided the best way was
 to make it similar to how a hand-written to-do list might be designed.
 Here is a very early sketch of what we thought that might look like.
 
-<img src="images/designs/veryearlydesign.png" width="300px">
+<img src="images/designs/veryearlydesign.PNG" width="300px">
 
 From there we designed some more specifics about how to accomplish different tasks.
 We decided that to add an item, we would place a button at the bottom
@@ -25,7 +25,7 @@ clicked the checkbox to complete a task, it would check the box, cross through
 the task, and move it to a "completed" section. Here is an image of how we drew
 out our main design to be before coding.
 
-<img src="images/designs/initialdesignmockup.png" width="300px">
+<img src="images/designs/initialdesignmockup.PNG" width="300px">
 
 
 ## Alternative designs
@@ -36,7 +36,7 @@ in from the side, rather than be below the task, and have symbols rather than
 words for the user to select the operation. Here's an image of what we thought
 that might have looked like.
 
-<img src="images/designs/oldtaskmenudesign.png" width="200px">
+<img src="images/designs/oldtaskmenudesign.PNG" width="200px">
 
 ## Final designs
 The general idea of our final design can be seen in this "template" page we developed:
