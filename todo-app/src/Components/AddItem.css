@@ -1,0 +1,11 @@
+#addItemFooter {
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(49, 49, 209);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
