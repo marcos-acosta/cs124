@@ -35,13 +35,12 @@
 
 .toDoItemActionButton {
   border: none;
-  font-size: 40px;
-  padding: 5px;
+  font-size: 15px;
 }
 
 .toDoItemOptions {
-  margin-top: 15px;
-  padding-left: 75px;
+  margin-top: 8px;
+  padding-left: 30px;
 }
 
 .deleteButton {

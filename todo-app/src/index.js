@@ -6,22 +6,22 @@ let initialData = [
   {
     taskName: "buy new john grisham book",
     isCompleted: false,
-    id: 0,
+    id: "0",
   },
   {
     taskName: "feed rock",
     isCompleted: false,
-    id: 1,
+    id: "1",
   },
   {
     taskName: "water plant",
     isCompleted: true,
-    id: 2,
+    id: "2",
   },
   {
     taskName: "water sidewalk",
     isCompleted: true,
-    id: 3,
+    id: "3",
   }
 ]
 
