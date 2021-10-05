@@ -1,0 +1,64 @@
+.toDoItem {
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.toDoItem > .toDoItemInline > div {
+  display: inline;
+}
+
+.toDoItem input[type='checkbox'] {
+  height: 22px;
+  width: 22px;
+  margin-right: 10px;
+}
+
+.toDoItemMoreOptions {
+  float: right;
+  font-size: 10px;
+  border-radius: 50%;
+  border: none;
+  height: 22px;
+  width: 22px;
+  background-color: rgb(119, 119, 119);
+  color: white;
+  font-weight: bold;
+}
+
+.toDoItemMoreOptions.selected {
+  transform: rotate(90deg);
+  background-color: rgb(49, 49, 209);
+}
+
+.toDoItemActionButton {
+  border: none;
+  font-size: 40px;
+  padding: 5px;
+}
+
+.toDoItemOptions {
+  margin-top: 15px;
+  padding-left: 75px;
+}
+
+.deleteButton {
+  /* background-color: rgb(221, 94, 94);
+  color: white; */
+  background-color: transparent;
+  color: rgb(221, 94, 94);
+  text-decoration: underline;
+}
+
+.editButton {
+  background-color: transparent;
+  color: rgb(49, 49, 209);
+  text-decoration: underline;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: rgb(148, 147, 147)
+}

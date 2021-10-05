@@ -8,8 +8,9 @@ function App(props) {
   return (
     <div id="pageContent">
       <AppHeader />
-      <TaskList tasks={props.data} />
+      <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} />
       <CompletedSection tasks={props.data} />
+      <TaskList tasks={props.data.filter(taskItem => taskItem.isCompleted)} />
       <AddItem />
     </div>
   );
