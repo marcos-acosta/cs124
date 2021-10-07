@@ -1,8 +1,10 @@
 body {
   font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-size: 45px;
+  margin: 0;
 }
 
 #pageContent {
   display: grid;
+  padding: 15px;
 }

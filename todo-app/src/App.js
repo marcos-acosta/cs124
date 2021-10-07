@@ -6,13 +6,15 @@ import AddItem from './Components/AddItem';
 
 function App(props) {
   return (
-    <div id="pageContent">
+    <>
       <AppHeader />
-      <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} />
-      <CompletedSection tasks={props.data} />
-      <TaskList tasks={props.data.filter(taskItem => taskItem.isCompleted)} />
+      <div id="pageContent">
+        <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} />
+        <CompletedSection tasks={props.data} />
+        <TaskList tasks={props.data.filter(taskItem => taskItem.isCompleted)} />
+      </div>
       <AddItem />
-    </div>
+    </>
   );
 }
 

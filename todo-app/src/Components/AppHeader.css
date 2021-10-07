@@ -4,3 +4,7 @@
   background-color: white;
   font-size: 25px;
 }
+
+h2 {
+  margin-block-end: 10px;
+}
