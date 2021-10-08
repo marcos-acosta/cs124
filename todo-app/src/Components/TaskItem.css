@@ -22,6 +22,15 @@
   box-sizing: border-box;
 }
 
+.toDoLabel > input {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 5px;
+  width: 100%;
+  padding: 5px;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
 .toDoItem input[type='checkbox'] {
   height: 18px;
   width: 18px;
@@ -34,16 +43,6 @@
 }
 
 .toDoDropdown {
-  /* float: right;
-  font-size: 18px;
-  border-radius: 50%;
-  border: none;
-  text-align: center;
-  height: 30px;
-  width: 30px;
-  background-color: rgb(202, 202, 202);
-  color: white;
-  font-weight: bold; */
   color: rgb(48, 48, 48);
   font-size: 21px;
   text-align: center;
@@ -55,7 +54,7 @@
   transition-property: all;
   transition-duration: 0.2s;
   width: 100%;
-  padding-top: 3px;
+  padding-top: 4px;
 }
 
 .optionsArrow {
@@ -115,4 +114,8 @@
 
 .grayText {
   color: rgb(175, 175, 175);
+}
+
+.hidden {
+  display: none;
 }

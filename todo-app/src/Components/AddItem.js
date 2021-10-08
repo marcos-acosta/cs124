@@ -1,9 +1,9 @@
 import './AddItem.css'
 
-export default function AddItem() {
+export default function AddItem(props) {
   return (
-    <div id="addItemFooter">
+    <button id="addItemFooter" onClick={() => props.addTaskAndEdit()} disabled={props.inEditMode}>
       + add item
-    </div>
+    </button>
   )
 }

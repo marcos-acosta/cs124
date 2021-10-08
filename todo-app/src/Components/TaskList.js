@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 export default function TaskList(props) {
   const [expandedTaskId, setExpandedTaskId] = useState(null);
-  const [taskInEditModeId, setTaskInEditModeId] = useState(null);
 
   const toggleExpandedTaskId = (id) => {
     setExpandedTaskId(expandedTaskId === id ? null : id);
@@ -19,9 +18,8 @@ export default function TaskList(props) {
                 expandTaskCallback={toggleExpandedTaskId}
                 setTaskProperty={props.setTaskProperty}
                 deleteTask={props.deleteTask}
-                setTaskInEditModeId={setTaskInEditModeId}
-                clearTaskInEditMode={() => setTaskInEditModeId(null)}
-                taskInEditModeId={taskInEditModeId} />)
+                setTaskInEditModeId={props.setTaskInEditModeId}
+                taskInEditModeId={props.taskInEditModeId} />)
       }
     </div>
   )

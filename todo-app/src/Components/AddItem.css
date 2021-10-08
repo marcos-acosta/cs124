@@ -8,4 +8,10 @@
   padding-top: 16px;
   font-size: 22px;
   color: white;
+  border: none;
+}
+
+#addItemFooter:disabled {
+  background-color: gray;
+  color: white;
 }

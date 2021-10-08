@@ -1,27 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InMemoryApp from './Components/InMemoryApp';
+import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 
 let initialData = [
   {
-    taskName: "buy new john grisham book",
+    taskName: "an incredibly wordy task; that is to say, a task with an egregious number of words",
     isCompleted: false,
-    id: "0",
+    id: generateUniqueID(),
   },
   {
     taskName: "feed rock",
     isCompleted: false,
-    id: "1",
+    id: generateUniqueID(),
   },
   {
     taskName: "water plant",
     isCompleted: true,
-    id: "2",
+    id: generateUniqueID(),
   },
   {
     taskName: "water sidewalk",
     isCompleted: true,
-    id: "3",
+    id: generateUniqueID(),
   }
 ];
 
@@ -40,13 +41,26 @@ function clearCompleted() {
   render();
 }
 
+function addTask() {
+  const id = generateUniqueID();
+  let newTask = {
+    taskName: "",
+    isCompleted: false,
+    id: id
+  }
+  initialData = [...initialData, newTask];
+  render();
+  return id;
+}
+
 function render() {
   ReactDOM.render(
     <React.StrictMode>
       <InMemoryApp  data={initialData} 
                     setTaskProperty={setTaskProperty}
                     deleteTask={deleteTask}
-                    clearCompleted={clearCompleted} />
+                    clearCompleted={clearCompleted}
+                    addTask={addTask} />
     </React.StrictMode>,
     document.getElementById('root')
   );
