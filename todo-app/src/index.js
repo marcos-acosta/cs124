@@ -23,11 +23,33 @@ let initialData = [
     isCompleted: true,
     id: "3",
   }
-]
+];
 
-ReactDOM.render(
-  <React.StrictMode>
-    <InMemoryApp initialData={initialData} />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function setTaskProperty(id, field, value) {
+  initialData.find(task => task.id === id)[field] = value;
+  render();
+}
+
+function deleteTask(id) {
+  initialData = initialData.filter(task => task.id !== id);
+  render();
+}
+
+function clearCompleted() {
+  initialData = initialData.filter(task => !task.isCompleted);
+  render();
+}
+
+function render() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <InMemoryApp  data={initialData} 
+                    setTaskProperty={setTaskProperty}
+                    deleteTask={deleteTask}
+                    clearCompleted={clearCompleted} />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
+render();

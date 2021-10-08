@@ -1,8 +1,9 @@
-import Task from './TaskItem';
+import TaskItem from './TaskItem';
 import { useState } from 'react';
 
 export default function TaskList(props) {
   const [expandedTaskId, setExpandedTaskId] = useState(null);
+  const [taskInEditModeId, setTaskInEditModeId] = useState(null);
 
   const toggleExpandedTaskId = (id) => {
     setExpandedTaskId(expandedTaskId === id ? null : id);
@@ -12,10 +13,15 @@ export default function TaskList(props) {
     <div>
       {
         props.tasks.map(taskItem => 
-          <Task {...taskItem} 
+          <TaskItem {...taskItem} 
                 key={taskItem.id} 
                 expandedTaskId={expandedTaskId}
-                expandTaskCallback={toggleExpandedTaskId}/>)
+                expandTaskCallback={toggleExpandedTaskId}
+                setTaskProperty={props.setTaskProperty}
+                deleteTask={props.deleteTask}
+                setTaskInEditModeId={setTaskInEditModeId}
+                clearTaskInEditMode={() => setTaskInEditModeId(null)}
+                taskInEditModeId={taskInEditModeId} />)
       }
     </div>
   )

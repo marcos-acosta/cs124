@@ -9,9 +9,17 @@ function App(props) {
     <>
       <AppHeader />
       <div id="pageContent">
-        <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} />
-        <CompletedSection tasks={props.data} />
-        <TaskList tasks={props.data.filter(taskItem => taskItem.isCompleted)} />
+        <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} setTaskProperty={props.setTaskProperty} deleteTask={props.deleteTask}/>
+        {
+          props.data.filter(taskItem => taskItem.isCompleted).length === 0 ? '' :
+          <>
+            <CompletedSection clearCompleted={props.clearCompleted} />
+            <TaskList   tasks={props.data.filter(taskItem => taskItem.isCompleted)} 
+                        setTaskProperty={props.setTaskProperty} 
+                        deleteTask={props.deleteTask}/>
+          </>
+        }
+        
       </div>
       <AddItem />
     </>
