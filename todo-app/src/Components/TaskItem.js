@@ -20,7 +20,7 @@ export default function TaskItem(props) {
         </div>
         <div className="toDoLabel">
           { props.taskInEditModeId !== props.id &&
-            <label id={`label-${props.id}`} className={props.isCompleted && "strikethrough"}>
+            <label id={`label-${props.id}`} className={props.isCompleted ? 'strikethrough' : ''}>
               {props.taskName}
             </label>
           }
@@ -29,13 +29,13 @@ export default function TaskItem(props) {
             onChange={e => props.setTaskProperty(props.id, 'taskName', e.target.value)}
             onKeyUp={e => {if (e.key === 'Enter') props.setTaskInEditModeId(null)}} 
             ref={textInput}
-            className={props.taskInEditModeId !== props.id && 'hidden'} />
+            className={props.taskInEditModeId !== props.id ? 'hidden' : ''} />
         </div>
         {!props.isCompleted && 
           <div className="toDoOptions">
-            <div  className={`toDoDropdown ${props.expandedTaskId === props.id && "selected"}`}
+            <div  className={`toDoDropdown ${props.expandedTaskId === props.id ? 'selected' : ''}`}
                                         onClick={() => props.expandTaskCallback(props.id)}>
-              <div className={`optionsArrow ${props.expandedTaskId === props.id && "rotated"}`}>➔</div>
+              <div className={`optionsArrow ${props.expandedTaskId === props.id ? 'rotated' : ''}`}>➔</div>
             </div>
           </div>}
       {
@@ -43,7 +43,7 @@ export default function TaskItem(props) {
         <>
           <div className="toDoLowerHalf" />
           <div className="toDoItemOptions">
-            <button className={`editButton toDoItemActionButton ${props.taskInEditModeId === props.id && 'grayText'}`} 
+            <button className={`editButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`} 
                     onClick={() => {
                       props.setTaskInEditModeId(props.id);
                       // For some reason, React needs a moment to get the textInput ref
@@ -51,7 +51,7 @@ export default function TaskItem(props) {
                     }}>
                       edit
             </button>
-            <button className={`deleteButton toDoItemActionButton ${props.taskInEditModeId === props.id && 'grayText'}`}
+            <button className={`deleteButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`}
                     onClick={() => props.deleteTask(props.id)}> delete </button>
           </div>
         </>
