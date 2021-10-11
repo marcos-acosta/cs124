@@ -4,7 +4,7 @@ export default function AppHeader() {
   return (
     <div id="toDoHeader">
       <h2>
-        todo
+        todo 🦑
       </h2>
     </div>
   )

@@ -9,6 +9,8 @@
   font-size: 22px;
   color: white;
   border: none;
+  font-family: 'Roboto Slab';
+  font-weight: bold;
 }
 
 #addItemFooter:disabled {

@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './TaskItem.css';
 
 export default function TaskItem(props) {
+  const [shouldFadeOut, setShouldFadeOut] = useState(false);
+
   const textInput = useRef(null);
+  const TEXT_CHAR_LIMIT = 100;
 
   useEffect(() => {
     if (textInput.current) {
@@ -10,18 +13,44 @@ export default function TaskItem(props) {
     }
   }, []);
 
+  function elideText(text) {
+    return text.length > TEXT_CHAR_LIMIT ? text.slice(0, TEXT_CHAR_LIMIT) + '...' : text;
+  }
+
+  function deselectOnEditMode() {
+    props.setTaskInEditModeId(null);
+    if (!props.taskName) {
+      handleDeletion();
+    }
+  }
+
+  function handleDeletion() {
+    setShouldFadeOut(true);
+    setTimeout(() => props.deleteTask(props.id), 1000);
+  }
+
+  function handleCompletion(e) {
+    setShouldFadeOut(true);
+    let checked = e.target.checked;
+    setTimeout(() => props.setTaskProperty(props.id, 'isCompleted', checked), 1000);
+  }
+
   return (
-    <div className="toDoItem">
+    <div className={`toDoItem ${shouldFadeOut ? 'invisible' : ''}`}>
         <div className="toDoCheckbox">
           <input  type="checkbox" 
                   id={`label-${props.id}`} 
                   checked={props.isCompleted} 
-                  onChange={e => props.setTaskProperty(props.id, 'isCompleted', e.target.checked)}/>
+                  onChange={e => handleCompletion(e)}/>
         </div>
         <div className="toDoLabel">
           { props.taskInEditModeId !== props.id &&
-            <label id={`label-${props.id}`} className={props.isCompleted ? 'strikethrough' : ''}>
-              {props.taskName}
+            <label id={`label-${props.id}`} className={props.isCompleted || shouldFadeOut ? 'strikethrough' : ''}>
+              {
+                props.expandedTaskId === props.id
+                ? props.taskName
+                : elideText(props.taskName)
+              }
             </label>
           }
           <input 
@@ -29,7 +58,8 @@ export default function TaskItem(props) {
             onChange={e => props.setTaskProperty(props.id, 'taskName', e.target.value)}
             onKeyUp={e => {if (e.key === 'Enter') props.setTaskInEditModeId(null)}} 
             ref={textInput}
-            className={props.taskInEditModeId !== props.id ? 'hidden' : ''} />
+            className={props.taskInEditModeId !== props.id ? 'hidden' : ''}
+            onBlur={() => deselectOnEditMode()} />
         </div>
         {!props.isCompleted && 
           <div className="toDoOptions">
@@ -52,7 +82,7 @@ export default function TaskItem(props) {
                       edit
             </button>
             <button className={`deleteButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`}
-                    onClick={() => props.deleteTask(props.id)}> delete </button>
+                    onClick={() => handleDeletion()}> delete </button>
           </div>
         </>
       }

@@ -1,6 +1,5 @@
-QUESTIONS
-- How to re-render properly when data changes
-
 LATER ISSUES
+- Undo deletion
+
+- Hide completed tasks
 - Code duplication
-- Fading in/out on events like completed, delete (nice to have)

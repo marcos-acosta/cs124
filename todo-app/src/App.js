@@ -17,6 +17,9 @@ function App(props) {
     <>
       <AppHeader />
       <div id="pageContent">
+        {props.data.filter(taskItem => !taskItem.isCompleted).length === 0 && 
+          <div id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</div>
+        }
         <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} 
                   setTaskProperty={props.setTaskProperty} 
                   deleteTask={props.deleteTask}

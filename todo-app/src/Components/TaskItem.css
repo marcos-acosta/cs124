@@ -5,6 +5,13 @@
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   padding: 5px;
+  transition-property: all;
+  transition-duration: 1s;
+  opacity: 1;
+}
+
+.invisible {
+  opacity: 0;
 }
 
 .toDoCheckbox {

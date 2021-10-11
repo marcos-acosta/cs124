@@ -5,7 +5,7 @@ import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 
 let initialData = [
   {
-    taskName: "an incredibly wordy task; that is to say, a task with an egregious number of words",
+    taskName: "an incredibly wordy task; that is to say, a task with an egregious number of words. an incredibly wordy task; that is to say, a task with an egregious number of words",
     isCompleted: false,
     id: generateUniqueID(),
   },
@@ -26,41 +26,10 @@ let initialData = [
   }
 ];
 
-function setTaskProperty(id, field, value) {
-  initialData.find(task => task.id === id)[field] = value;
-  render();
-}
-
-function deleteTask(id) {
-  initialData = initialData.filter(task => task.id !== id);
-  render();
-}
-
-function clearCompleted() {
-  initialData = initialData.filter(task => !task.isCompleted);
-  render();
-}
-
-function addTask() {
-  const id = generateUniqueID();
-  let newTask = {
-    taskName: "",
-    isCompleted: false,
-    id: id
-  }
-  initialData = [...initialData, newTask];
-  render();
-  return id;
-}
-
 function render() {
   ReactDOM.render(
     <React.StrictMode>
-      <InMemoryApp  data={initialData} 
-                    setTaskProperty={setTaskProperty}
-                    deleteTask={deleteTask}
-                    clearCompleted={clearCompleted}
-                    addTask={addTask} />
+      <InMemoryApp  initialData={initialData} />
     </React.StrictMode>,
     document.getElementById('root')
   );
