@@ -28,10 +28,13 @@ function App(props) {
         {
           props.data.filter(taskItem => taskItem.isCompleted).length === 0 ? '' :
           <>
-            <CompletedSection clearCompleted={props.clearCompleted} />
-            <TaskList tasks={props.data.filter(taskItem => taskItem.isCompleted)} 
+            <CompletedSection clearCompleted={props.clearCompleted}
+                              tasks={props.data.filter(taskItem => taskItem.isCompleted)}
+                              setTaskProperty={props.setTaskProperty}
+                              deleteTask={props.deleteTask}/>
+            {/* <TaskList tasks={props.data.filter(taskItem => taskItem.isCompleted)} 
                       setTaskProperty={props.setTaskProperty} 
-                      deleteTask={props.deleteTask} />
+                      deleteTask={props.deleteTask} /> */}
           </>
         }
         

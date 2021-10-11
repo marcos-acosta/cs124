@@ -12,3 +12,12 @@
   color: rgb(221, 94, 94);
   float: right;
 }
+
+.invisible {
+  opacity: 0;
+}
+
+.completedSectionContainer {
+  transition-property: all;
+  transition-duration: 1s;
+}
