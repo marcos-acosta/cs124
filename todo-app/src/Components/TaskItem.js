@@ -6,6 +6,7 @@ export default function TaskItem(props) {
 
   const textInput = useRef(null);
   const TEXT_CHAR_LIMIT = 100;
+  const DISAPPEAR_DURATION_MS = 500;
 
   useEffect(() => {
     if (textInput.current) {
@@ -26,13 +27,13 @@ export default function TaskItem(props) {
 
   function handleDeletion() {
     setShouldFadeOut(true);
-    setTimeout(() => props.deleteTask(props.id), 1000);
+    setTimeout(() => props.deleteTask(props.id), DISAPPEAR_DURATION_MS);
   }
 
   function handleCompletion(e) {
     setShouldFadeOut(true);
     let checked = e.target.checked;
-    setTimeout(() => props.setTaskProperty(props.id, 'isCompleted', checked), 1000);
+    setTimeout(() => props.setTaskProperty(props.id, 'isCompleted', checked), DISAPPEAR_DURATION_MS);
   }
 
   return (
