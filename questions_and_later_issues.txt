@@ -1,5 +1,0 @@
-LATER ISSUES
-- Undo deletion
-
-- Hide completed tasks
-- Code duplication
