@@ -7,7 +7,7 @@ export default function CompletedSection(props) {
 
   function handleClear() {
     setShouldFadeOut(true);
-    setTimeout(() => props.clearCompleted(), 500);
+    setTimeout(() => props.deleteCompleted(), 500);
   }
 
   return (
