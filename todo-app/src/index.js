@@ -17,7 +17,6 @@ const db = firebase.firestore();
 function render() {
   ReactDOM.render(
     <React.StrictMode>
-      {/* <InMemoryApp initialData={initialData} /> */}
       <FireBaseApp db={db} />
     </React.StrictMode>,
     document.getElementById('root')

@@ -18,6 +18,10 @@ export default function TaskItem(props) {
     return text.length > TEXT_CHAR_LIMIT ? text.slice(0, TEXT_CHAR_LIMIT) + '...' : text;
   }
 
+  function priorityToExclamationPoints(priority) {
+    return '!'.repeat(priority);
+  }
+
   function deselectOnEditMode() {
     props.setTaskInEditModeId(null);
     if (!props.taskName) {
@@ -36,6 +40,14 @@ export default function TaskItem(props) {
     setTimeout(() => props.setTaskProperty(props.id, 'isCompleted', checked), DISAPPEAR_DURATION_MS);
   }
 
+  function handleChangePriority(priority) {
+    if (props.priority === priority) {
+      props.setTaskProperty(props.id, 'priority', 0);
+    } else {
+      props.setTaskProperty(props.id, 'priority', priority);
+    }
+  }
+
   return (
     <div className={`toDoItem ${shouldFadeOut ? 'invisible' : ''}`}>
         <div className="toDoCheckbox">
@@ -44,7 +56,7 @@ export default function TaskItem(props) {
                   checked={props.isCompleted} 
                   onChange={e => handleCompletion(e)}/>
         </div>
-        <div className="toDoLabel">
+        <div className="toDoLabel"> {priorityToExclamationPoints(props.priority)}
           { props.taskInEditModeId !== props.id &&
             <label id={`label-${props.id}`} className={props.isCompleted || shouldFadeOut ? 'strikethrough' : ''}>
               {
@@ -84,6 +96,9 @@ export default function TaskItem(props) {
             </button>
             <button className={`deleteButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`}
                     onClick={() => handleDeletion()}> delete </button>
+            <button onClick={() => handleChangePriority(1)}>!</button>
+            <button onClick={() => handleChangePriority(2)}>!!</button>
+            <button onClick={() => handleChangePriority(3)}>!!!</button>
           </div>
         </>
       }

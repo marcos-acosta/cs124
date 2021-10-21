@@ -1,10 +1,19 @@
 import { useCollection } from "react-firebase-hooks/firestore";
+import firebase from 'firebase/compat';
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import App from "../App";
+import { useState } from "react";
 
 const COLLECTION_NAME = 'marcos-acosta-tasks';
 
+const SORT_FUNCTIONS = {
+  priority: (a, b) => b['priority'] - a['priority'],
+  taskName: (a, b) => a['taskName'] < b['taskName'] ? -1 : 1,
+  created: (a, b) => a['created'] < b['created'] ? -1 : 1
+}
+
 export default function FireBaseApp(props) {
+  const [orderingBy, setOrderingBy] = useState("created");
   const completeDataQuery = props.db.collection(COLLECTION_NAME);
   const [value, loading, error] = useCollection(completeDataQuery);
 
@@ -28,15 +37,25 @@ export default function FireBaseApp(props) {
     docRef.set({
       taskName: "",
       isCompleted: false,
-      id: new_id
+      id: new_id,
+      created: firebase.database.ServerValue.TIMESTAMP,
+      priority: 0
     });
     return new_id;
   }
 
-  return loading && !error ? 'Loading...' :
-          <App  setTaskProperty={setTaskProperty}
-                deleteTask={deleteTask}
-                deleteCompleted={deleteCompleted}
-                addTask={addTask}
-                data={value.docs.map(doc => doc.data())} />
+  const getSortedTasks = () => {
+    return loading
+      ? null
+      : value.docs.map(doc => doc.data()).sort(SORT_FUNCTIONS[orderingBy]);
+  }
+
+  return <App setTaskProperty={setTaskProperty}
+              deleteTask={deleteTask}
+              deleteCompleted={deleteCompleted}
+              setOrderingBy={setOrderingBy}
+              addTask={addTask}
+              data={getSortedTasks()}
+              loading={loading}
+              error={error} />
 }

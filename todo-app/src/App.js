@@ -4,6 +4,7 @@ import TaskList from './Components/TaskList';
 import CompletedSection from './Components/CompletedSection';
 import AddItem from './Components/AddItem';
 import { useState } from 'react';
+import OrderSelector from './Components/OptionSelector';
 
 function App(props) {
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
@@ -17,29 +18,31 @@ function App(props) {
     <>
       <AppHeader />
       <div id="pageContent">
-        {props.data.filter(taskItem => !taskItem.isCompleted).length === 0 && 
-          <div id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</div>
-        }
-        <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} 
-                  setTaskProperty={props.setTaskProperty} 
-                  deleteTask={props.deleteTask}
-                  taskInEditModeId={taskInEditModeId}
-                  setTaskInEditModeId={setTaskInEditModeId} />
+        <OrderSelector options={['created', 'taskName', 'priority']} onChangeCallback={props.setOrderingBy} />
         {
-          props.data.filter(taskItem => taskItem.isCompleted).length === 0 ? '' :
+          props.loading ? 'loading...' : 
           <>
-            <CompletedSection deleteCompleted={props.deleteCompleted}
-                              tasks={props.data.filter(taskItem => taskItem.isCompleted)}
-                              setTaskProperty={props.setTaskProperty}
-                              deleteTask={props.deleteTask}/>
-            {/* <TaskList tasks={props.data.filter(taskItem => taskItem.isCompleted)} 
+            {props.data.filter(taskItem => !taskItem.isCompleted).length === 0 && 
+              <div id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</div>
+            }
+            <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} 
                       setTaskProperty={props.setTaskProperty} 
-                      deleteTask={props.deleteTask} /> */}
+                      deleteTask={props.deleteTask}
+                      taskInEditModeId={taskInEditModeId}
+                      setTaskInEditModeId={setTaskInEditModeId} />
+            {
+              props.data.filter(taskItem => taskItem.isCompleted).length === 0
+                ? ''
+                : <CompletedSection 
+                    deleteCompleted={props.deleteCompleted}
+                    tasks={props.data.filter(taskItem => taskItem.isCompleted)}
+                    setTaskProperty={props.setTaskProperty}
+                    deleteTask={props.deleteTask}/>
+            }
           </>
         }
-        
       </div>
-      <AddItem inEditMode={taskInEditModeId ? true : false} addTaskAndEdit={addTaskAndEdit} />
+      <AddItem inEditMode={taskInEditModeId || props.loading ? true : false} addTaskAndEdit={addTaskAndEdit} />
     </>
   );
 }
