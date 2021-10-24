@@ -5,9 +5,12 @@
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   padding: 5px;
+  grid-column: 2;
+}
+
+.supportsInvisibility {
   transition-property: all;
   transition-duration: 0.5s;
-  grid-column: 2;
 }
 
 .invisible {

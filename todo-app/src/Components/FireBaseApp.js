@@ -9,7 +9,8 @@ const COLLECTION_NAME = 'marcos-acosta-tasks';
 const SORT_FUNCTIONS = {
   priority: (a, b) => b['priority'] - a['priority'],
   taskName: (a, b) => a['taskName'] < b['taskName'] ? -1 : 1,
-  created: (a, b) => a['created'] < b['created'] ? -1 : 1
+  newestTop: (a, b) => a['created'] < b['created'] ? 1 : -1,
+  oldestTop: (a, b) => a['created'] < b['created'] ? -1 : 1,
 }
 
 export default function FireBaseApp(props) {

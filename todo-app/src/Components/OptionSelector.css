@@ -1,0 +1,12 @@
+.optionSelector {
+  border: none;
+  font-family: 'Roboto Slab';
+  width: 80px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  display: inline;
+}
+
+.optionSelector:focus {
+  outline: 0;
+}

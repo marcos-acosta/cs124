@@ -22,9 +22,10 @@ export default function TaskItem(props) {
     return <div className={`priorityExclamationDiv priority${priority}`}>{'!'.repeat(priority)}</div>;
   }
 
-  function priorityToButton(p) {
+  function priorityToButton(p, index) {
     return  <button className={`priorityButton ${props.priority === p ? `whiteText priority${p}` : ''}`}
-                    onClick={() => handleChangePriority(p)}>
+                    onClick={() => handleChangePriority(p)}
+                    key={index}>
                       {'!'.repeat(p)}
             </button>
   }
@@ -57,10 +58,10 @@ export default function TaskItem(props) {
 
   return (
     <>
-      <div className="priorityMarker">
+      <div className={`priorityMarker supportsInvisibility ${shouldFadeOut ? 'invisible' : ''}`}>
         {priorityToExclamationPoints(props.priority)}
       </div>
-      <div className={`toDoItem ${shouldFadeOut ? 'invisible' : ''}`}>
+      <div className={`toDoItem supportsInvisibility ${shouldFadeOut ? 'invisible' : ''}`}>
           <div className="toDoCheckbox">
             <input  type="checkbox" 
                     id={`label-${props.id}`} 
@@ -108,7 +109,7 @@ export default function TaskItem(props) {
               <button className={`deleteButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`}
                       onClick={() => handleDeletion()}> delete </button>
               {
-                [3, 2, 1].map(p => priorityToButton(p))
+                [3, 2, 1].map((p, index) => priorityToButton(p, index))
               }
             </div>
           </>

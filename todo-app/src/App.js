@@ -4,7 +4,9 @@ import TaskList from './Components/TaskList';
 import CompletedSection from './Components/CompletedSection';
 import AddItem from './Components/AddItem';
 import { useState } from 'react';
-import OrderSelector from './Components/OptionSelector';
+import OptionSelector from './Components/OptionSelector';
+
+const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
 function App(props) {
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
@@ -18,7 +20,10 @@ function App(props) {
     <>
       <AppHeader />
       <div id="pageContent">
-        <OrderSelector options={['created', 'taskName', 'priority']} onChangeCallback={props.setOrderingBy} />
+        <div className="noTopMargin">
+          <div className="sortByText">sort by:</div>
+          <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />
+        </div>
         {
           props.loading ? 'loading...' : 
           <>

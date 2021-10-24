@@ -6,7 +6,8 @@ body {
 
 #pageContent {
   display: grid;
-  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #noTasksPlaceholder {
@@ -16,4 +17,10 @@ body {
   border-radius: 10px;
   text-align: center;
   text-decoration: underline;
+}
+
+.sortByText {
+  font-size: 14px;
+  display: inline;
+  color: rgb(119, 119, 119);
 }
