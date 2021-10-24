@@ -19,7 +19,14 @@ export default function TaskItem(props) {
   }
 
   function priorityToExclamationPoints(priority) {
-    return '!'.repeat(priority);
+    return <div className={`priorityExclamationDiv priority${priority}`}>{'!'.repeat(priority)}</div>;
+  }
+
+  function priorityToButton(p) {
+    return  <button className={`priorityButton ${props.priority === p ? `whiteText priority${p}` : ''}`}
+                    onClick={() => handleChangePriority(p)}>
+                      {'!'.repeat(p)}
+            </button>
   }
 
   function deselectOnEditMode() {
@@ -49,59 +56,64 @@ export default function TaskItem(props) {
   }
 
   return (
-    <div className={`toDoItem ${shouldFadeOut ? 'invisible' : ''}`}>
-        <div className="toDoCheckbox">
-          <input  type="checkbox" 
-                  id={`label-${props.id}`} 
-                  checked={props.isCompleted} 
-                  onChange={e => handleCompletion(e)}/>
-        </div>
-        <div className="toDoLabel"> {priorityToExclamationPoints(props.priority)}
-          { props.taskInEditModeId !== props.id &&
-            <label id={`label-${props.id}`} className={props.isCompleted || shouldFadeOut ? 'strikethrough' : ''}>
-              {
-                props.expandedTaskId === props.id
-                ? props.taskName
-                : elideText(props.taskName)
-              }
-            </label>
-          }
-          <input 
-            value={props.taskName} 
-            onChange={e => props.setTaskProperty(props.id, 'taskName', e.target.value)}
-            onKeyUp={e => {if (e.key === 'Enter') props.setTaskInEditModeId(null)}} 
-            ref={textInput}
-            className={props.taskInEditModeId !== props.id ? 'hidden' : ''}
-            onBlur={() => deselectOnEditMode()} />
-        </div>
-        {!props.isCompleted && 
-          <div className="toDoOptions">
-            <div  className={`toDoDropdown ${props.expandedTaskId === props.id ? 'selected' : ''}`}
-                                        onClick={() => props.expandTaskCallback(props.id)}>
-              <div className={`optionsArrow ${props.expandedTaskId === props.id ? 'rotated' : ''}`}>➔</div>
-            </div>
-          </div>}
-      {
-        props.expandedTaskId === props.id &&
-        <>
-          <div className="toDoLowerHalf" />
-          <div className="toDoItemOptions">
-            <button className={`editButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`} 
-                    onClick={() => {
-                      props.setTaskInEditModeId(props.id);
-                      // For some reason, React needs a moment to get the textInput ref
-                      setTimeout(() => textInput.current.focus(), 1);
-                    }}>
-                      edit
-            </button>
-            <button className={`deleteButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`}
-                    onClick={() => handleDeletion()}> delete </button>
-            <button onClick={() => handleChangePriority(1)}>!</button>
-            <button onClick={() => handleChangePriority(2)}>!!</button>
-            <button onClick={() => handleChangePriority(3)}>!!!</button>
+    <>
+      <div className="priorityMarker">
+        {priorityToExclamationPoints(props.priority)}
+      </div>
+      <div className={`toDoItem ${shouldFadeOut ? 'invisible' : ''}`}>
+          <div className="toDoCheckbox">
+            <input  type="checkbox" 
+                    id={`label-${props.id}`} 
+                    checked={props.isCompleted} 
+                    onChange={e => handleCompletion(e)}/>
           </div>
-        </>
-      }
-    </div>
+          <div className="toDoLabel">
+            { props.taskInEditModeId !== props.id &&
+              <label id={`label-${props.id}`} className={props.isCompleted || shouldFadeOut ? 'strikethrough' : ''}>
+                {
+                  props.expandedTaskId === props.id
+                  ? props.taskName
+                  : elideText(props.taskName)
+                }
+              </label>
+            }
+            <input 
+              value={props.taskName} 
+              onChange={e => props.setTaskProperty(props.id, 'taskName', e.target.value)}
+              onKeyUp={e => {if (e.key === 'Enter') props.setTaskInEditModeId(null)}} 
+              ref={textInput}
+              className={props.taskInEditModeId !== props.id ? 'hidden' : ''}
+              onBlur={() => deselectOnEditMode()} />
+          </div>
+          {!props.isCompleted && 
+            <div className="toDoOptions">
+              <div  className={`toDoDropdown ${props.expandedTaskId === props.id ? 'selected' : ''}`}
+                                          onClick={() => props.expandTaskCallback(props.id)}>
+                <div className={`optionsArrow ${props.expandedTaskId === props.id ? 'rotated' : ''}`}>➔</div>
+              </div>
+            </div>}
+        {
+          props.expandedTaskId === props.id &&
+          <>
+            <div className="toDoLowerHalf" />
+            <div className="toDoItemOptions">
+              <button className={`editButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`} 
+                      onClick={() => {
+                        props.setTaskInEditModeId(props.id);
+                        // For some reason, React needs a moment to get the textInput ref
+                        setTimeout(() => textInput.current.focus(), 1);
+                      }}>
+                        edit
+              </button>
+              <button className={`deleteButton toDoItemActionButton ${props.taskInEditModeId === props.id ? 'grayText' : ''}`}
+                      onClick={() => handleDeletion()}> delete </button>
+              {
+                [3, 2, 1].map(p => priorityToButton(p))
+              }
+            </div>
+          </>
+        }
+      </div>
+    </>
   )
 }

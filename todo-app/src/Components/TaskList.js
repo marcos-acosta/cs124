@@ -1,4 +1,5 @@
 import TaskItem from './TaskItem';
+import "./TaskList.css";
 import { useState } from 'react';
 
 export default function TaskList(props) {
@@ -9,7 +10,7 @@ export default function TaskList(props) {
   }
 
   return (
-    <div>
+    <div className="taskListDiv">
       {
         props.tasks.map(taskItem => 
           <TaskItem {...taskItem} 
