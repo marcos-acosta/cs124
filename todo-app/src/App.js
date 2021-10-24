@@ -3,17 +3,14 @@ import AppHeader from './Components/AppHeader';
 import TaskList from './Components/TaskList';
 import CompletedSection from './Components/CompletedSection';
 import AddItem from './Components/AddItem';
-import { useState } from 'react';
 import OptionSelector from './Components/OptionSelector';
 
 const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
 function App(props) {
-  const [taskInEditModeId, setTaskInEditModeId] = useState(null);
-
   function addTaskAndEdit() {
     const id = props.addTask();
-    setTaskInEditModeId(id);
+    props.setTaskInEditModeId(id);
   }
 
   return (
@@ -33,8 +30,8 @@ function App(props) {
             <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} 
                       setTaskProperty={props.setTaskProperty} 
                       deleteTask={props.deleteTask}
-                      taskInEditModeId={taskInEditModeId}
-                      setTaskInEditModeId={setTaskInEditModeId} />
+                      taskInEditModeId={props.taskInEditModeId}
+                      setTaskInEditModeId={props.setTaskInEditModeId} />
             {
               props.data.filter(taskItem => taskItem.isCompleted).length === 0
                 ? ''
@@ -47,7 +44,7 @@ function App(props) {
           </>
         }
       </div>
-      <AddItem inEditMode={taskInEditModeId || props.loading ? true : false} addTaskAndEdit={addTaskAndEdit} />
+      <AddItem inEditMode={props.taskInEditModeId || props.loading ? true : false} addTaskAndEdit={addTaskAndEdit} />
     </>
   );
 }

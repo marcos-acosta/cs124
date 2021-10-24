@@ -6,14 +6,15 @@ import { useState } from "react";
 
 const COLLECTION_NAME = 'marcos-acosta-tasks';
 
-const SORT_FUNCTIONS = {
-  priority: (a, b) => b['priority'] - a['priority'],
-  taskName: (a, b) => a['taskName'] < b['taskName'] ? -1 : 1,
-  newestTop: (a, b) => a['created'] < b['created'] ? 1 : -1,
-  oldestTop: (a, b) => a['created'] < b['created'] ? -1 : 1,
-}
-
 export default function FireBaseApp(props) {
+  let sortFunctions = {
+    priority: (a, b) => isElementInEditMode(a) ? -1 : b['priority'] - a['priority'],
+    taskName: (a, b) => isElementInEditMode(a) ? -1 : a['taskName'].toLowerCase() < b['taskName'].toLowerCase() ? -1 : 1,
+    newestTop: (a, b) => isElementInEditMode(a) ? -1 : a['created'] < b['created'] ? 1 : -1,
+    oldestTop: (a, b) => isElementInEditMode(a) ? -1 : a['created'] < b['created'] ? -1 : 1,
+  }
+
+  const [taskInEditModeId, setTaskInEditModeId] = useState(null);
   const [orderingBy, setOrderingBy] = useState("created");
   const completeDataQuery = props.db.collection(COLLECTION_NAME);
   const [value, loading, error] = useCollection(completeDataQuery);
@@ -21,6 +22,10 @@ export default function FireBaseApp(props) {
   const setTaskProperty = (id, field, value) => {
     const docRef = completeDataQuery.doc(id);
     docRef.update({[field]: value});
+  }
+
+  const isElementInEditMode = (element) => {
+    return element['id'] === taskInEditModeId;
   }
 
   const deleteTask = (id) => {
@@ -48,7 +53,7 @@ export default function FireBaseApp(props) {
   const getSortedTasks = () => {
     return loading
       ? null
-      : value.docs.map(doc => doc.data()).sort(SORT_FUNCTIONS[orderingBy]);
+      : value.docs.map(doc => doc.data()).sort(sortFunctions[orderingBy]);
   }
 
   return <App setTaskProperty={setTaskProperty}
@@ -58,5 +63,7 @@ export default function FireBaseApp(props) {
               addTask={addTask}
               data={getSortedTasks()}
               loading={loading}
-              error={error} />
+              error={error}
+              taskInEditModeId={taskInEditModeId}
+              setTaskInEditModeId={setTaskInEditModeId} />
 }
