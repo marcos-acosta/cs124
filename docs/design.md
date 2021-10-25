@@ -39,7 +39,7 @@ We made a few more design decisions in the process of implementing lab 3. When w
 those buttons in the drop-down menu with the edit and delete buttons, but have the user be able to view the priority of each task on a column to the left of each task,
 leaving a task with no priority set blank. 
 
-<img src="images/designs/taskpriority.png" width="200px">
+<img src="images/designs/taskpriority.PNG" width="200px">
 
 We gave these priority indicators colors to reflect the level of priority, and when the user
 selects priority, it highlights the selected level with the same color. The user can select a new priority, or unselect to give the task no priority at all.
@@ -61,7 +61,7 @@ One alternative design for the priority was to have the priority indicators as p
 task itself, but we though that it might make the task itself look cluttered and leave less room
 for the task itself, so we went with the external indicator.
 
-<img src="images/designs/taskpriorityalt.png" width="200px">
+<img src="images/designs/taskpriorityalt.PNG" width="200px">
 
 ## Final designs
 The general idea of our final design can be seen in this "template" page we developed:
