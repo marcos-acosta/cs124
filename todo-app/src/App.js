@@ -4,13 +4,21 @@ import TaskList from './Components/TaskList';
 import CompletedSection from './Components/CompletedSection';
 import AddItem from './Components/AddItem';
 import OptionSelector from './Components/OptionSelector';
+import { useState } from 'react';
 
 const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
 function App(props) {
+  const [expandedTaskId, setExpandedTaskId] = useState(null);
+
+  const toggleExpandedTaskId = (id) => {
+    setExpandedTaskId(expandedTaskId === id ? null : id);
+  }
+
   function addTaskAndEdit() {
     const id = props.addTask();
     props.setTaskInEditModeId(id);
+    setExpandedTaskId(id);
   }
 
   return (
@@ -32,7 +40,10 @@ function App(props) {
                       setTaskProperty={props.setTaskProperty} 
                       deleteTask={props.deleteTask}
                       taskInEditModeId={props.taskInEditModeId}
-                      setTaskInEditModeId={props.setTaskInEditModeId} />
+                      setTaskInEditModeId={props.setTaskInEditModeId}
+                      toggleExpandedTaskId={toggleExpandedTaskId}
+                      expandedTaskId={expandedTaskId}
+                       />
             {
               props.data.filter(taskItem => taskItem.isCompleted).length === 0
                 ? ''
