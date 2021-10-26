@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import TaskItemOptions from './TaskItemOptions';
 import TaskCheckbox from './TaskCheckbox';
-import './TaskItem.css';
 import TaskTextLabel from './TaskTextLabel';
 import TaskExpander from './TaskExpander';
+import './TaskItem.css';
 
 export default function TaskItem(props) {
   const [shouldFadeOut, setShouldFadeOut] = useState(false);

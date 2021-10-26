@@ -28,7 +28,7 @@ export default function FireBaseApp(props) {
     element['id'] === taskInEditModeId;
 
   const checkInEditModeElse = (element, elseReturn) => 
-    isElementInEditMode(element) ? -1 : elseReturn;
+    isElementInEditMode(element) ? 1 : elseReturn;
 
   const deleteTask = (id) => {
     const docRef = completeDataQuery.doc(id);
