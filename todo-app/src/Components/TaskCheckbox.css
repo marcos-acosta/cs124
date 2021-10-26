@@ -1,0 +1,6 @@
+.toDoCheckbox {
+  display: flex;
+  grid-row: 1;
+  grid-column: 1;
+  padding: 5px;
+}
