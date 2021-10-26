@@ -22,7 +22,8 @@ function App(props) {
           <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />
         </div>
         {
-          props.loading ? 'loading...' : 
+          props.loading ? <div className="infoText">loading...</div> : 
+          props.error ? <div className="infoText errorText">an unexpected error occurred!</div> :
           <>
             {props.data.filter(taskItem => !taskItem.isCompleted).length === 0 && 
               <div id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</div>

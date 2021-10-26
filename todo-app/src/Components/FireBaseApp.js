@@ -8,10 +8,10 @@ const COLLECTION_NAME = 'marcos-acosta-tasks';
 
 export default function FireBaseApp(props) {
   let sortFunctions = {
-    priority: (a, b) => isElementInEditMode(a) ? -1 : b['priority'] - a['priority'],
-    taskName: (a, b) => isElementInEditMode(a) ? -1 : a['taskName'].toLowerCase() < b['taskName'].toLowerCase() ? -1 : 1,
-    newestTop: (a, b) => isElementInEditMode(a) ? -1 : a['created'] < b['created'] ? 1 : -1,
-    oldestTop: (a, b) => isElementInEditMode(a) ? -1 : a['created'] < b['created'] ? -1 : 1,
+    priority: (a, b) => checkInEditModeElse(a, b['priority'] - a['priority']),
+    taskName: (a, b) => checkInEditModeElse(a, a['taskName'].toLowerCase() < b['taskName'].toLowerCase() ? -1 : 1),
+    newestTop: (a, b) => checkInEditModeElse(a, a['created'] < b['created'] ? 1 : -1),
+    oldestTop: (a, b) => checkInEditModeElse(a, a['created'] < b['created'] ? -1 : 1)
   }
 
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
@@ -24,18 +24,19 @@ export default function FireBaseApp(props) {
     docRef.update({[field]: value});
   }
 
-  const isElementInEditMode = (element) => {
-    return element['id'] === taskInEditModeId;
-  }
+  const isElementInEditMode = (element) => 
+    element['id'] === taskInEditModeId;
+
+  const checkInEditModeElse = (element, elseReturn) => 
+    isElementInEditMode(element) ? -1 : elseReturn;
 
   const deleteTask = (id) => {
     const docRef = completeDataQuery.doc(id);
     docRef.delete();
   }
 
-  const deleteCompleted = () => {
+  const deleteCompleted = () => 
     value.docs.map(doc => doc.data()).filter(task => task.isCompleted).forEach(task => deleteTask(task.id));
-  }
 
   const addTask = () => {
     const new_id = generateUniqueID();
