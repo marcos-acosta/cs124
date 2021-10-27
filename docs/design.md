@@ -106,6 +106,9 @@ Completed items are shown by default so that users can easily see what they've f
 
 To clear all completed items, the user simply presses the `clear` button, which makes the completed items disappear.
 
+## User Testing
+We did our first round of user testing during lab3, using Marcos's roommate. The feedback we recieved was that he expected new tasks to appear at the bottom rather than the top and that it was sometimes hard to tell where a task went after it got re-sorted. The changes we then implented where to have tasks appear at the bottom, and to leave new tasks expanded so you can immediately tell where it went after it left edit mode.
+
 ## Challenges
 One challenge was when we made the React app and had to figure out how to work with memory and storing the data, and then figuring out how to change it. We initially changed the initial data and then re-rendered the page, but we moved it into states instead so we don't change the data itself, instead changing the state and creating new data for the re-render.
 ### Lab3 Challenges
