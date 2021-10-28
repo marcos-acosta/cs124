@@ -3,7 +3,7 @@ import "./TaskTextLabel.css"
 const TEXT_CHAR_LIMIT = 80;
 
 function elideText(text) {
-  return text.length > TEXT_CHAR_LIMIT ? text.slice(0, TEXT_CHAR_LIMIT) + '...' : text;
+  return text.length > TEXT_CHAR_LIMIT ? text.slice(0, TEXT_CHAR_LIMIT) + '…' : text;
 }
 
 function trimNewline(text) {
@@ -32,7 +32,7 @@ export default function TaskTextLabel(props) {
         onKeyUp={e => {if (e.key === 'Enter') props.setTaskInEditModeId(null)}} 
         ref={props.textInput}
         className={`${props.taskInEditModeId !== props.id ? 'hidden' : ''}`}
-        onBlur={() => props.deselectOnEditMode()} />
+        onBlur={props.deselectOnEditMode} />
     </div>
   )
 }

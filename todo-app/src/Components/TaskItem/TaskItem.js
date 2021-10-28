@@ -12,10 +12,10 @@ export default function TaskItem(props) {
   const DISAPPEAR_DURATION_MS = 500;
 
   useEffect(() => {
-    if (textInput.current) {
+    if (textInput.current && props.taskInEditModeId === props.id) {
       textInput.current.focus();
     }
-  }, []);
+  }, [props.taskInEditModeId, props.id]);
 
   function priorityToMarker(priority) {
     return <div className={`priorityExclamationDiv priority${priority}`}>{'!'.repeat(priority)}</div>;
@@ -23,8 +23,6 @@ export default function TaskItem(props) {
 
   function onClickEditButton() {
     props.setTaskInEditModeId(props.id);
-    // For some reason, React needs a moment to get the textInput ref
-    setTimeout(() => textInput.current.focus(), 1);
   }
 
   function deselectOnEditMode() {
@@ -67,14 +65,16 @@ export default function TaskItem(props) {
             shouldFadeOut={shouldFadeOut} />
           {
             !props.isCompleted && 
-              <TaskExpander taskId={props.id}
+              <TaskExpander id={props.id}
                             expandedId={props.expandedTaskId}
                             expandTaskCallback={props.expandTaskCallback} />
           }
           {
             props.expandedTaskId === props.id &&
               <TaskItemOptions
-                {...props} 
+                priority={props.priority}
+                id={props.id}
+                taskInEditModeId={props.taskInEditModeId}
                 handleChangePriority={handleChangePriority}
                 onClickEditButton={onClickEditButton}
                 handleDeletion={handleDeletion} />

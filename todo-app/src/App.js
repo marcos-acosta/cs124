@@ -56,7 +56,7 @@ function App(props) {
           </>
         }
       </div>
-      <AddItem inEditMode={props.taskInEditModeId || props.loading ? true : false} addTaskAndEdit={addTaskAndEdit} />
+      <AddItem inEditMode={props.taskInEditModeId !== null || props.loading ? true : false} addTaskAndEdit={addTaskAndEdit} />
     </>
   );
 }

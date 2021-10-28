@@ -6,7 +6,7 @@ export default function ToDoCheckbox(props) {
       <input  type="checkbox" 
               id={`label-${props.id}`} 
               checked={props.checked} 
-              onChange={(e) => props.handleCompletion(e)}/>
+              onChange={props.handleCompletion}/>
     </div>
   )
 }
