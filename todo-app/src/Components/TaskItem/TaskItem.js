@@ -58,7 +58,7 @@ export default function TaskItem(props) {
       <div className={`priorityMarker supportsInvisibility ${shouldFadeOut ? 'invisible' : ''}`}>
         {priorityToMarker(props.priority)}
       </div>
-      <div className={`toDoItem supportsInvisibility ${shouldFadeOut ? 'invisible' : ''}`}>
+      <div className={`toDoItem supportsInvisibility ${shouldFadeOut ? 'invisible' : ''} ${props.expandedTaskId === props.id ? 'highlighted' : ''}`}>
           <TaskCheckbox id={props.id} checked={props.isCompleted} handleCompletion={handleCompletion} />
           <TaskTextLabel 
             {...props}
@@ -67,7 +67,9 @@ export default function TaskItem(props) {
             shouldFadeOut={shouldFadeOut} />
           {
             !props.isCompleted && 
-              <TaskExpander {...props} />
+              <TaskExpander taskId={props.id}
+                            expandedId={props.expandedTaskId}
+                            expandTaskCallback={props.expandTaskCallback} />
           }
           {
             props.expandedTaskId === props.id &&
