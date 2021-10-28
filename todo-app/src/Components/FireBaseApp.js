@@ -2,33 +2,49 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import firebase from 'firebase/compat';
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import App from "../App";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const COLLECTION_NAME = 'marcos-acosta-tasks';
 
 export default function FireBaseApp(props) {
-  let sortFunctions = {
-    priority: (a, b) => checkInEditModeElse(a, b['priority'] - a['priority']),
-    taskName: (a, b) => checkInEditModeElse(a, a['taskName'].toLowerCase() < b['taskName'].toLowerCase() ? -1 : 1),
-    newestTop: (a, b) => checkInEditModeElse(a, a['created'] < b['created'] ? 1 : -1),
-    oldestTop: (a, b) => checkInEditModeElse(a, a['created'] < b['created'] ? -1 : 1)
-  }
-
+  const [frozenTask, setFrozenTask] = useState(null);
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
   const [orderingBy, setOrderingBy] = useState("created");
   const completeDataQuery = props.db.collection(COLLECTION_NAME);
   const [value, loading, error] = useCollection(completeDataQuery);
 
+  const sortFunctions = {
+    priority: (a, b) => frozen(b)['priority'] - frozen(a)['priority'],
+    taskName: (a, b) => frozen(a)['taskName'].toLowerCase() < frozen(b)['taskName'].toLowerCase() ? -1 : 1,
+    newestTop: (a, b) => frozen(a)['created'] < frozen(b)['created'] ? 1 : -1,
+    oldestTop: (a, b) => frozen(a)['created'] < frozen(b)['created'] ? -1 : 1
+  }
+
+  useEffect(() => {
+    if (!loading && !error) {
+      if (taskInEditModeId) {
+        setFrozenTask(
+          value.docs.map(doc => doc.data()).filter(task => task.id === taskInEditModeId)[0]
+        );
+      } else {
+        setFrozenTask(null);
+      }
+    }
+  // eslint-disable-next-line
+  }, [taskInEditModeId, loading, error]);
+
+  useEffect(() => {
+    console.log(frozenTask);
+  }, [frozenTask]);
+
+  const frozen = (element) => {
+    return frozenTask && element.id === frozenTask.id ? frozenTask : element;
+  }
+
   const setTaskProperty = (id, field, value) => {
     const docRef = completeDataQuery.doc(id);
     docRef.update({[field]: value});
   }
-
-  const isElementInEditMode = (element) => 
-    element['id'] === taskInEditModeId;
-
-  const checkInEditModeElse = (element, elseReturn) => 
-    isElementInEditMode(element) ? 1 : elseReturn;
 
   const deleteTask = (id) => {
     const docRef = completeDataQuery.doc(id);
