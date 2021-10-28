@@ -107,16 +107,14 @@ Completed items are shown by default so that users can easily see what they've f
 To clear all completed items, the user simply presses the `clear` button, which makes the completed items disappear.
 
 ## User Testing
-We did our first round of user testing during lab3, using Marcos's roommate. The feedback we recieved was that he expected new tasks to appear at the bottom rather than the top and that it was sometimes hard to tell where a task went after it got re-sorted. The changes we then implented where to have tasks appear at the bottom, and to leave new tasks expanded so you can immediately tell where it went after it left edit mode.
+We did our first round of user testing during lab3, using Marcos's roommate, Anshul. Anshul seemed to be mostly fluent using the app (including automatically hitting `Enter` to finish editing a task), but was visibly confused when he set the sorting mode to alphabetical and tried creating a task. As he typed, the task sorted itself, which was jarring to him. To fix this, we found a way to preserve sorting order when editing a task, which is outlined in the `Challenges` section below.
 
 ## Challenges
+### Lab 2
 One challenge was when we made the React app and had to figure out how to work with memory and storing the data, and then figuring out how to change it. We initially changed the initial data and then re-rendered the page, but we moved it into states instead so we don't change the data itself, instead changing the state and creating new data for the re-render.
-### Lab3 Challenges
-Challenges we encountered at this step was when we implemented the sorting. We had to figure out whether it was better to sort as we pulled from Firestore, if we wanted to sort with the already pulled data. We ultimately
-went with the latter because then we didn't get the loading screen every time a user changed the task lists, whether that was adding, editing, or deleting a task. We also struggled trying to prevent auto-sorting when adding or editing a task 
-when the list was in alphabetical order. We thought that preventing sorting from happening while a task was in edit mode was the best way, but we weren't sure how to implement that right away. Adding whether a task was in edit mode
-as part of the database seemed bad practice, as did trying to create another component for a task in edit mode that then had to re-merge with the other tasks. Ultimately, we moved the editable state up one level and added a condition in the 
-sorting conditions so that if the task is in edit-mode it is always the first in the list, so whenever a task is being added or edited it is moved to the top of the list and then re-sorted when the user is done.
+
+### Lab 3
+One challenge we encountered at this step was when we implemented task sorting. We had to figure out whether it was better to sort as we pulled from Firestore, or if we wanted to sort with the already-pulled data. We ultimately went with the latter because we thought seeing the loading panel each time the user changed sorting method was a little jarring. We also struggled trying to prevent tasks from rearranging themselves when adding or editing a task when sorting by alphabetical order; it's very unpleasant to try to type while your text box is moving around. We knew we wanted to preserve the sort order while the user edits a task, but it took a while to figure out the "React way" of doing this. Including whether a task is in edit mode in the database didn't seem right, and neither did create another component for a task in edit mode that then had to re-merge with the other tasks. Ultimately, we moved the `taskInEditModeId` state up to where tasks are sorted, and added a bit of extra logic to save a "frozen" version of a task if it is in edit mode (the state of the task before any edits). Then, when sorting, if an element is in edit mode, it actually uses the frozen version to compare against other elements, preventing the "auto-sort" issue.
 
 
 ## Highlights
