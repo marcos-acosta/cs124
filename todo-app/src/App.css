@@ -1,0 +1,19 @@
+body {
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-size: 45px;
+  margin: 0;
+}
+
+#pageContent {
+  display: grid;
+  padding: 15px;
+}
+
+#noTasksPlaceholder {
+  font-size: 16px;
+  background-color: rgb(243, 243, 243);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: underline;
+}
