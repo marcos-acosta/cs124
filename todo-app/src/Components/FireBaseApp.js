@@ -4,13 +4,11 @@ import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import App from "../App";
 import { useEffect, useState } from "react";
 
-const COLLECTION_NAME = 'marcos-acosta-tasks';
-
 export default function FireBaseApp(props) {
   const [frozenTask, setFrozenTask] = useState(null);
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
   const [orderingBy, setOrderingBy] = useState("created");
-  const completeDataQuery = props.db.collection(COLLECTION_NAME);
+  const completeDataQuery = props.db.collection("lists").doc(props.currentListId).collection("tasks");
   const [value, loading, error] = useCollection(completeDataQuery);
 
   const sortFunctions = {
@@ -32,10 +30,6 @@ export default function FireBaseApp(props) {
     }
   // eslint-disable-next-line
   }, [taskInEditModeId, loading, error]);
-
-  useEffect(() => {
-    console.log(frozenTask);
-  }, [frozenTask]);
 
   const frozen = (element) => {
     return frozenTask && element.id === frozenTask.id ? frozenTask : element;
@@ -73,7 +67,8 @@ export default function FireBaseApp(props) {
       : value.docs.map(doc => doc.data()).sort(sortFunctions[orderingBy]);
   }
 
-  return <App setTaskProperty={setTaskProperty}
+  return <App {...props}
+              setTaskProperty={setTaskProperty}
               deleteTask={deleteTask}
               deleteCompleted={deleteCompleted}
               setOrderingBy={setOrderingBy}

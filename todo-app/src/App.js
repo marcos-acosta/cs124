@@ -29,6 +29,7 @@ function App(props) {
           <div className="sortByText">sort by:</div>
           <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />
         </div>
+        <button onClick={() => props.setCurrentListId(null)}>back</button>
         {
           props.loading ? <div className="infoText">loading...</div> : 
           props.error ? <div className="infoText errorText">an unexpected error occurred!</div> :
