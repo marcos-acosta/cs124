@@ -24,14 +24,14 @@ export default function FireBaseApp(props) {
     if (!loading && !error) {
       if (taskInEditModeId) {
         setFrozenTask(
-          value.docs.map(doc => doc.data()).filter(task => task.id === taskInEditModeId)[0]
+          value.docs.map(doc => doc.data()).find(task => task.id === taskInEditModeId)
         );
       } else {
         setFrozenTask(null);
       }
     }
   // eslint-disable-next-line
-  }, [taskInEditModeId, loading, error]);
+  }, [taskInEditModeId, loading, error, (value && value.docs.length)]);
 
   const frozen = (element) => {
     return frozenTask && element.id === frozenTask.id ? frozenTask : element;
