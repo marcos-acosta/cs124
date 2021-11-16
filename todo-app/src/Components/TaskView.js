@@ -1,15 +1,15 @@
-import './App.css';
-import TaskList from './Components/TaskList';
-import CompletedSection from './Components/CompletedSection';
-import AddItem from './Components/AddItem';
-import OptionSelector from './Components/OptionSelector';
-import ListSideMenu from './Components/ListSideMenu';
+import './TaskView.css';
+import TaskList from './TaskList';
+import CompletedSection from './CompletedSection';
+import AddItem from './AddItem';
+import OptionSelector from './OptionSelector';
+import ListSideMenu from './ListSideMenu';
 import { useState } from 'react';
-import InfoCard from './Components/InfoCard';
+import InfoCard from './InfoCard';
 
 const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
-function App(props) {
+function TaskView(props) {
   return props.isDesktopWide ? 
     <div className="pageColumnsDiv">
       <div className="listSelector">
@@ -85,4 +85,4 @@ function TasksApp(props) {
   );
 }
 
-export default App;
+export default TaskView;

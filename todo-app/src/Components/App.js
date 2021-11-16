@@ -1,12 +1,12 @@
-import FireBaseApp from "./FireBaseApp";
+import TaskSupplier from "./TaskSupplier";
 import { useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import ListViewer from "./ListViewer";
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import firebase from 'firebase/compat';
-import "./HyperMegaApp.css";
+import "./App.css";
 
-export default function HyperMegaApp(props) {
+export default function App(props) {
   const completeDataQuery = props.db.collection("lists");
   const [value, loading, error] = useCollection(completeDataQuery);
   const [currentListId, setCurrentListId] = useState(null);
@@ -34,7 +34,7 @@ export default function HyperMegaApp(props) {
 
   return (
     <div className="minWidthContainer">
-      {currentListId  ? <FireBaseApp 
+      {currentListId  ? <TaskSupplier 
                             currentListId={currentListId}
                             currentList={(loading || error) ? [] : value.docs.map(doc => doc.data()).find(list => list.id === currentListId)}
                             lists={!loading && !error && value.docs.map(doc => doc.data())}

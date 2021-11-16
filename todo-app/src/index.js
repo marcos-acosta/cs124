@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HyperMegaApp from './Components/HyperMegaApp';
+import App from './Components/App';
 import firebase from "firebase/compat";
 
 const firebaseConfig = {
@@ -17,7 +17,7 @@ const db = firebase.firestore();
 function render() {
   ReactDOM.render(
     <React.StrictMode>
-      <HyperMegaApp db={db} />
+      <App db={db} />
     </React.StrictMode>,
     document.getElementById('root')
   );

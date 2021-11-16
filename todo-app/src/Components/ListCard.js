@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react";
-import "./ListPreview.css";
+import "./ListCard.css";
 
 const DISAPPEAR_DURATION_MS = 500;
 
-export default function ListPreview(props) {
+export default function ListCard(props) {
   const textInput = useRef(null);
   const [willDisappear, setWillDisappear] = useState(false);
 

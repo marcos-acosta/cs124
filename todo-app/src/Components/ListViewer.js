@@ -1,4 +1,4 @@
-import ListPreview from "./ListPreview";
+import ListCard from "./ListCard";
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import "./ListViewer.css";
@@ -22,14 +22,13 @@ export default function ListViewer(props) {
       <div className="listContainer">
         { props.loading ? <InfoCard /> :
           props.error ? <InfoCard error={props.error} /> :
-          props.lists.map(list => <ListPreview 
+          props.lists.map(list => <ListCard 
                                     {...props}
                                     {...list}
                                     key={list.id} 
                                     listInEditModeId={listInEditModeId}
                                     setListInEditModeId={setListInEditModeId}/>)}
       </div>
-      {/* <AddList callback={addListCallback} /> */}
       <AddItem 
         isNarrow={isNarrow} 
         addTaskAndEdit={addListCallback} 

@@ -1,11 +1,11 @@
 import { useCollection } from "react-firebase-hooks/firestore";
 import firebase from 'firebase/compat';
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
-import App from "../App";
+import TaskView from "./TaskView";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 
-export default function FireBaseApp(props) {
+export default function TaskSupplier(props) {
   const [frozenTask, setFrozenTask] = useState(null);
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
   const [orderingBy, setOrderingBy] = useState("created");
@@ -70,18 +70,18 @@ export default function FireBaseApp(props) {
       : value.docs.map(doc => doc.data()).sort(sortFunctions[orderingBy]);
   }
 
-  return <App {...props}
-              setTaskProperty={setTaskProperty}
-              deleteTask={deleteTask}
-              deleteCompleted={deleteCompleted}
-              setOrderingBy={setOrderingBy}
-              addTask={addTask}
-              data={getSortedTasks()}
-              loading={loading}
-              error={error}
-              taskInEditModeId={taskInEditModeId}
-              setTaskInEditModeId={setTaskInEditModeId}
-              isNarrow={isNarrow}
-              isDesktopWide={isDesktopWide}
-              lists={props.lists} />
+  return <TaskView  {...props}
+                    setTaskProperty={setTaskProperty}
+                    deleteTask={deleteTask}
+                    deleteCompleted={deleteCompleted}
+                    setOrderingBy={setOrderingBy}
+                    addTask={addTask}
+                    data={getSortedTasks()}
+                    loading={loading}
+                    error={error}
+                    taskInEditModeId={taskInEditModeId}
+                    setTaskInEditModeId={setTaskInEditModeId}
+                    isNarrow={isNarrow}
+                    isDesktopWide={isDesktopWide}
+                    lists={props.lists} />
 }
