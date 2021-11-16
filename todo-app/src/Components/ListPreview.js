@@ -26,6 +26,9 @@ export default function ListPreview(props) {
   }
 
   return <div className={`listCard supportsInvisibility ${willDisappear ? 'invisible' : ''}`}>
+    <div className="listEmoji">
+      🗒️
+    </div>
       {
         props.listInEditModeId === props.id
           ? <input 

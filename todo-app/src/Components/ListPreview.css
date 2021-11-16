@@ -1,10 +1,10 @@
 .listActionButton {
   border: none;
-  /* background-color: rgb(243, 243, 243); */
   background-color: transparent;
   margin-left: 5px;
   text-align: center;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .listCard {
@@ -12,7 +12,7 @@
   border-radius: 10px;
   margin-bottom: 12px;
   display: grid;
-  grid-template-columns: 1fr 40px 60px 50px;
+  grid-template-columns: 40px 1fr 40px 60px 50px;
   padding: 5px;
   font-size: 20px;
   cursor: pointer;
@@ -59,4 +59,10 @@
 
 .invisible {
   opacity: 0;
+}
+
+.listEmoji {
+  text-align: center;
+  padding-top: 4px;
+  border-right: 1px solid rgb(221, 221, 221);
 }

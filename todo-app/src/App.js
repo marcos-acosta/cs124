@@ -4,6 +4,7 @@ import CompletedSection from './Components/CompletedSection';
 import AddItem from './Components/AddItem';
 import OptionSelector from './Components/OptionSelector';
 import { useState } from 'react';
+import InfoCard from './Components/InfoCard';
 
 const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
@@ -36,8 +37,8 @@ function App(props) {
           <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />
         </div>
         {
-          props.loading ? <div className="infoText">loading...</div> : 
-          props.error ? <div className="infoText errorText">an unexpected error occurred!</div> :
+          props.loading ? <InfoCard /> : 
+          props.error ? <InfoCard error={props.error} /> :
           <>
             {props.data.filter(taskItem => !taskItem.isCompleted).length === 0 && 
               <button id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</button>

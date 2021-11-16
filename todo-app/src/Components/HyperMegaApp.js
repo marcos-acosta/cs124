@@ -42,7 +42,9 @@ export default function HyperMegaApp(props) {
                                     setCurrentListId={setCurrentListId} 
                                     deleteList={deleteList}
                                     addList={addList}
-                                    setListProperty={setListProperty}/>}
+                                    setListProperty={setListProperty}
+                                    loading={loading}
+                                    error={error}/>}
       </div>
     )
 }

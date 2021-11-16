@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import "./ListViewer.css";
 import AddItem from "./AddItem";
+import InfoCard from "./InfoCard";
 
 export default function ListViewer(props) {
   const [listInEditModeId, setListInEditModeId] = useState(null);
@@ -19,7 +20,9 @@ export default function ListViewer(props) {
         </h3>
       </div>
       <div className="listContainer">
-        {props.lists.map(list => <ListPreview 
+        { props.loading ? <InfoCard /> :
+          props.error ? <InfoCard error={props.error} /> :
+          props.lists.map(list => <ListPreview 
                                     {...props}
                                     {...list}
                                     key={list.id} 

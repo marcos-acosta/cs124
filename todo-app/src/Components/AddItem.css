@@ -3,6 +3,7 @@
   position: fixed;
   border: none;
   color: white;
+  cursor: pointer;
 }
 
 .addItem:disabled {

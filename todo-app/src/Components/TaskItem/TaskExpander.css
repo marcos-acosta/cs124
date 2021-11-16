@@ -20,6 +20,7 @@
   transition-duration: 0.2s;
   width: 100%;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .optionsArrow {
