@@ -3,15 +3,15 @@ import './CompletedSection.css'
 import TaskList from './TaskList'
 
 export default function CompletedSection(props) {
-  const [shouldFadeOut, setShouldFadeOut] = useState(false);
+  const [startDisappearing, setstartDisappearing] = useState(false);
 
   function handleClear() {
-    setShouldFadeOut(true);
+    setstartDisappearing(true);
     setTimeout(() => props.deleteCompleted(), 500);
   }
 
   return (
-    <div className={`completedSectionContainer ${shouldFadeOut ? 'invisible' : ''}`}>
+    <div className={`completedSectionContainer ${startDisappearing ? 'invisible' : ''}`}>
       <div id="completedItemsHeader">
         <h3>
           completed

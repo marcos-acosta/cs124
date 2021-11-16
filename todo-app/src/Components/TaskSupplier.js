@@ -9,8 +9,8 @@ export default function TaskSupplier(props) {
   const [frozenTask, setFrozenTask] = useState(null);
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
   const [orderingBy, setOrderingBy] = useState("created");
-  const completeDataQuery = props.db.collection("lists").doc(props.currentListId).collection("tasks");
-  const [value, loading, error] = useCollection(completeDataQuery);
+  const taskQuery = props.db.collection("lists").doc(props.currentListId).collection("tasks");
+  const [taskCollection, tasksLoading, tasksError] = useCollection(taskQuery);
   const isNarrow = useMediaQuery({maxWidth: 500});
   const isDesktopWide = useMediaQuery({minWidth: 800});
 
@@ -22,38 +22,38 @@ export default function TaskSupplier(props) {
   }
 
   useEffect(() => {
-    if (!loading && !error) {
+    if (!tasksLoading && !tasksError) {
       if (taskInEditModeId) {
         setFrozenTask(
-          value.docs.map(doc => doc.data()).find(task => task.id === taskInEditModeId)
+          taskCollection.docs.map(doc => doc.data()).find(task => task.id === taskInEditModeId)
         );
       } else {
         setFrozenTask(null);
       }
     }
   // eslint-disable-next-line
-  }, [taskInEditModeId, loading, error, (value && value.docs.length)]);
+  }, [taskInEditModeId, tasksLoading, tasksError, (taskCollection && taskCollection.docs.length)]);
 
   const frozen = (element) => {
     return frozenTask && element.id === frozenTask.id ? frozenTask : element;
   }
 
   const setTaskProperty = (id, field, value) => {
-    const docRef = completeDataQuery.doc(id);
+    const docRef = taskQuery.doc(id);
     docRef.update({[field]: value});
   }
 
   const deleteTask = (id) => {
-    const docRef = completeDataQuery.doc(id);
+    const docRef = taskQuery.doc(id);
     docRef.delete();
   }
 
   const deleteCompleted = () => 
-    value.docs.map(doc => doc.data()).filter(task => task.isCompleted).forEach(task => deleteTask(task.id));
+  taskCollection.docs.map(doc => doc.data()).filter(task => task.isCompleted).forEach(task => deleteTask(task.id));
 
   const addTask = () => {
     const new_id = generateUniqueID();
-    const docRef = completeDataQuery.doc(new_id);
+    const docRef = taskQuery.doc(new_id);
     docRef.set({
       taskName: "",
       isCompleted: false,
@@ -65,9 +65,9 @@ export default function TaskSupplier(props) {
   }
 
   const getSortedTasks = () => {
-    return loading
+    return tasksLoading
       ? null
-      : value.docs.map(doc => doc.data()).sort(sortFunctions[orderingBy]);
+      : taskCollection.docs.map(doc => doc.data()).sort(sortFunctions[orderingBy]);
   }
 
   return <TaskView  {...props}
@@ -77,8 +77,8 @@ export default function TaskSupplier(props) {
                     setOrderingBy={setOrderingBy}
                     addTask={addTask}
                     data={getSortedTasks()}
-                    loading={loading}
-                    error={error}
+                    loading={tasksLoading}
+                    error={tasksError}
                     taskInEditModeId={taskInEditModeId}
                     setTaskInEditModeId={setTaskInEditModeId}
                     isNarrow={isNarrow}

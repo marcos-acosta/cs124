@@ -7,18 +7,18 @@ import firebase from 'firebase/compat';
 import "./App.css";
 
 export default function App(props) {
-  const completeDataQuery = props.db.collection("lists");
-  const [value, loading, error] = useCollection(completeDataQuery);
+  const listQuery = props.db.collection("lists");
+  const [listCollection, listsLoading, listsError] = useCollection(listQuery);
   const [currentListId, setCurrentListId] = useState(null);
 
   const deleteList = (id) => {
-    const docRef = completeDataQuery.doc(id);
+    const docRef = listQuery.doc(id);
     docRef.delete();
   }
 
   const addList = () => {
     const new_id = generateUniqueID();
-    const docRef = completeDataQuery.doc(new_id);
+    const docRef = listQuery.doc(new_id);
     docRef.set({
       listName: "",
       id: new_id,
@@ -28,7 +28,7 @@ export default function App(props) {
   }
 
   const setListProperty = (id, field, value) => {
-    const docRef = completeDataQuery.doc(id);
+    const docRef = listQuery.doc(id);
     docRef.update({[field]: value});
   }
 
@@ -36,16 +36,16 @@ export default function App(props) {
     <div className="minWidthContainer">
       {currentListId  ? <TaskSupplier 
                             currentListId={currentListId}
-                            currentList={(loading || error) ? [] : value.docs.map(doc => doc.data()).find(list => list.id === currentListId)}
-                            lists={!loading && !error && value.docs.map(doc => doc.data())}
-                            db={props.db} setCurrentListId={setCurrentListId} />
-                      : <ListViewer lists={(loading || error) ? [] : value.docs.map(doc => doc.data())} 
+                            lists={!listsLoading && !listsError && listCollection.docs.map(doc => doc.data())}
+                            db={props.db}
+                            setCurrentListId={setCurrentListId} />
+                      : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())} 
                                     setCurrentListId={setCurrentListId} 
                                     deleteList={deleteList}
                                     addList={addList}
                                     setListProperty={setListProperty}
-                                    loading={loading}
-                                    error={error}/>}
+                                    loading={listsLoading}
+                                    error={listsError}/>}
       </div>
     )
 }

@@ -40,7 +40,7 @@ function TasksApp(props) {
           <button onClick={() => props.setCurrentListId(null)} className="backButton" aria-label="back to list menu">← back</button>
           <div className="toDoHeader">
             <h2>
-              {props.currentList.listName}
+              {props.lists.find(list => list.id === props.currentListId).listName}
             </h2>
           </div>
         </div>

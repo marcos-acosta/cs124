@@ -5,7 +5,7 @@ const DISAPPEAR_DURATION_MS = 500;
 
 export default function ListCard(props) {
   const textInput = useRef(null);
-  const [willDisappear, setWillDisappear] = useState(false);
+  const [startDisappearing, setstartDisappearing] = useState(false);
 
   useEffect(() => {
     if (textInput.current && props.listInEditModeId === props.id) {
@@ -21,11 +21,11 @@ export default function ListCard(props) {
   }
 
   const handleDeletion = () => {
-    setWillDisappear(true);
+    setstartDisappearing(true);
     setTimeout(() => props.deleteList(props.id), DISAPPEAR_DURATION_MS);
   }
 
-  return <div className={`listCard supportsInvisibility ${willDisappear ? 'invisible' : ''}`}>
+  return <div className={`listCard supportsInvisibility ${startDisappearing ? 'invisible' : ''}`}>
     <div className="listEmoji">
       🗒️
     </div>
