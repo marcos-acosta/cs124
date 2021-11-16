@@ -3,6 +3,7 @@ import firebase from 'firebase/compat';
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import App from "../App";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from 'react-responsive';
 
 export default function FireBaseApp(props) {
   const [frozenTask, setFrozenTask] = useState(null);
@@ -10,6 +11,7 @@ export default function FireBaseApp(props) {
   const [orderingBy, setOrderingBy] = useState("created");
   const completeDataQuery = props.db.collection("lists").doc(props.currentListId).collection("tasks");
   const [value, loading, error] = useCollection(completeDataQuery);
+  const isNarrow = useMediaQuery({maxWidth: 500});
 
   const sortFunctions = {
     priority: (a, b) => frozen(b)['priority'] - frozen(a)['priority'],
@@ -77,5 +79,6 @@ export default function FireBaseApp(props) {
               loading={loading}
               error={error}
               taskInEditModeId={taskInEditModeId}
-              setTaskInEditModeId={setTaskInEditModeId} />
+              setTaskInEditModeId={setTaskInEditModeId}
+              isNarrow={isNarrow} />
 }

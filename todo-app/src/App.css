@@ -5,6 +5,12 @@ body {
   margin-bottom: 70px;
 }
 
+.headerRow {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  justify-items: left;
+}
+
 #pageContent {
   display: grid;
   padding-left: 15px;
@@ -18,6 +24,8 @@ body {
   border-radius: 10px;
   text-align: center;
   text-decoration: underline;
+  border: none;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
 }
 
 .sortByText {
@@ -37,4 +45,36 @@ body {
 .errorText {
   color: rgb(231, 82, 82);
   font-weight: bold;
+}
+
+.backButton {
+  grid-row: 1;
+  grid-column: 1;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  background-color: rgb(243, 243, 243);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  height: 40px;
+  margin-top: 38px;
+  margin-left: 18px;
+}
+
+.toDoHeader {
+  grid-row: 1;
+  grid-column: 2;
+  padding-left: 20px;
+}
+
+.toDoHeader > h2 {
+  margin-block-end: 10px;
+  text-align: left;
+  font-size: 40px;
+}
+
+.noTopMargin {
+  margin-top: -20px;
 }

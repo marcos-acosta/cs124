@@ -1,7 +1,10 @@
 .toDoOptions {
   grid-row: 1;
   grid-column: 3;
+  border: none;
   border-left: 1px solid rgb(219, 219, 219);
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
 }
 
 .toDoDropdown {
@@ -16,7 +19,7 @@
   transition-property: all;
   transition-duration: 0.2s;
   width: 100%;
-  padding-top: 4px;
+  padding-top: 5px;
 }
 
 .optionsArrow {

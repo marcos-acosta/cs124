@@ -9,14 +9,21 @@ export default function ListPreview(props) {
     }
   }, [props.listInEditModeId, props.id]);
 
+  const onBlurCallback = () => {
+    props.setListInEditModeId(null)
+    if (!props.listName) {
+      props.deleteList(props.id);
+    }
+  }
+
   return <div>
       {
         props.listInEditModeId === props.id
           ? <input 
               value={props.listName}
               onChange={e => props.setListProperty(props.id, "listName", e.target.value)}
-              onKeyUp={e => {if (e.key === 'Enter') props.setListInEditModeId(null)}}
-              onBlur={() => props.setListInEditModeId(null)}
+              onKeyUp={e => {if (e.key === 'Enter') onBlurCallback()}}
+              onBlur={() => onBlurCallback()}
               ref={textInput} />
           : props.listName
       }

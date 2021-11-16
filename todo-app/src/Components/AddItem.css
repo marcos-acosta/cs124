@@ -1,19 +1,30 @@
-#addItemFooter {
-  position: fixed;
-  bottom: 0;
+.addItem {
   background-color: rgb(49, 49, 209);
+  position: fixed;
+  border: none;
+  color: white;
+}
+
+.addItem:disabled {
+  background-color: gray;
+}
+
+.addItemNarrow {
   width: 100%;
   text-align: center;
   padding-bottom: 16px;
   padding-top: 16px;
   font-size: 22px;
-  color: white;
-  border: none;
   font-family: 'Roboto Slab';
   font-weight: bold;
+  bottom: 0;
 }
 
-#addItemFooter:disabled {
-  background-color: gray;
-  color: white;
+.addItemWide {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
+  font-size: 50px;
 }

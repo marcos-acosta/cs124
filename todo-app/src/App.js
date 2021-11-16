@@ -1,5 +1,4 @@
 import './App.css';
-import AppHeader from './Components/AppHeader';
 import TaskList from './Components/TaskList';
 import CompletedSection from './Components/CompletedSection';
 import AddItem from './Components/AddItem';
@@ -23,19 +22,25 @@ function App(props) {
 
   return (
     <>
-      <AppHeader />
+      <div className="headerRow">
+        <div className="toDoHeader">
+          <h2>
+            {props.currentList.listName}
+          </h2>
+        </div>
+        <button onClick={() => props.setCurrentListId(null)} className="backButton">← back</button>
+      </div>
       <div id="pageContent">
         <div className="noTopMargin">
           <div className="sortByText">sort by:</div>
           <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />
         </div>
-        <button onClick={() => props.setCurrentListId(null)}>back</button>
         {
           props.loading ? <div className="infoText">loading...</div> : 
           props.error ? <div className="infoText errorText">an unexpected error occurred!</div> :
           <>
             {props.data.filter(taskItem => !taskItem.isCompleted).length === 0 && 
-              <div id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</div>
+              <button id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</button>
             }
             <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} 
                       setTaskProperty={props.setTaskProperty} 
@@ -57,7 +62,10 @@ function App(props) {
           </>
         }
       </div>
-      <AddItem inEditMode={props.taskInEditModeId !== null || props.loading ? true : false} addTaskAndEdit={addTaskAndEdit} />
+      <AddItem 
+        inEditMode={props.taskInEditModeId !== null || props.loading ? true : false} 
+        addTaskAndEdit={addTaskAndEdit}
+        isNarrow={props.isNarrow} />
     </>
   );
 }

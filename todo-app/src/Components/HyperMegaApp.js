@@ -1,9 +1,10 @@
 import FireBaseApp from "./FireBaseApp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import ListViewer from "./ListViewer";
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import firebase from 'firebase/compat';
+import "./HyperMegaApp.css";
 
 export default function HyperMegaApp(props) {
   const completeDataQuery = props.db.collection("lists");
@@ -31,10 +32,17 @@ export default function HyperMegaApp(props) {
     docRef.update({[field]: value});
   }
 
-  return currentListId  ? <FireBaseApp currentListId={currentListId} db={props.db} setCurrentListId={setCurrentListId} />
-                        : <ListViewer lists={(loading || error) ? [] : value.docs.map(doc => doc.data())} 
-                                      setCurrentListId={setCurrentListId} 
-                                      deleteList={deleteList}
-                                      addList={addList}
-                                      setListProperty={setListProperty}/>
+  return (
+    <div className="minWidthContainer">
+      {currentListId  ? <FireBaseApp 
+                            currentListId={currentListId}
+                            currentList={value.docs.map(doc => doc.data()).find(list => list.id === currentListId)}
+                            db={props.db} setCurrentListId={setCurrentListId} />
+                      : <ListViewer lists={(loading || error) ? [] : value.docs.map(doc => doc.data())} 
+                                    setCurrentListId={setCurrentListId} 
+                                    deleteList={deleteList}
+                                    addList={addList}
+                                    setListProperty={setListProperty}/>}
+      </div>
+    )
 }
