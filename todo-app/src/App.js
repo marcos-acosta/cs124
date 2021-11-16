@@ -23,12 +23,12 @@ function App(props) {
   return (
     <>
       <div className="headerRow">
+        <button onClick={() => props.setCurrentListId(null)} className="backButton" aria-label="back to list menu">← back</button>
         <div className="toDoHeader">
           <h2>
             {props.currentList.listName}
           </h2>
         </div>
-        <button onClick={() => props.setCurrentListId(null)} className="backButton">← back</button>
       </div>
       <div id="pageContent">
         <div className="noTopMargin">
@@ -65,7 +65,8 @@ function App(props) {
       <AddItem 
         inEditMode={props.taskInEditModeId !== null || props.loading ? true : false} 
         addTaskAndEdit={addTaskAndEdit}
-        isNarrow={props.isNarrow} />
+        isNarrow={props.isNarrow}
+        longText={"add task"} />
     </>
   );
 }

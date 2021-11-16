@@ -15,7 +15,7 @@ export default function CompletedSection(props) {
       <div id="completedItemsHeader">
         <h3>
           completed
-          <button id="clearCompleted" onClick={handleClear}>clear</button>
+          <button id="clearCompleted" onClick={handleClear} aria-label={`delete completed tasks. tasks to be completed: ${props.tasks.map(task => task.taskName).join()}`}>clear</button>
         </h3>
       </div>
       <TaskList tasks={props.tasks} 

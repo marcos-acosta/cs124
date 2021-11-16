@@ -1,12 +1,14 @@
 import "./TaskItemOptions.css"
 
 const PRIORITIES = [1, 2, 3];
+const PRIORITY_TO_TEXT = ["low", "medium", "high"];
 
 export default function TaskItemOptions(props) {
   const priorityToButton = (priority, index) => {
-    return  <button className={`priorityButton ${props.priority === priority ? `whiteText priority${priority}` : ''}`}
+    return  <button className={`priorityButton ${props.priority === priority ? `whiteText selectedPriority` : ''}`}
                     onClick={() => props.handleChangePriority(priority)}
-                    key={index}>
+                    key={index}
+                    aria-label={`${props.priority === priority ? "deselect" : "select"} priority level ${PRIORITY_TO_TEXT[priority - 1]}`}>
                       {'!'.repeat(priority)}
             </button>
   }
@@ -22,8 +24,9 @@ export default function TaskItemOptions(props) {
               onClick={() => props.handleDeletion()}>
                 delete
       </button>
+      <div />
       {
-        PRIORITIES.slice().reverse().map((p, index) => priorityToButton(p, index))
+        PRIORITIES.map((p, index) => priorityToButton(p, index))
       }
     </div>
   </>

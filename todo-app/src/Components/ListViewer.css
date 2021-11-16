@@ -1,6 +1,13 @@
 .header {
-  width: 100%;
   text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
+}
+
+.header > h3 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.listContainer {
+  padding-left: 15px;
+  padding-right: 15px;
 }

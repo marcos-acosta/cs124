@@ -1,8 +1,8 @@
 import ListPreview from "./ListPreview";
-import AddList from "./AddList";
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import "./ListViewer.css";
+import AddItem from "./AddItem";
 
 export default function ListViewer(props) {
   const [listInEditModeId, setListInEditModeId] = useState(null);
@@ -14,14 +14,23 @@ export default function ListViewer(props) {
 
   return <>
       <div className="header">
-        todo 🦑
+        <h3>
+          todo 🦑
+        </h3>
       </div>
-      {props.lists.map(list => <ListPreview 
-                                  {...props}
-                                  {...list}
-                                  key={list.id} 
-                                  listInEditModeId={listInEditModeId}
-                                  setListInEditModeId={setListInEditModeId}/>)}
-      <AddList callback={addListCallback} />
+      <div className="listContainer">
+        {props.lists.map(list => <ListPreview 
+                                    {...props}
+                                    {...list}
+                                    key={list.id} 
+                                    listInEditModeId={listInEditModeId}
+                                    setListInEditModeId={setListInEditModeId}/>)}
+      </div>
+      {/* <AddList callback={addListCallback} /> */}
+      <AddItem 
+        isNarrow={isNarrow} 
+        addTaskAndEdit={addListCallback} 
+        inEditMode={listInEditModeId}
+        longText={"add list"} />
     </>
 }
