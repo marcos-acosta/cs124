@@ -71,3 +71,14 @@ body {
 .noTopMargin {
   margin-top: -20px;
 }
+
+.pageColumnsDiv {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100vh;
+}
+
+.listSelector {
+  background-color: rgb(250, 250, 250);
+  border-right: 1px solid rgb(235, 235, 235);
+}

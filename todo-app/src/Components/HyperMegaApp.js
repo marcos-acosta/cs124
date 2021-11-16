@@ -36,7 +36,8 @@ export default function HyperMegaApp(props) {
     <div className="minWidthContainer">
       {currentListId  ? <FireBaseApp 
                             currentListId={currentListId}
-                            currentList={value.docs.map(doc => doc.data()).find(list => list.id === currentListId)}
+                            currentList={(loading || error) ? [] : value.docs.map(doc => doc.data()).find(list => list.id === currentListId)}
+                            lists={!loading && !error && value.docs.map(doc => doc.data())}
                             db={props.db} setCurrentListId={setCurrentListId} />
                       : <ListViewer lists={(loading || error) ? [] : value.docs.map(doc => doc.data())} 
                                     setCurrentListId={setCurrentListId} 

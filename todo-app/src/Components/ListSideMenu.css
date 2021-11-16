@@ -1,0 +1,36 @@
+.mainDiv {
+  padding: 5px;
+}
+
+.mainDiv > h3 {
+  margin-block-end: 10px;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.listButton {
+  width: 100%;
+  background-color: transparent;
+  font-family: 'Roboto Slab';
+  border: none;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.leftArrow {
+  float: left;
+}
+
+.selected {
+  background-color: rgb(49, 49, 209);
+  color: white;
+}
+
+.bold {
+  font-weight: bold;
+}

@@ -12,6 +12,7 @@ export default function FireBaseApp(props) {
   const completeDataQuery = props.db.collection("lists").doc(props.currentListId).collection("tasks");
   const [value, loading, error] = useCollection(completeDataQuery);
   const isNarrow = useMediaQuery({maxWidth: 500});
+  const isDesktopWide = useMediaQuery({minWidth: 800});
 
   const sortFunctions = {
     priority: (a, b) => frozen(b)['priority'] - frozen(a)['priority'],
@@ -80,5 +81,7 @@ export default function FireBaseApp(props) {
               error={error}
               taskInEditModeId={taskInEditModeId}
               setTaskInEditModeId={setTaskInEditModeId}
-              isNarrow={isNarrow} />
+              isNarrow={isNarrow}
+              isDesktopWide={isDesktopWide}
+              lists={props.lists} />
 }
