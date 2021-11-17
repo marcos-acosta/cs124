@@ -87,7 +87,7 @@ different lists on tabs like drawn below
 We decided against that one because it didn't feel as intuitive, and we didn't want to style tabs. 
 The other choice was to keep everything on one page, but have tasks underneath collapsible lists. 
 
-<img src="images/designs/scrolllists.PNG width="200px">
+<img src="images/designs/scrolllists.PNG" width="200px">
 
 This was the most intuitive, in our opinion, but was difficult to implement so we chose against it.
 
