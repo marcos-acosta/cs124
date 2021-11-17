@@ -82,12 +82,12 @@ for the task itself, so we went with the external indicator.
 When we added the multiple lists capability we explored a few different options. One was to put
 different lists on tabs like drawn below
 
-<img src="image/designs/listtabs.PNG" width="200px">
+<img src="images/designs/listtabs.PNG" width="200px">
 
 We decided against that one because it didn't feel as intuitive, and we didn't want to style tabs. 
 The other choice was to keep everything on one page, but have tasks underneath collapsible lists. 
 
-<img src="image/designs/scrolllists.PNG width="200px">
+<img src="images/designs/scrolllists.PNG width="200px">
 
 This was the most intuitive, in our opinion, but was difficult to implement so we chose against it.
 
