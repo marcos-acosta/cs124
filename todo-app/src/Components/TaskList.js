@@ -1,21 +1,16 @@
-import TaskItem from './TaskItem';
-import { useState } from 'react';
+import TaskItem from './TaskItem/TaskItem';
+import "./TaskList.css";
 
 export default function TaskList(props) {
-  const [expandedTaskId, setExpandedTaskId] = useState(null);
-
-  const toggleExpandedTaskId = (id) => {
-    setExpandedTaskId(expandedTaskId === id ? null : id);
-  }
 
   return (
-    <div>
+    <div className="taskListDiv">
       {
         props.tasks.map(taskItem => 
           <TaskItem {...taskItem} 
                 key={taskItem.id} 
-                expandedTaskId={expandedTaskId}
-                expandTaskCallback={toggleExpandedTaskId}
+                expandedTaskId={props.expandedTaskId}
+                expandTaskCallback={props.toggleExpandedTaskId}
                 setTaskProperty={props.setTaskProperty}
                 deleteTask={props.deleteTask}
                 setTaskInEditModeId={props.setTaskInEditModeId}
