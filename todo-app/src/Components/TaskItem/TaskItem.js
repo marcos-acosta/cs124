@@ -71,7 +71,8 @@ export default function TaskItem(props) {
             !props.isCompleted && 
               <TaskExpander id={props.id}
                             expandedId={props.expandedTaskId}
-                            expandTaskCallback={props.expandTaskCallback} />
+                            expandTaskCallback={props.expandTaskCallback}
+                            color={props.color} />
           }
           {
             props.expandedTaskId === props.id &&

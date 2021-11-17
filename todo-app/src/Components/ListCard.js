@@ -1,7 +1,9 @@
 import { useRef, useEffect, useState } from "react";
 import "./ListCard.css";
+import OptionSelector from "./OptionSelector";
 
 const DISAPPEAR_DURATION_MS = 500;
+const COLORS = ["blue", "green", "red", "black"];
 
 export default function ListCard(props) {
   const textInput = useRef(null);
