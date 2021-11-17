@@ -1,0 +1,59 @@
+.toDoItem {
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  padding: 5px;
+  grid-column: 2;
+  outline: none;
+}
+
+.supportsInvisibility {
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.toDoItem input[type='checkbox'] {
+  height: 18px;
+  width: 18px;
+}
+
+.grayText {
+  color: rgb(175, 175, 175);
+}
+
+.priorityMarker {
+  grid-column: 1;
+  font-size: 19px;
+  text-align: center;
+  padding-top: 10px;
+  font-family: Helvetica;
+  color: white;
+}
+
+.priority1 {
+  background-color: rgb(243, 213, 81);
+}
+
+.priority2 {
+  background-color: rgb(243, 153, 102);
+}
+
+.priority3 {
+  background-color: rgb(236, 117, 117);
+}
+
+.priorityExclamationDiv {
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 2px;
+}
+
+.highlighted {
+  outline: rgb(49, 49, 209) dashed 1px;
+}

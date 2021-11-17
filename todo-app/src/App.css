@@ -2,6 +2,7 @@ body {
   font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-size: 45px;
   margin: 0;
+  margin-bottom: 70px;
 }
 
 #pageContent {
@@ -23,4 +24,17 @@ body {
   font-size: 14px;
   display: inline;
   color: rgb(119, 119, 119);
+}
+
+.infoText {
+  font-size: 16px;
+  background-color: rgb(243, 243, 243);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.errorText {
+  color: rgb(231, 82, 82);
+  font-weight: bold;
 }
