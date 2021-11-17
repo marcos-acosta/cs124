@@ -23,6 +23,7 @@ function TaskView(props) {
 
 function TasksApp(props) {
   const [expandedTaskId, setExpandedTaskId] = useState(null);
+  const currentList = props.lists.find(list => list.id === props.currentListId);
 
   const toggleExpandedTaskId = (id) => {
     setExpandedTaskId(expandedTaskId === id ? null : id);
@@ -37,10 +38,14 @@ function TasksApp(props) {
   return (
       <div>
         <div className="headerRow">
-          <button onClick={() => props.setCurrentListId(null)} className="backButton" aria-label="back to list menu">← back</button>
+          <button   onClick={() => props.setCurrentListId(null)} 
+                    className="backButton" 
+                    aria-label="back to list menu">
+                      ← back
+          </button>
           <div className="toDoHeader">
-            <h2>
-              {props.lists.find(list => list.id === props.currentListId).listName}
+            <h2 className={`${currentList.colorTheme}UL`}>
+              {currentList.listName}
             </h2>
           </div>
         </div>
@@ -63,6 +68,7 @@ function TasksApp(props) {
                         setTaskInEditModeId={props.setTaskInEditModeId}
                         toggleExpandedTaskId={toggleExpandedTaskId}
                         expandedTaskId={expandedTaskId}
+                        color={currentList.colorTheme}
                         />
               {
                 props.data.filter(taskItem => taskItem.isCompleted).length === 0
@@ -80,7 +86,8 @@ function TasksApp(props) {
           inEditMode={props.taskInEditModeId !== null || props.loading ? true : false} 
           addTaskAndEdit={addTaskAndEdit}
           isNarrow={props.isNarrow}
-          longText={"add task"} />
+          longText={"add task"}
+          color={currentList.colorTheme} />
       </div>
   );
 }

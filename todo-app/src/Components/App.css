@@ -1,3 +1,51 @@
 .minWidthContainer {
   min-width: 340px;
 }
+
+.blackBG {
+  background-color: rgb(37, 37, 37);
+  color: white;
+}
+
+.blackUL {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: rgb(37, 37, 37);
+}
+
+.blueBG {
+  background-color: rgb(49, 49, 209);
+  color: white;
+}
+
+.blueUL {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: rgb(49, 49, 209);
+}
+
+.redBG {
+  background-color: rgb(202, 50, 39);
+  color: white;
+}
+
+.redUL {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: rgb(202, 50, 39);
+}
+
+.greenBG {
+  background-color: rgb(61, 138, 61);
+  color: white;
+}
+
+.greenUL {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: rgb(61, 138, 61);
+}

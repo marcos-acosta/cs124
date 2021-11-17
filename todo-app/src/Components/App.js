@@ -23,6 +23,7 @@ export default function App(props) {
       listName: "",
       id: new_id,
       created: firebase.database.ServerValue.TIMESTAMP,
+      colorTheme: "blue"
     });
     return new_id;
   }
