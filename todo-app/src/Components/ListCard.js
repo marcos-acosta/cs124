@@ -1,12 +1,11 @@
 import { useRef, useEffect, useState } from "react";
+import InputKeepCursor from "./InputKeepCursor";
 import "./ListCard.css";
-import OptionSelector from "./OptionSelector";
 
 const DISAPPEAR_DURATION_MS = 500;
-const COLORS = ["blue", "green", "red", "black"];
 
 export default function ListCard(props) {
-  const textInput = useRef(null);
+  let textInput = useRef(null);
   const [startDisappearing, setstartDisappearing] = useState(false);
 
   useEffect(() => {
@@ -33,13 +32,13 @@ export default function ListCard(props) {
     </div>
       {
         props.listInEditModeId === props.id
-          ? <input 
-              className="listNameInput"
-              value={props.listName}
-              onChange={e => props.setListProperty(props.id, "listName", e.target.value)}
-              onKeyUp={e => {if (e.key === 'Enter') onBlurCallback()}}
-              onBlur={() => onBlurCallback()}
-              ref={textInput} />
+            ? <InputKeepCursor
+                value={props.listName}
+                onChange={e => props.setListProperty(props.id, "listName", e.target.value)}
+                onKeyUp={e => {if (e.key === 'Enter') onBlurCallback()}}
+                onBlur={() => onBlurCallback()}
+                returnRef={(ref) => {textInput = ref}}
+                className="listNameInput" />
           : <div className="listName" onClick={() => props.setCurrentListId(props.id)}>{props.listName}</div>
       }
       <button onClick={() => props.setListInEditModeId(props.id)} className="listActionButton editButton">edit</button>

@@ -9,8 +9,8 @@ const PRIORITY_TO_TEXT = ["low", "medium", "high"];
 
 export default function TaskItem(props) {
   const [shouldFadeOut, setShouldFadeOut] = useState(false);
+  let textInput = useRef(null);
 
-  const textInput = useRef(null);
   const DISAPPEAR_DURATION_MS = 500;
 
   useEffect(() => {
@@ -66,7 +66,8 @@ export default function TaskItem(props) {
             {...props}
             textInput={textInput}
             deselectOnEditMode={deselectOnEditMode}
-            shouldFadeOut={shouldFadeOut} />
+            shouldFadeOut={shouldFadeOut}
+            returnRef={ref => {textInput = ref}} />
           {
             !props.isCompleted && 
               <TaskExpander id={props.id}
