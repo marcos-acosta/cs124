@@ -15,9 +15,9 @@ export default function ListViewer(props) {
 
   return <>
       <div className="header">
-        <h3>
-          todo 🦑
-        </h3>
+        <h4>
+          <span className="todo">todo</span> 🦑
+        </h4>
       </div>
       <div className="listContainer">
         { props.loading ? <InfoCard /> :
