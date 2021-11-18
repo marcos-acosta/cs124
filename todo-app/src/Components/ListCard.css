@@ -64,6 +64,35 @@
 
 .listEmoji {
   text-align: center;
-  padding-top: 4px;
   border-right: 1px solid rgb(221, 221, 221);
+}
+
+.colorPickerDiv {
+  position: absolute;
+  /* border: 1px solid rgb(216, 216, 216); */
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-left: 4px;
+  /* bottom: 0;
+  left: 0; */
+}
+
+.colorDropdown {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 5px;
+  margin-top: 6px;
+}
+
+.dropDownArrow {
+  transition-property: all;
+  transition-duration: 0.2s;
+}
+
+.flipped {
+  transform: rotate(-180deg);
 }

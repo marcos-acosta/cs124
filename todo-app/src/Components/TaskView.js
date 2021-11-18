@@ -44,7 +44,7 @@ function TasksApp(props) {
                       ← back
           </button>
           <div className="toDoHeader">
-            <h2 className={`${currentList.colorTheme}UL`}>
+            <h2 className={currentList ? `color_${currentList.colorTheme}_ul` : ''}>
               {currentList.listName}
             </h2>
           </div>
@@ -87,7 +87,7 @@ function TasksApp(props) {
           addTaskAndEdit={addTaskAndEdit}
           isNarrow={props.isNarrow}
           longText={"add task"}
-          color={currentList.colorTheme} />
+          color={`color_${currentList.colorTheme}_bg`} />
       </div>
   );
 }
