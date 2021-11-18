@@ -1,15 +1,15 @@
 import { useRef, useEffect, useState } from "react";
 import InputKeepCursor from "./InputKeepCursor";
-import { SwatchesPicker } from 'react-color';
+import { BlockPicker } from 'react-color';
 import "./ListCard.css";
 
 const DISAPPEAR_DURATION_MS = 500;
 const COLOR_TO_NAME = {
-  "#f7f7f7": "default",
+  // "#f7f7f7": "default",
+  "#2274a5": "blue",
   "#dc493a": "red",
   "#662c91": "purple",
   "#4a442d": "olive",
-  "#2274a5": "blue",
   "#70ae6e": "green",
 }
 const NAME_TO_COLOR = Object.fromEntries(Object.entries(COLOR_TO_NAME).map(([k, v]) => [v, k]));
@@ -38,26 +38,24 @@ export default function ListCard(props) {
   }
 
   return <div className={`listCard supportsInvisibility ${startDisappearing ? 'invisible' : ''}`}>
-    <div className="listEmoji">
+    <div className="listCardLeftPanel">
       <button   onClick={() => setShowColorPicker(!showColorPicker)} 
                 className={`colorDropdown ${(props.colorTheme !== 'default') ? `color_${props.colorTheme}_bg` : ''}`}>
-        <div className={`dropDownArrow ${showColorPicker ? 'flipped' : ''}`}>
+        <div className={`dropDownArrow ${showColorPicker ? 'flipped' : ''}`} aria-label={`Select color theme for list: ${props.listName}`}>
           ⌵
         </div>
       </button>
-      {showColorPicker && 
-      <div className="colorPickerDiv">
-        <SwatchesPicker 
-        color={NAME_TO_COLOR[props.colorTheme]}
-        onChangeComplete={color => {props.setListProperty(props.id, "colorTheme", COLOR_TO_NAME[color.hex.toLowerCase()]); setShowColorPicker(false)}}
-        colors={Object.keys(COLOR_TO_NAME).map(c => [c])}
-        // colors={Object.keys(COLOR_TO_NAME)}
-        className="float"
-        triangle="hide"
-        width="72px" 
-          />
-      </div>}
-
+      {
+        showColorPicker && 
+        <div className="colorPickerDiv">
+          <BlockPicker
+            color={NAME_TO_COLOR[props.colorTheme]}
+            onChangeComplete={color => {props.setListProperty(props.id, "colorTheme", COLOR_TO_NAME[color.hex.toLowerCase()]); setShowColorPicker(false)}}
+            colors={Object.keys(COLOR_TO_NAME)}
+            className="float"
+            triangle="hide" />
+        </div>
+      }
     </div>
       {
         props.listInEditModeId === props.id
@@ -70,8 +68,8 @@ export default function ListCard(props) {
                 className="listNameInput" />
           : <div className="listName" onClick={() => props.setCurrentListId(props.id)}>{props.listName}</div>
       }
-      <button onClick={() => props.setListInEditModeId(props.id)} className="listActionButton editButton">edit</button>
-      <button onClick={() => handleDeletion()} className="listActionButton deleteButton">delete</button>
+      <button onClick={() => props.setListInEditModeId(props.id)} className="listActionButton linkButton editButton">edit</button>
+      <button onClick={() => handleDeletion()} className="listActionButton linkButton deleteButton">delete</button>
       <button 
         onClick={() => props.setCurrentListId(props.id)} 
         className="listActionButton openButton"

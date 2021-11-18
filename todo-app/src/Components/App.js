@@ -23,7 +23,7 @@ export default function App(props) {
       listName: "",
       id: new_id,
       created: firebase.database.ServerValue.TIMESTAMP,
-      colorTheme: "default"
+      colorTheme: "blue"
     });
     return new_id;
   }
@@ -35,18 +35,18 @@ export default function App(props) {
 
   return (
     <div className="minWidthContainer">
-      {currentListId  ? <TaskSupplier 
-                            currentListId={currentListId}
-                            lists={!listsLoading && !listsError && listCollection.docs.map(doc => doc.data())}
-                            db={props.db}
-                            setCurrentListId={setCurrentListId} />
+      {currentListId  ? <TaskSupplier   currentListId={currentListId}
+                                        lists={!listsLoading && !listsError && listCollection.docs.map(doc => doc.data())}
+                                        db={props.db}
+                                        setCurrentListId={setCurrentListId} />
                       : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())} 
                                     setCurrentListId={setCurrentListId} 
                                     deleteList={deleteList}
                                     addList={addList}
                                     setListProperty={setListProperty}
                                     loading={listsLoading}
-                                    error={listsError}/>}
+                                    error={listsError}/>
+        }
       </div>
     )
 }
