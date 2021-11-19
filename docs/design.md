@@ -58,10 +58,13 @@ the add task button was, delete lists, or go view the lists. Each list page is e
 except that it now has the list name at the top instead of "todo" and has a back button
 to go back to viewing all the lists. The other things we changed were for resizing and 
 accessibility reasons. Notably, if the screen is large than the add item/list button changes from
-spanning the entire bottom to a smaller round button in the lower right hand corner. We also changed
+spanning the entire bottom to a smaller round button in the lower right hand corner and you can switch lists
+using a sidebar that appears to hold all the lists. We also changed
 the priority buttons looked so that we wouldn't have a text contrast issue. So, the button choices just
 have a different color for the selected priority and then outside the task there is a bullet point in 
-red, orange, or yellow to indicate high, medium, or low priority.
+red, orange, or yellow to indicate high, medium, or low priority. 
+
+[Here is a link to a YouTube video](https://www.youtube.com/watch?v=wada-e1DRz4) demonstrating how you can use `todo` with only a keyboard and VoiceOver.
 
 ## Alternative designs
 A few alternative designs we considered were related to the task edit and
@@ -148,8 +151,10 @@ One challenge we encountered at this step was when we implemented task sorting. 
 We had a few challenges in this lab. One was making our own database, and having everything re-render properly. We also had some difficulties when adding accessibility and had to re-design some things - like the priority indicators. We also had some problems with deleting tasks, but some of those things fixed themselves.
 The biggest challenge was actually choosing the design implementation of the multiple lists, and ended up having to go with an easier design choice because the collapsible lists was proving to be difficult.
 
-[Here is a link to a YouTube video](https://www.youtube.com/watch?v=wada-e1DRz4) demonstrating how you can use `todo` with only a keyboard and VoiceOver.
+
 
 ## Highlights
 In addition to (what we think is) a clean, uncluttered design, we think the method for adding todo items is the most in line with direct manipulation, since users can see their next item appear directly in the list of items without being confronted with a popup menu first. It also removes unnecessary ("20%") options that the user won't need most of the time so they can add that task off the top of their head as quickly and intuitively as possible.
 We're also very proud of how when the user checks an item, it fades out before moving to the completed section. We believe it to be a nice usability touch, and nicely implemented.
+
+Another fun thing we implemented was to allow users to choose their own colors from our color scheme for the lists. This can be done from the main list viewer page, using a drop-down color picker where the checkbox on a task would be.
