@@ -148,6 +148,8 @@ One challenge we encountered at this step was when we implemented task sorting. 
 We had a few challenges in this lab. One was making our own database, and having everything re-render properly. We also had some difficulties when adding accessibility and had to re-design some things - like the priority indicators. We also had some problems with deleting tasks, but some of those things fixed themselves.
 The biggest challenge was actually choosing the design implementation of the multiple lists, and ended up having to go with an easier design choice because the collapsible lists was proving to be difficult.
 
+[Here is a link to a YouTube video](https://www.youtube.com/watch?v=wada-e1DRz4) demonstrating how you can use `todo` with only a keyboard and VoiceOver.
+
 ## Highlights
 In addition to (what we think is) a clean, uncluttered design, we think the method for adding todo items is the most in line with direct manipulation, since users can see their next item appear directly in the list of items without being confronted with a popup menu first. It also removes unnecessary ("20%") options that the user won't need most of the time so they can add that task off the top of their head as quickly and intuitively as possible.
 We're also very proud of how when the user checks an item, it fades out before moving to the completed section. We believe it to be a nice usability touch, and nicely implemented.
