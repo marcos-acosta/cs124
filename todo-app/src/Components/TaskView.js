@@ -59,7 +59,9 @@ function TasksApp(props) {
             props.error ? <InfoCard error={props.error} /> :
             <>
               {props.data.filter(taskItem => !taskItem.isCompleted).length === 0 && 
-                <button id="noTasksPlaceholder" onClick={addTaskAndEdit}>add a task!</button>
+                <button className="noTasksPlaceholder" onClick={addTaskAndEdit}>
+                  add a task!
+                </button>
               }
               <TaskList tasks={props.data.filter(taskItem => !taskItem.isCompleted)} 
                         setTaskProperty={props.setTaskProperty} 

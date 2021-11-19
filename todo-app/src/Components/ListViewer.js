@@ -22,12 +22,20 @@ export default function ListViewer(props) {
       <div className="listContainer">
         { props.loading ? <InfoCard /> :
           props.error ? <InfoCard error={props.error} /> :
-          props.lists.map(list => <ListCard 
-                                    {...props}
-                                    {...list}
-                                    key={list.id} 
-                                    listInEditModeId={listInEditModeId}
-                                    setListInEditModeId={setListInEditModeId}/>)}
+            <>
+              {props.lists.length === 0 && 
+                <button className="noListsPlaceholder" onClick={addListCallback}>create a task list!</button>
+              }
+              {
+                props.lists.map(list => <ListCard 
+                                      {...props}
+                                      {...list}
+                                      key={list.id} 
+                                      listInEditModeId={listInEditModeId}
+                                      setListInEditModeId={setListInEditModeId}/>)
+              }
+            </>
+          }
       </div>
       <AddItem 
         isNarrow={isNarrow} 

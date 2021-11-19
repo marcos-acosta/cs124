@@ -32,7 +32,8 @@ export default function TaskTextLabel(props) {
           onChange={e => props.setTaskProperty(props.id, 'taskName', trimNewline(e.target.value))}
           onKeyUp={e => {if (e.key === 'Enter') {e.preventDefault(); props.setTaskInEditModeId(null);}}} 
           returnRef={(ref) => props.returnRef(ref)}
-          onBlur={props.deselectOnEditMode} />
+          onBlur={props.deselectOnEditMode}
+          aria-label="edit task name" />
       }
     </div>
   )

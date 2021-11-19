@@ -65,14 +65,21 @@ export default function ListCard(props) {
                 onKeyUp={e => {if (e.key === 'Enter') onBlurCallback()}}
                 onBlur={() => onBlurCallback()}
                 returnRef={(ref) => {textInput = ref}}
-                className="listNameInput" />
+                className="listNameInput"
+                aria-label="edit list name" />
           : <div className="listName" onClick={() => props.setCurrentListId(props.id)}>{props.listName}</div>
       }
-      <button onClick={() => props.setListInEditModeId(props.id)} className="listActionButton linkButton editButton">edit</button>
-      <button onClick={() => handleDeletion()} className="listActionButton linkButton deleteButton">delete</button>
+      <button 
+        onClick={() => props.setListInEditModeId(props.id)}
+        className="listActionButton linkButton editButton"
+        aria-label={`edit list name: ${props.listName}`}>edit</button>
+      <button
+        onClick={() => handleDeletion()}
+        className="listActionButton linkButton deleteButton"
+        aria-label={`delete list: ${props.listName}`}>delete</button>
       <button 
         onClick={() => props.setCurrentListId(props.id)} 
         className="listActionButton openButton"
-        aria-label={`view list: ${props.listName}`}>➔</button>
+        aria-label={`view tasks in list: ${props.listName}`}>➔</button>
     </div>
 }

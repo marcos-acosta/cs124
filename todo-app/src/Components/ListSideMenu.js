@@ -8,9 +8,10 @@ export default function ListSideMenu(props) {
         <button 
           key={list.id}
           onClick={() => props.setCurrentListId(list.id)}
-          className={`listButton ${props.currentListId === list.id ? (list.colorTheme ? `color_${list.colorTheme}_bg` : 'selected') : ''}`}>
+          className={`listButton ${props.currentListId === list.id ? (list.colorTheme ? `color_${list.colorTheme}_bg` : 'selected') : ''}`}
+          aria-label={`Switch to list: ${list.listName}`}>
             <span className={props.currentListId === list.id ? 'bold' : ''}>{list.listName}</span>
-          </button>
+        </button>
       )}
     </div>
   )

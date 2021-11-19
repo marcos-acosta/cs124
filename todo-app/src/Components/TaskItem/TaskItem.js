@@ -79,6 +79,7 @@ export default function TaskItem(props) {
             props.expandedTaskId === props.id &&
               <TaskItemOptions
                 priority={props.priority}
+                taskName={props.taskName}
                 id={props.id}
                 taskInEditModeId={props.taskInEditModeId}
                 handleChangePriority={handleChangePriority}
