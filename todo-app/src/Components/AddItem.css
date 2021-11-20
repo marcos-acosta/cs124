@@ -1,19 +1,31 @@
-#addItemFooter {
+.addItem {
+  background-color: #2274A5;
   position: fixed;
-  bottom: 0;
-  background-color: rgb(49, 49, 209);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.addItem:disabled {
+  background-color: gray;
+}
+
+.addItemNarrow {
   width: 100%;
   text-align: center;
   padding-bottom: 16px;
   padding-top: 16px;
   font-size: 22px;
-  color: white;
-  border: none;
   font-family: 'Roboto Slab';
   font-weight: bold;
+  bottom: 0;
 }
 
-#addItemFooter:disabled {
-  background-color: gray;
-  color: white;
+.addItemWide {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
+  font-size: 50px;
 }

@@ -6,7 +6,8 @@ export default function ToDoCheckbox(props) {
       <input  type="checkbox" 
               id={`label-${props.id}`} 
               checked={props.checked} 
-              onChange={props.handleCompletion}/>
+              onChange={props.handleCompletion}
+              aria-label={`${props.checked ? "uncomplete" : "complete"} task "${props.taskName}"`}/>
     </div>
   )
 }

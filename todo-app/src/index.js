@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FireBaseApp from './Components/FireBaseApp';
+import App from './Components/App';
 import firebase from "firebase/compat";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCd9qqxvMpEKpBzwfWcc2tlRFa6ICaLH_s",
-  authDomain: "hmc-cs124-fa21-labs.firebaseapp.com",
-  projectId: "hmc-cs124-fa21-labs",
-  storageBucket: "hmc-cs124-fa21-labs.appspot.com",
-  messagingSenderId: "949410042946",
-  appId: "1:949410042946:web:0113b139a7e3cd1cc709db"
+  apiKey: "AIzaSyAZ7Q00Z5zGKg2DOwM4qGRsPRgbRIsAoRw",
+  authDomain: "todosquid-adb18.firebaseapp.com",
+  projectId: "todosquid-adb18",
+  storageBucket: "todosquid-adb18.appspot.com",
+  messagingSenderId: "650094165810",
+  appId: "1:650094165810:web:ed005ab5e0d9790ae4212b"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -17,7 +17,7 @@ const db = firebase.firestore();
 function render() {
   ReactDOM.render(
     <React.StrictMode>
-      <FireBaseApp db={db} />
+      <App db={db} />
     </React.StrictMode>,
     document.getElementById('root')
   );

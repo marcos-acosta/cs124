@@ -1,0 +1,75 @@
+.minWidthContainer {
+  min-width: 340px;
+}
+
+.color_purple_bg {
+  background-color: #662C91;
+  color: white;
+}
+
+.color_purple_ul {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: #662C91;
+}
+
+.color_olive_bg {
+  background-color: #4A442D;
+  color: white;
+}
+
+.color_olive_ul {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: #4A442D;
+}
+
+.color_blue_bg {
+  background-color: #2274A5;
+  color: white;
+}
+
+.color_blue_ul {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: #2274A5;
+}
+
+.color_red_bg {
+  background-color: #DC493A;
+  color: white;
+}
+
+.color_red_ul {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: #DC493A;
+}
+
+.color_green_bg {
+  background-color: #70AE6E;
+  color: white;
+}
+
+.color_green_ul {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: #70AE6E;
+}
+
+.color_default_bg {
+  background-color: #414141;
+  color: white;
+}
+
+.color_default_ul {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-style: dashed;
+  text-decoration-color: #414141;
+}

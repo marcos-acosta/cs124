@@ -5,10 +5,12 @@ import TaskTextLabel from './TaskTextLabel';
 import TaskExpander from './TaskExpander';
 import './TaskItem.css';
 
+const PRIORITY_TO_TEXT = ["low", "medium", "high"];
+
 export default function TaskItem(props) {
   const [shouldFadeOut, setShouldFadeOut] = useState(false);
+  let textInput = useRef(null);
 
-  const textInput = useRef(null);
   const DISAPPEAR_DURATION_MS = 500;
 
   useEffect(() => {
@@ -18,7 +20,9 @@ export default function TaskItem(props) {
   }, [props.taskInEditModeId, props.id]);
 
   function priorityToMarker(priority) {
-    return <div className={`priorityExclamationDiv priority${priority}`}>{'!'.repeat(priority)}</div>;
+    return <div 
+              className={`priorityExclamationDiv priority${priority}`}
+              aria-label={`task "${props.taskName}" has ${priority === 0 ? "no" : PRIORITY_TO_TEXT[priority - 1]} priority`}></div>;
   }
 
   function onClickEditButton() {
@@ -57,22 +61,25 @@ export default function TaskItem(props) {
         {priorityToMarker(props.priority)}
       </div>
       <div className={`toDoItem supportsInvisibility ${shouldFadeOut ? 'invisible' : ''} ${props.expandedTaskId === props.id ? 'highlighted' : ''}`}>
-          <TaskCheckbox id={props.id} checked={props.isCompleted} handleCompletion={handleCompletion} />
+          <TaskCheckbox id={props.id} checked={props.isCompleted} handleCompletion={handleCompletion} taskName={props.taskName} />
           <TaskTextLabel 
             {...props}
             textInput={textInput}
             deselectOnEditMode={deselectOnEditMode}
-            shouldFadeOut={shouldFadeOut} />
+            shouldFadeOut={shouldFadeOut}
+            returnRef={ref => {textInput = ref}} />
           {
             !props.isCompleted && 
               <TaskExpander id={props.id}
                             expandedId={props.expandedTaskId}
-                            expandTaskCallback={props.expandTaskCallback} />
+                            expandTaskCallback={props.expandTaskCallback}
+                            color={props.color} />
           }
           {
             props.expandedTaskId === props.id &&
               <TaskItemOptions
                 priority={props.priority}
+                taskName={props.taskName}
                 id={props.id}
                 taskInEditModeId={props.taskInEditModeId}
                 handleChangePriority={handleChangePriority}

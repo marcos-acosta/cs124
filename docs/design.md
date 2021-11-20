@@ -47,6 +47,25 @@ As part of the sorting, we gave the user a drop-down menu at the top to select h
 options are newest-oldest, alphabetical order, or priority. We couldn't decide whether oldest-newest or newest-oldest order would be better, so we just decided
 to offer both since different users might find both helpful.
 
+### Lab 4 Updates
+In order to add capabilities for multiple lists, we decided to keep the actual functionality of the
+lists exactly the same, but have a main page to hold all the lists.
+
+<img src="images/designs/listhubtotasks.PNG" width="200px">
+
+So, on the main view the user can see all of their lists, add a new list at the bottom where
+the add task button was, delete lists, or go view the lists. Each list page is exactly the same
+except that it now has the list name at the top instead of "todo" and has a back button
+to go back to viewing all the lists. The other things we changed were for resizing and 
+accessibility reasons. Notably, if the screen is large than the add item/list button changes from
+spanning the entire bottom to a smaller round button in the lower right hand corner and you can switch lists
+using a sidebar that appears to hold all the lists. We also changed
+the priority buttons looked so that we wouldn't have a text contrast issue. So, the button choices just
+have a different color for the selected priority and then outside the task there is a bullet point in 
+red, orange, or yellow to indicate high, medium, or low priority. 
+
+[Here is a link to a YouTube video](https://www.youtube.com/watch?v=wada-e1DRz4) demonstrating how you can use `todo` with only a keyboard and VoiceOver.
+
 ## Alternative designs
 A few alternative designs we considered were related to the task edit and
 deleted menus. We considered at one point using ellipses rather than an arrow
@@ -62,6 +81,18 @@ task itself, but we though that it might make the task itself look cluttered and
 for the task itself, so we went with the external indicator.
 
 <img src="images/designs/taskpriorityalt.PNG" width="200px">
+
+When we added the multiple lists capability we explored a few different options. One was to put
+different lists on tabs like drawn below
+
+<img src="images/designs/listtabs.PNG" width="200px">
+
+We decided against that one because it didn't feel as intuitive, and we didn't want to style tabs. 
+The other choice was to keep everything on one page, but have tasks underneath collapsible lists. 
+
+<img src="images/designs/scrolllists.PNG" width="200px">
+
+This was the most intuitive, in our opinion, but was difficult to implement so we chose against it.
 
 ## Final designs
 The general idea of our final design can be seen in this "template" page we developed:
@@ -116,7 +147,14 @@ One challenge was when we made the React app and had to figure out how to work w
 ### Lab 3
 One challenge we encountered at this step was when we implemented task sorting. We had to figure out whether it was better to sort as we pulled from Firestore, or if we wanted to sort with the already-pulled data. We ultimately went with the latter because we thought seeing the loading panel each time the user changed sorting method was a little jarring. We also struggled trying to prevent tasks from rearranging themselves when adding or editing a task when sorting by alphabetical order; it's very unpleasant to try to type while your text box is moving around. We knew we wanted to preserve the sort order while the user edits a task, but it took a while to figure out the "React way" of doing this. Including whether a task is in edit mode in the database didn't seem right, and neither did create another component for a task in edit mode that then had to re-merge with the other tasks. Ultimately, we moved the `taskInEditModeId` state up to where tasks are sorted, and added a bit of extra logic to save a "frozen" version of a task if it is in edit mode (the state of the task before any edits). Then, when sorting, if an element is in edit mode, it actually uses the frozen version to compare against other elements, preventing the "auto-sort" issue.
 
+### Lab 4
+We had a few challenges in this lab. One was making our own database, and having everything re-render properly. We also had some difficulties when adding accessibility and had to re-design some things - like the priority indicators. We also had some problems with deleting tasks, but some of those things fixed themselves.
+The biggest challenge was actually choosing the design implementation of the multiple lists, and ended up having to go with an easier design choice because the collapsible lists was proving to be difficult.
+
+
 
 ## Highlights
 In addition to (what we think is) a clean, uncluttered design, we think the method for adding todo items is the most in line with direct manipulation, since users can see their next item appear directly in the list of items without being confronted with a popup menu first. It also removes unnecessary ("20%") options that the user won't need most of the time so they can add that task off the top of their head as quickly and intuitively as possible.
 We're also very proud of how when the user checks an item, it fades out before moving to the completed section. We believe it to be a nice usability touch, and nicely implemented.
+
+Another fun thing we implemented was to allow users to choose their own colors from our color scheme for the lists. This can be done from the main list viewer page, using a drop-down color picker where the checkbox on a task would be.

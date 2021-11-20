@@ -14,7 +14,8 @@ export default function TaskList(props) {
                 setTaskProperty={props.setTaskProperty}
                 deleteTask={props.deleteTask}
                 setTaskInEditModeId={props.setTaskInEditModeId}
-                taskInEditModeId={props.taskInEditModeId} />)
+                taskInEditModeId={props.taskInEditModeId}
+                color={props.color} />)
       }
     </div>
   )
