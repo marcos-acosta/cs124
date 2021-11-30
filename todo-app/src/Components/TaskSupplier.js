@@ -9,7 +9,7 @@ export default function TaskSupplier(props) {
   const [frozenTask, setFrozenTask] = useState(null);
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
   const [orderingBy, setOrderingBy] = useState("created");
-  const taskQuery = props.db.collection("lists").doc(props.currentListId).collection("tasks");
+  const taskQuery = props.db.collection(props.collectionName).doc(props.currentListId).collection("tasks");
   const [taskCollection, tasksLoading, tasksError] = useCollection(taskQuery);
   const isNarrow = useMediaQuery({maxWidth: 500});
   const isDesktopWide = useMediaQuery({minWidth: 800});

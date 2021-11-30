@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Components/App';
 import firebase from "firebase/compat";
+import AuthenticationLayer from './Components/AuthenticationLayer';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAZ7Q00Z5zGKg2DOwM4qGRsPRgbRIsAoRw",
@@ -13,11 +13,12 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const auth = firebase.auth();
 
 function render() {
   ReactDOM.render(
     <React.StrictMode>
-      <App db={db} />
+      <AuthenticationLayer db={db} auth={auth} />
     </React.StrictMode>,
     document.getElementById('root')
   );
