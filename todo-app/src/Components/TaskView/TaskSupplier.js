@@ -83,5 +83,6 @@ export default function TaskSupplier(props) {
                     setTaskInEditModeId={setTaskInEditModeId}
                     isNarrow={isNarrow}
                     isDesktopWide={isDesktopWide}
-                    lists={props.lists} />
+                    lists={props.lists}
+                    addSharedEmail={props.addSharedEmail} />
 }

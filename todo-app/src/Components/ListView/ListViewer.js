@@ -2,8 +2,8 @@ import ListCard from "./ListCard";
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import "./ListViewer.css";
-import AddItem from "./AddItem";
-import InfoCard from "./InfoCard";
+import AddItem from "./../AddItem";
+import InfoCard from "./../InfoCard";
 
 export default function ListViewer(props) {
   const [listInEditModeId, setListInEditModeId] = useState(null);

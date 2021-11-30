@@ -1,11 +1,10 @@
 import { useRef, useEffect, useState } from "react";
-import InputKeepCursor from "./InputKeepCursor";
+import InputKeepCursor from "./../InputKeepCursor";
 import { BlockPicker } from 'react-color';
 import "./ListCard.css";
 
 const DISAPPEAR_DURATION_MS = 500;
 const COLOR_TO_NAME = {
-  // "#f7f7f7": "default",
   "#2274a5": "blue",
   "#dc493a": "red",
   "#662c91": "purple",

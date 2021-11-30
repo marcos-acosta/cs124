@@ -1,11 +1,11 @@
-import TaskSupplier from "./TaskSupplier";
+import TaskSupplier from "./TaskView/TaskSupplier";
 import { useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import ListViewer from "./ListViewer";
+import ListViewer from "./ListView/ListViewer";
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import firebase from 'firebase/compat';
 import "./App.css";
-import SignedInStatus from "./SignedInStatus";
+import SignedInStatus from "./AuthAndSharing/SignedInStatus";
 
 const COLLECTION_NAME = "lists-lab5"
 
@@ -39,6 +39,13 @@ export default function App(props) {
     docRef.update({[field]: value});
   }
 
+  const addSharedEmail = (id, email) => {
+    const docRef = fullListData.doc(id);
+    docRef.get().then(response =>
+      docRef.update({sharedWith: [...response.data().sharedWith, email]})
+    );
+  }
+
   return (
     <div className="minWidthContainer">
       <SignedInStatus auth={props.auth} user={props.user} />
@@ -46,7 +53,8 @@ export default function App(props) {
                                         lists={!listsLoading && !listsError && listCollection.docs.map(doc => doc.data())}
                                         db={props.db}
                                         collectionName={COLLECTION_NAME}
-                                        setCurrentListId={setCurrentListId} />
+                                        setCurrentListId={setCurrentListId}
+                                        addSharedEmail={email => addSharedEmail(currentListId, email)} />
                       : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())} 
                                     setCurrentListId={setCurrentListId} 
                                     deleteList={deleteList}

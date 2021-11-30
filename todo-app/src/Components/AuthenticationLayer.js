@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuthState } from "react-firebase-hooks/auth";
 import App from './App';
-import SignIn from './SignIn';
+import UnauthenticatedPage from './AuthAndSharing/UnauthenticatedPage';
 
 export default function AuthenticationLayer(props) {
   const [user, userLoading, userError] = useAuthState(props.auth);
@@ -11,6 +11,6 @@ export default function AuthenticationLayer(props) {
       ? <div>Wait...</div>
       : user
         ? <App db={props.db} auth={props.auth} user={user} />
-        : <SignIn auth={props.auth} />
+        : <UnauthenticatedPage auth={props.auth} />
   )
 }

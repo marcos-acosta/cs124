@@ -1,11 +1,12 @@
 import './TaskView.css';
 import TaskList from './TaskList';
 import CompletedSection from './CompletedSection';
-import AddItem from './AddItem';
-import OptionSelector from './OptionSelector';
+import AddItem from './../AddItem';
+import OptionSelector from './../OptionSelector';
 import ListSideMenu from './ListSideMenu';
 import { useState } from 'react';
-import InfoCard from './InfoCard';
+import InfoCard from './../InfoCard';
+import SharingPanel from './../AuthAndSharing/SharingPanel';
 
 const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
@@ -23,6 +24,7 @@ function TaskView(props) {
 
 function TasksApp(props) {
   const [expandedTaskId, setExpandedTaskId] = useState(null);
+  const [showSharingPanel, setShowSharingPanel] = useState(false);
   const currentList = props.lists.find(list => list.id === props.currentListId);
 
   const toggleExpandedTaskId = (id) => {
@@ -37,6 +39,11 @@ function TasksApp(props) {
 
   return (
       <div>
+        {
+          showSharingPanel && <SharingPanel onClosePanel={() => setShowSharingPanel(false)}
+                                            addSharedEmail={props.addSharedEmail}/>
+        }
+        <button onClick={() => setShowSharingPanel(true)}>Share</button>
         <div className="headerRow">
           <button   onClick={() => props.setCurrentListId(null)} 
                     className="backButton" 
