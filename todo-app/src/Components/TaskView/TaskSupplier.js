@@ -84,5 +84,5 @@ export default function TaskSupplier(props) {
                     isNarrow={isNarrow}
                     isDesktopWide={isDesktopWide}
                     lists={props.lists}
-                    addSharedEmail={props.addSharedEmail} />
+                    addToListField={props.addToListField} />
 }

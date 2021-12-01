@@ -41,7 +41,12 @@ function TasksApp(props) {
       <div>
         {
           showSharingPanel && <SharingPanel onClosePanel={() => setShowSharingPanel(false)}
-                                            addSharedEmail={props.addSharedEmail}/>
+                                            addToListField={props.addToListField}
+                                            currentListId={props.currentListId}
+                                            sharedEmails={currentList.sharedWith}
+                                            admins={currentList.admins}
+                                            removeFromListField={props.removeFromListField}
+                                            owner={currentList.owner} />
         }
         <button onClick={() => setShowSharingPanel(true)}>Share</button>
         <div className="headerRow">

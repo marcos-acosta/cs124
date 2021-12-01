@@ -1,0 +1,3 @@
+- rules for tasks
+- dismount error
+- saving owner email instead of uid

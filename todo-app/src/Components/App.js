@@ -28,7 +28,8 @@ export default function App(props) {
       id: new_id,
       created: firebase.database.ServerValue.TIMESTAMP,
       colorTheme: "blue",
-      owner: props.user.uid,
+      owner: props.user.email,
+      admins: [props.user.email],
       sharedWith: [props.user.email]
     });
     return new_id;
@@ -39,10 +40,17 @@ export default function App(props) {
     docRef.update({[field]: value});
   }
 
-  const addSharedEmail = (id, email) => {
+  const addToListField = (id, field, value) => {
     const docRef = fullListData.doc(id);
-    docRef.get().then(response =>
-      docRef.update({sharedWith: [...response.data().sharedWith, email]})
+    docRef.get().then(listResponse =>
+      docRef.update({[field]: [...listResponse.data()[field], value]})
+    );
+  }
+
+  const removeFromListField = (id, field, value) => {
+    const docRef = fullListData.doc(id);
+    docRef.get().then(listResponse =>
+      docRef.update({[field]: listResponse.data()[field].filter(val => val !== value)})
     );
   }
 
@@ -54,14 +62,16 @@ export default function App(props) {
                                         db={props.db}
                                         collectionName={COLLECTION_NAME}
                                         setCurrentListId={setCurrentListId}
-                                        addSharedEmail={email => addSharedEmail(currentListId, email)} />
+                                        addToListField={addToListField}
+                                        removeFromListField={removeFromListField} />
                       : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())} 
                                     setCurrentListId={setCurrentListId} 
                                     deleteList={deleteList}
                                     addList={addList}
                                     setListProperty={setListProperty}
                                     loading={listsLoading}
-                                    error={listsError}/>
+                                    error={listsError}
+                                    user={props.user}/>
       }
     </div>
   )

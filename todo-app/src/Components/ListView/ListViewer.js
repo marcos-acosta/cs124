@@ -13,6 +13,10 @@ export default function ListViewer(props) {
     setListInEditModeId(props.addList());
   }
 
+  const canShowList = (list) => {
+    return props.user.emailVerified || list.owner === props.user.uid;
+  }
+
   return <>
       <div className="header">
         <h4>
@@ -27,12 +31,16 @@ export default function ListViewer(props) {
                 <button className="noListsPlaceholder" onClick={addListCallback}>create a task list!</button>
               }
               {
-                props.lists.map(list => <ListCard 
-                                      {...props}
-                                      {...list}
-                                      key={list.id} 
-                                      listInEditModeId={listInEditModeId}
-                                      setListInEditModeId={setListInEditModeId}/>)
+                props.lists.some(list => !canShowList(list)) && <div>Validate your email, guy</div>
+              }
+              {
+                props.lists.map(list => canShowList(list)
+                                    && <ListCard 
+                                          {...props}
+                                          {...list}
+                                          key={list.id} 
+                                          listInEditModeId={listInEditModeId}
+                                          setListInEditModeId={setListInEditModeId}/>)
               }
             </>
           }
