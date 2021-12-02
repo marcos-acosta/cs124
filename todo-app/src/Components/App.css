@@ -73,3 +73,16 @@
   text-decoration-style: dashed;
   text-decoration-color: #414141;
 }
+
+input {
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+}
+
+button {
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,54 @@
+.header {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.header > h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.todo {
+  background-color: #2274A5;
+  color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 8px;
+}
+
+.centerContainer {
+  text-align: center;
+  width: 100%;
+}
+
+.authenticationContainer {
+  width: 500px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  display: inline-block;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.authTitle {
+  font-weight: bold;
+  text-align: center;
+}
+
+hr {
+  border: 1px solid rgb(221, 221, 221);
+}
+
+.signInInput {
+  width: 100%;  
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 5px;
+}

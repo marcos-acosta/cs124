@@ -8,11 +8,6 @@
   margin-bottom: 20px;
 }
 
-.listContainer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 .todo {
   background-color: #2274A5;
   color: white;
@@ -21,6 +16,11 @@
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 8px;
+}
+
+.listContainer {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .noListsPlaceholder {

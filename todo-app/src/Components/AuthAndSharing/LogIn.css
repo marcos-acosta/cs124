@@ -1,0 +1,36 @@
+.signInButton {
+  background-color: #2274A5;
+  font-size: 18px;
+  color: white;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  font-weight: bold;
+}
+
+.signInButton:hover {
+  background-color: #16608b;
+}
+
+.useGoogleButton {
+  background-color: #f0f0f0;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.googleLogo {
+  width: 25px;
+  float: left;
+  margin-right: 10px;
+  /* margin-top: 10px; */
+}
