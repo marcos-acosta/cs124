@@ -20,6 +20,13 @@ export default function UnauthenticatedPage(props) {
               : <SignUp auth={props.auth} showLogIn={() => setShowLogIn(true)}/>
           }
         </div>
+        <div className="signInSignUpSwitcher" onClick={() => setShowLogIn(!showLogIn)}>
+          {
+            showLogIn
+              ? <>don't have an account? <u>sign up</u></>
+              : <>already have an account? <u>sign in</u></>
+          }
+        </div>
       </div>
     </>
   )
