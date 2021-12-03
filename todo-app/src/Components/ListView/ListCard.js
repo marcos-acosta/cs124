@@ -68,17 +68,28 @@ export default function ListCard(props) {
                 aria-label="edit list name" />
           : <div className="listName" onClick={() => props.setCurrentListId(props.id)}>{props.listName}</div>
       }
-      <button 
-        onClick={() => props.setListInEditModeId(props.id)}
-        className="listActionButton linkButton editButton"
-        aria-label={`edit list name: ${props.listName}`}>edit</button>
-      <button
-        onClick={() => handleDeletion()}
-        className="listActionButton linkButton deleteButton"
-        aria-label={`delete list: ${props.listName}`}>delete</button>
-      <button 
-        onClick={() => props.setCurrentListId(props.id)} 
-        className="listActionButton openButton"
-        aria-label={`view tasks in list: ${props.listName}`}>➔</button>
+      {
+        props.isPendingList
+          ? <>
+              <div></div>
+              <button onClick={() => props.onAcceptCallback()}>accept</button>
+              <button onClick={() => props.onRejectCallback()}>reject</button>
+            </>
+          : <>
+              <button 
+                onClick={() => props.setListInEditModeId(props.id)}
+                className="listActionButton linkButton editButton"
+                aria-label={`edit list name: ${props.listName}`}>edit</button>
+              <button
+                onClick={() => handleDeletion()}
+                className="listActionButton linkButton deleteButton"
+                aria-label={`delete list: ${props.listName}`}>delete</button>
+              <button 
+                onClick={() => props.setCurrentListId(props.id)} 
+                className="listActionButton openButton"
+                aria-label={`view tasks in list: ${props.listName}`}>➔</button>
+            </>
+      }
+      
     </div>
 }

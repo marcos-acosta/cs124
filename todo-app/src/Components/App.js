@@ -12,7 +12,9 @@ const COLLECTION_NAME = "lists-lab5"
 export default function App(props) {
   const fullListData = props.db.collection(COLLECTION_NAME);
   const listQuery = fullListData.where("sharedWith", "array-contains", props.user.email);
+  const pendingListQuery = fullListData.where("pendingInvitations", "array-contains", props.user.email);
   const [listCollection, listsLoading, listsError] = useCollection(listQuery);
+  const [pendingCollection, pendingLoading, pendingError] = useCollection(pendingListQuery);
   const [currentListId, setCurrentListId] = useState(null);
 
   const deleteList = (id) => {
@@ -30,7 +32,8 @@ export default function App(props) {
       colorTheme: "blue",
       owner: props.user.email,
       admins: [props.user.email],
-      sharedWith: [props.user.email]
+      sharedWith: [props.user.email],
+      pendingInvitations: []
     });
     return new_id;
   }
@@ -64,14 +67,17 @@ export default function App(props) {
                                         setCurrentListId={setCurrentListId}
                                         addToListField={addToListField}
                                         removeFromListField={removeFromListField} />
-                      : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())} 
+                      : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())}
+                                    pendingLists={(pendingLoading || pendingError) ? [] : pendingCollection.docs.map(doc => doc.data())}
                                     setCurrentListId={setCurrentListId} 
                                     deleteList={deleteList}
                                     addList={addList}
                                     setListProperty={setListProperty}
                                     loading={listsLoading}
                                     error={listsError}
-                                    user={props.user}/>
+                                    user={props.user}
+                                    addToListField={addToListField}
+                                    removeFromListField={removeFromListField}/>
       }
     </div>
   )

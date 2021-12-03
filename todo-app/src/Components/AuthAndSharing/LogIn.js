@@ -30,7 +30,9 @@ export default function LogIn(props) {
                   ? "please re-check your username and password"
                   : error.code === 'auth/user-not-found'
                     ? "that user wasn't found; did you sign up?"
-                    : "some error occurred; please try again"
+                    : error.code === 'auth/wrong-password'
+                      ? "incorrect email or password"
+                      : "some error occurred; please try again"
           }
         </div>
       }

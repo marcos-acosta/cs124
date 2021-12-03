@@ -1,3 +1,5 @@
 - rules for tasks
 - dismount error
 - saving owner email instead of uid
+- include email validation in rules instead of in app
+  - would cause error when trying to get lists?

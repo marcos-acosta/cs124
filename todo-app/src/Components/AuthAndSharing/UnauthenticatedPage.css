@@ -90,6 +90,8 @@ form {
   transition-duration: 0.5s;
   font-weight: bold;
   width: 100%;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  border: none;
 }
 
 .submitButton:hover {

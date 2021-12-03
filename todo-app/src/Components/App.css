@@ -78,11 +78,6 @@ input {
   font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
 }
 
-button {
-  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
-  border: none;
-}
-
 button:hover {
   cursor: pointer;
 }

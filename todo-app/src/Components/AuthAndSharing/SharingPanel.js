@@ -25,7 +25,7 @@ export default function SharingPanel(props) {
       Sharing panel
       <br />
       <input onChange={e => setEmailInput(e.target.value)} value={emailInput} />
-      <button onClick={() => props.addToListField(props.currentListId, "sharedWith", emailInput)}>Share</button>
+      <button onClick={() => props.addToListField(props.currentListId, "pendingInvitations", emailInput)}>Share</button>
       <br />
       Permissions
       {

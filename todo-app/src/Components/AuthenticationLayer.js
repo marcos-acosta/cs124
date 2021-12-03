@@ -7,10 +7,10 @@ export default function AuthenticationLayer(props) {
   const [user, userLoading, userError] = useAuthState(props.auth);
 
   return (
-    userLoading || userError
-      ? <div>Wait...</div>
-      : user
+    !(userLoading || userError) && (
+      user
         ? <App db={props.db} auth={props.auth} user={user} />
         : <UnauthenticatedPage auth={props.auth} />
+    )
   )
 }
