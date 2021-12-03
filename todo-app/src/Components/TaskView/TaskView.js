@@ -46,7 +46,9 @@ function TasksApp(props) {
                                             sharedEmails={currentList.sharedWith}
                                             admins={currentList.admins}
                                             removeFromListField={props.removeFromListField}
-                                            owner={currentList.owner} />
+                                            owner={currentList.owner}
+                                            pendingInvitations={currentList.pendingInvitations}
+                                            user={props.user} />
         }
         <button onClick={() => setShowSharingPanel(true)}>Share</button>
         <div className="headerRow">

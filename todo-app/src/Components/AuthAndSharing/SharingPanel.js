@@ -24,16 +24,20 @@ export default function SharingPanel(props) {
       <button onClick={props.onClosePanel}>x</button>
       Sharing panel
       <br />
-      <input onChange={e => setEmailInput(e.target.value)} value={emailInput} />
-      <button onClick={() => props.addToListField(props.currentListId, "pendingInvitations", emailInput)}>Share</button>
-      <br />
+      {props.admins.includes(props.user.email) &&
+        <>
+          <input onChange={e => setEmailInput(e.target.value)} value={emailInput} />
+          <button onClick={() => props.addToListField(props.currentListId, "pendingInvitations", emailInput)}>Share</button>
+          <br />
+        </>
+      }
       Permissions
       {
         props.sharedEmails.map((email, i) => 
           <div key={i}>
             {email} {props.admins.includes(email) && <span>(admin)</span>}
             {
-              props.owner !== email &&
+              (props.owner !== email && props.admins.includes(props.user.email)) &&
                 <>
                   <select onChange={e => handlePermissionsChange(email, e.target.value)}>
                     <option>basic</option>
@@ -44,6 +48,17 @@ export default function SharingPanel(props) {
             }
           </div>
         )
+      }
+      {
+        props.pendingInvitations.length > 0 && <>
+          Pending:
+          {
+            props.pendingInvitations.map((email, i) => 
+              <div key={i}>
+                {email}
+              </div>)
+          }
+        </>
       }
     </div>
     </>

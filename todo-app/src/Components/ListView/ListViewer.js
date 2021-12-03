@@ -13,10 +13,6 @@ export default function ListViewer(props) {
     setListInEditModeId(props.addList());
   }
 
-  const canShowList = (list) => {
-    return props.user.emailVerified || list.owner === props.user.uid;
-  }
-
   const removeFromPending = (id) => {
     props.removeFromListField(id, "pendingInvitations", props.user.email);
   }
@@ -40,48 +36,44 @@ export default function ListViewer(props) {
                 <button className="noListsPlaceholder" onClick={addListCallback}>create a task list!</button>
               }
               {
-                props.lists.some(list => !canShowList(list)) && <div>Validate your email, guy</div>
-              }
-              {
-                props.lists.map(list => canShowList(list)
-                                    && <ListCard 
+                props.lists.map(list => <ListCard 
                                           {...props}
                                           {...list}
                                           key={list.id} 
                                           listInEditModeId={listInEditModeId}
-                                          setListInEditModeId={setListInEditModeId}/>)
+                                          setListInEditModeId={setListInEditModeId} />)
               }
             </>
           }
       </div>
       {
         props.pendingLists.length !== 0 &&
-          <>
-            <h3>
-              Pending invitations
-            </h3>
-            <div className="listContainer">
-              {
-                <>
-                  {
-                    props.pendingLists.some(list => !canShowList(list)) && <div>Validate your email, guy</div>
-                  }
-                  {
-                    props.pendingLists.map(list => canShowList(list)
-                                        && <ListCard 
-                                              {...props}
-                                              {...list}
-                                              key={list.id} 
-                                              listInEditModeId={listInEditModeId}
-                                              setListInEditModeId={setListInEditModeId}
-                                              isPendingList
-                                              onAcceptCallback={() => onAcceptCallback(list.id)}
-                                              onRejectCallback={() => removeFromPending(list.id)}/>)
-                  }
+          (
+            !props.user.emailVerified
+              ? <div>verify your email to see pending invites</div>
+              : <>
+                  <h3>
+                    Pending invitations
+                  </h3>
+                  <div className="listContainer">
+                    {
+                      <>
+                        {
+                          props.pendingLists.map(list => <ListCard 
+                                                    {...props}
+                                                    {...list}
+                                                    key={list.id} 
+                                                    listInEditModeId={listInEditModeId}
+                                                    setListInEditModeId={setListInEditModeId}
+                                                    isPendingList
+                                                    onAcceptCallback={() => onAcceptCallback(list.id)}
+                                                    onRejectCallback={() => removeFromPending(list.id)}/>)
+                        }
+                      </>
+                    }
+                  </div>
                 </>
-              }
-            </div>
-          </>
+          )
       }
       <AddItem 
         isNarrow={isNarrow} 

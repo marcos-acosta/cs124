@@ -66,7 +66,8 @@ export default function App(props) {
                                         collectionName={COLLECTION_NAME}
                                         setCurrentListId={setCurrentListId}
                                         addToListField={addToListField}
-                                        removeFromListField={removeFromListField} />
+                                        removeFromListField={removeFromListField}
+                                        user={props.user} />
                       : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())}
                                     pendingLists={(pendingLoading || pendingError) ? [] : pendingCollection.docs.map(doc => doc.data())}
                                     setCurrentListId={setCurrentListId} 
