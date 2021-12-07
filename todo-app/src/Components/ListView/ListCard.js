@@ -41,10 +41,8 @@ export default function ListCard(props) {
       <button   onClick={() => setShowColorPicker(!showColorPicker)} 
                 className={`colorDropdown ${(props.colorTheme !== 'default') ? `color_${props.colorTheme}_bg` : ''}`}
                 disabled={!props.admins.includes(props.user.email)}>
-        <div className={`dropDownArrow ${showColorPicker ? 'flipped' : ''}`} aria-label={`Select color theme for list: ${props.listName}`}>
-          {
-            props.admins.includes(props.user.email) && "⌵"
-          }
+        <div className={`dropDownArrow ${showColorPicker ? 'flipped' : ''} ${!props.admins.includes(props.user.email) ? "transparentText" : ""}`} aria-label={`Select color theme for list: ${props.listName}`}>
+          ⌵
         </div>
       </button>
       {
@@ -79,23 +77,23 @@ export default function ListCard(props) {
               <button onClick={() => props.onRejectCallback()}>reject</button>
             </>
           : <>
-              {props.admins.includes(props.user.email) && 
+              {props.admins.includes(props.user.email) ?
                 <button 
                   onClick={() => props.setListInEditModeId(props.id)}
                   className="listActionButton linkButton editButton"
-                  aria-label={`edit list name: ${props.listName}`}>edit</button>
+                  aria-label={`edit list name: ${props.listName}`}>edit</button> : <div />
               }
-              {props.owner === props.user.email &&
+              {props.owner === props.user.email ?
                 <button
                   onClick={() => handleDeletion()}
                   className="listActionButton linkButton deleteButton"
-                  aria-label={`delete list: ${props.listName}`}>delete</button>
+                  aria-label={`delete list: ${props.listName}`}>delete</button> : <div />
               }
-              {props.sharedWith.includes(props.user.email) &&
+              {props.sharedWith.includes(props.user.email) ?
                 <button 
                   onClick={() => props.setCurrentListId(props.id)} 
                   className="listActionButton openButton"
-                  aria-label={`view tasks in list: ${props.listName}`}>➔</button>
+                  aria-label={`view tasks in list: ${props.listName}`}>➔</button> : <div />
               }
             </>
       }

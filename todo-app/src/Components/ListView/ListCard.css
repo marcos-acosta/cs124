@@ -97,3 +97,7 @@
 .flipped {
   transform: rotate(-180deg);
 }
+
+.transparentText {
+  color: transparent;
+}
