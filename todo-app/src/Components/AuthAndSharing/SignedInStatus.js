@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AccountIcon from "./../../images/account_icon_3.png"
+import AccountIcon from "./../../images/account_icon.png"
 import "./SignedInStatus.css";
 
 export default function SignedInStatus(props) {
