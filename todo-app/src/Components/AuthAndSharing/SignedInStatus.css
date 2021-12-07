@@ -1,0 +1,80 @@
+.accountIcon {
+  width: 45px;
+  height: 45px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.accountIconDiv {
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  top: 38px;
+  font-size: 20px;
+  color: rgb(104, 104, 104);
+}
+
+.flipped {
+  transform: rotate(-180deg);
+}
+
+.expandCaretDiv {
+  display: inline-block;
+  transition-property: transform;
+  transition-duration: 0.5s;
+}
+
+.accountPanel {
+  background-color: rgba(255, 255, 255, 0.945);
+  position: absolute;
+  top: 83px;
+  right: 30px;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 5px;
+  font-size: 16px;
+  display: grid;
+}
+
+.accountPanel > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.userEmail {
+  background-color: rgb(247, 247, 247);
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.accountButton {
+  width: 100%;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.signOutButton {
+  background-color: rgb(104, 104, 104);
+  color: white;
+}
+
+.validateButton {
+  background-color: #DC493A;
+  color: white;
+}
+
+.notification {
+  background-color: #DC493A;
+  color: transparent;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 40px;
+  right: 78px;
+  pointer-events: none;
+}
