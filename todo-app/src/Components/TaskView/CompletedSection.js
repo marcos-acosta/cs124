@@ -12,10 +12,10 @@ export default function CompletedSection(props) {
 
   return (
     <div className={`completedSectionContainer ${startDisappearing ? 'invisible' : ''}`}>
-      <div id="completedItemsHeader">
+      <div className="completedItemsHeader">
         <h3>
           completed
-          <button id="clearCompleted" onClick={handleClear} aria-label={`delete completed tasks. tasks to be completed: ${props.tasks.map(task => task.taskName).join()}`}>clear</button>
+          <button className="clearCompleted" onClick={handleClear} aria-label={`delete completed tasks. tasks to be completed: ${props.tasks.map(task => task.taskName).join()}`}>clear</button>
         </h3>
       </div>
       <TaskList tasks={props.tasks} 

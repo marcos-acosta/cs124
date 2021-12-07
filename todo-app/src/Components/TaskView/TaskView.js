@@ -50,7 +50,6 @@ function TasksApp(props) {
                                             pendingInvitations={currentList.pendingInvitations}
                                             user={props.user} />
         }
-        <button onClick={() => setShowSharingPanel(true)}>Share</button>
         <div className="headerRow">
           <button   onClick={() => props.setCurrentListId(null)} 
                     className="backButton" 
@@ -67,6 +66,9 @@ function TasksApp(props) {
           <div className="noTopMargin">
             <div className="sortByText">sort by:</div>
             <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />
+            <button className="sharingButton" onClick={() => setShowSharingPanel(true)}>
+              share
+            </button>
           </div>
           {
             props.loading ? <InfoCard /> : 

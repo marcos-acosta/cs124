@@ -82,3 +82,18 @@ body {
   background-color: rgb(250, 250, 250);
   border-right: 1px solid rgb(235, 235, 235);
 }
+
+.sharingButton {
+  float: right;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 65px;
+  height: 32px;
+  font-size: 17px;
+  border: 1px solid rgb(218, 218, 218);
+  border-radius: 10px;
+  background-color: white;
+  color: rgb(104, 104, 104);
+  cursor: pointer;
+}

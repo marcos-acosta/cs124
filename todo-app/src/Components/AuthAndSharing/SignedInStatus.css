@@ -8,7 +8,7 @@
 .accountIconDiv {
   cursor: pointer;
   position: absolute;
-  right: 30px;
+  right: 15px;
   top: 38px;
   font-size: 20px;
   color: rgb(104, 104, 104);
@@ -28,7 +28,7 @@
   background-color: rgba(255, 255, 255, 0.945);
   position: absolute;
   top: 83px;
-  right: 30px;
+  right: 15px;
   border: 1px solid rgb(219, 219, 219);
   border-radius: 5px;
   font-size: 16px;
@@ -44,6 +44,8 @@
   background-color: rgb(247, 247, 247);
   padding: 10px;
   margin-bottom: 8px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .accountButton {
@@ -75,6 +77,6 @@
   height: 15px;
   position: absolute;
   top: 40px;
-  right: 78px;
+  right: 63px;
   pointer-events: none;
 }

@@ -1,11 +1,15 @@
-#completedItemsHeader {
+.completedItemsHeader {
   font-size: 20px;
 }
 
-#clearCompleted {
-  width: 70px;
-  height: 40px;
-  font-size: 20px;
+h3 {
+  margin-block-end: 10px;
+}
+
+.clearCompleted {
+  width: 65px;
+  height: 32px;
+  font-size: 17px;
   border: 1px solid rgb(218, 218, 218);
   border-radius: 10px;
   background-color: white;
