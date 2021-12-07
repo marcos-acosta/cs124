@@ -21,45 +21,67 @@ export default function SharingPanel(props) {
     <>
     <div className="smokeScreen" />
     <div className="sharingPanelContainer">
-      <button onClick={props.onClosePanel}>x</button>
-      Sharing panel
-      <br />
-      {props.admins.includes(props.user.email) &&
-        <>
-          <input onChange={e => setEmailInput(e.target.value)} value={emailInput} />
-          <button onClick={() => props.addToListField(props.currentListId, "pendingInvitations", emailInput)}>Share</button>
-          <br />
-        </>
-      }
-      Permissions
-      {
-        props.sharedEmails.map((email, i) => 
-          <div key={i}>
-            {email} {props.admins.includes(email) && <span>(admin)</span>}
+      <button onClick={props.onClosePanel} className="exitButton">×</button>
+      <div className="sharingPanelBody">
+        <div className="sharingPanelHeader">
+          sharing
+        </div>
+        {props.admins.includes(props.user.email) &&
+          <>
+            share this list with 
+            <input  onChange={e => setEmailInput(e.target.value)} 
+                    placeholder="email" 
+                    value={emailInput} 
+                    className="inviteInput"/>
+            <button onClick={() => props.addToListField(props.currentListId, "pendingInvitations", emailInput)}
+                    className="inviteButton">invite</button>
+          </>
+        }
+        <div className="innerContainer">
+          <div className="subheader">
+            contributors
+          </div>
+          <div className="permissionsTable">
             {
-              (props.owner !== email && props.admins.includes(props.user.email)) &&
-                <>
-                  <select onChange={e => handlePermissionsChange(email, e.target.value)}>
-                    <option>basic</option>
-                    <option>admin</option>
-                  </select>
-                  <button onClick={() => revokeAllPermissions(email)}>x</button>
-                </>
+              props.sharedEmails.map((email, i) => 
+                <div key={i} className="permissionsRow">
+                  <div>
+                    <div className="emailBubble">{email}</div> {props.owner === email && <span className="ownerText">(owner)</span>}
+                  </div>
+                  {
+                    (props.owner !== email && props.admins.includes(props.user.email)) &&
+                      <>
+                        <select 
+                          onChange={e => handlePermissionsChange(email, e.target.value)} 
+                          className="roleSelector"
+                          value={props.admins.includes(email) ? "admin" : "basic"}>
+                          <option>basic</option>
+                          <option>admin</option>
+                        </select>
+                        <div className="removePersonContainer">
+                          <button onClick={() => revokeAllPermissions(email)} className="removePerson">remove</button>
+                        </div>
+                      </>
+                  }
+                </div>
+              )
             }
           </div>
-        )
-      }
-      {
-        props.pendingInvitations.length > 0 && <>
-          Pending:
+        </div>
+        <div className="innerContainer">
           {
-            props.pendingInvitations.map((email, i) => 
-              <div key={i}>
-                {email}
-              </div>)
+            props.pendingInvitations.length > 0 && <>
+              <div className="subheader">pending invites</div>
+              {
+                props.pendingInvitations.map((email, i) => 
+                  <div key={i}>
+                    <div className="emailBubble">{email}</div>
+                  </div>)
+              }
+            </>
           }
-        </>
-      }
+        </div>
+      </div>
     </div>
     </>
   )
