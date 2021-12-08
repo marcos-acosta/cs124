@@ -36,7 +36,7 @@ export default function ListCard(props) {
     setTimeout(() => props.deleteList(props.id), DISAPPEAR_DURATION_MS);
   }
 
-  return <div className={`listCard supportsInvisibility ${startDisappearing ? 'invisible' : ''}`}>
+  return <div className={`listCard supportsInvisibility ${startDisappearing ? 'invisible' : ''} ${props.isPendingList ? "notClickable" : ""}`}>
     <div className="listCardLeftPanel">
       <button   onClick={() => setShowColorPicker(!showColorPicker)} 
                 className={`colorDropdown ${(props.colorTheme !== 'default') ? `color_${props.colorTheme}_bg` : ''}`}
@@ -67,7 +67,7 @@ export default function ListCard(props) {
                 returnRef={(ref) => {textInput = ref}}
                 className="listNameInput"
                 aria-label="edit list name" />
-          : <div className="listName" onClick={() => props.setCurrentListId(props.id)}>{props.listName}</div>
+          : <div className="listName" onClick={() => !props.isPendingList && props.setCurrentListId(props.id)}>{props.listName}</div>
       }
       {
         props.isPendingList
