@@ -48,7 +48,8 @@ function TasksApp(props) {
                                             removeFromListField={props.removeFromListField}
                                             owner={currentList.owner}
                                             pendingInvitations={currentList.pendingInvitations}
-                                            user={props.user} />
+                                            user={props.user}
+                                            colorTheme={currentList.colorTheme} />
         }
         <div className="headerRow">
           <button   onClick={() => props.setCurrentListId(null)} 

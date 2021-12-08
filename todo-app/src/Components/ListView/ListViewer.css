@@ -35,3 +35,23 @@
   cursor: pointer;
   width: 100%;
 }
+
+.verifyToSeeDiv {
+  font-size: 16px;
+  background-color: rgb(243, 243, 243);
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  text-align: center;
+  border: none;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  margin-top: 30px;
+  display: inline-block;
+  outline: 1px dashed rgb(71, 71, 71);
+}
+
+.centerContent {
+  width: 100%;
+  text-align: center;
+}

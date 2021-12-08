@@ -17,6 +17,11 @@ export default function SharingPanel(props) {
     }
   }
 
+  const handleOnInvite = () => {
+    props.addToListField(props.currentListId, "pendingInvitations", emailInput);
+    setEmailInput("");
+  }
+
   return (
     <>
     <div className="smokeScreen" />
@@ -33,8 +38,8 @@ export default function SharingPanel(props) {
                     placeholder="email" 
                     value={emailInput} 
                     className="inviteInput"/>
-            <button onClick={() => props.addToListField(props.currentListId, "pendingInvitations", emailInput)}
-                    className="inviteButton">invite</button>
+            <button onClick={() => handleOnInvite()}
+                    className={`inviteButton color_${props.colorTheme}_bg`}>invite</button>
           </>
         }
         <div className="innerContainer">

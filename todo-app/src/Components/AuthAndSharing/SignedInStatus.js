@@ -4,6 +4,12 @@ import "./SignedInStatus.css";
 
 export default function SignedInStatus(props) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [sentVerificationEmail, setSentVerificationEmail] = useState(false);
+
+  const verifyEmailCallback = () => {
+    props.user.sendEmailVerification();
+    setSentVerificationEmail(true);
+  }
 
   return (
     <div>
@@ -18,7 +24,9 @@ export default function SignedInStatus(props) {
           </div>
           {
             !props.user.emailVerified && <div>
-              <button onClick={() => props.user.sendEmailVerification()} className="accountButton validateButton">confirm email</button>
+              <button onClick={() => verifyEmailCallback()} className="accountButton validateButton">
+                {sentVerificationEmail ? "resend verification email" : "send verification email"}
+              </button>
             </div>
           }
           <div>
