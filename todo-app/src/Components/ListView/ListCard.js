@@ -67,27 +67,30 @@ export default function ListCard(props) {
                 returnRef={(ref) => {textInput = ref}}
                 className="listNameInput"
                 aria-label="edit list name" />
-          : <div className="listName" onClick={() => !props.isPendingList && props.setCurrentListId(props.id)}>{props.listName}</div>
+          : <div className="listName" onClick={() => !props.isPendingList && props.setCurrentListId(props.id)}>
+              {props.listName}{props.owner !== props.user.email && <div className="ownerDisambiguator">by {props.owner}</div>}
+            </div>
       }
       {
         props.isPendingList
           ? <>
-              <div></div>
-              <button onClick={() => props.onAcceptCallback()}>accept</button>
-              <button onClick={() => props.onRejectCallback()}>reject</button>
+              <div className="acceptRejectSpanner">
+                <button className="acceptRejectButton acceptButton" onClick={() => props.onAcceptCallback()}>accept</button>
+                <button className="acceptRejectButton rejectButton" onClick={() => props.onRejectCallback()}>reject</button>
+              </div>
             </>
           : <>
-              {props.admins.includes(props.user.email) ?
-                <button 
-                  onClick={() => props.setListInEditModeId(props.id)}
-                  className="listActionButton linkButton editButton"
-                  aria-label={`edit list name: ${props.listName}`}>edit</button> : <div />
-              }
               {props.owner === props.user.email ?
                 <button
                   onClick={() => handleDeletion()}
                   className="listActionButton linkButton deleteButton"
                   aria-label={`delete list: ${props.listName}`}>delete</button> : <div />
+              }
+              {props.admins.includes(props.user.email) ?
+                <button 
+                  onClick={() => props.setListInEditModeId(props.id)}
+                  className="listActionButton linkButton editButton"
+                  aria-label={`edit list name: ${props.listName}`}>edit</button> : <div />
               }
               {props.sharedWith.includes(props.user.email) ?
                 <button 

@@ -46,42 +46,39 @@ export default function ListViewer(props) {
             </>
           }
       </div>
-      <div className="centerContent">
-            {
-              props.pendingLists.length !== 0 &&
-              (
-                !props.user.emailVerified
-                  ? <div className="verifyToSeeDiv">
-                      <b>you have pending invites to join a collaborative list!</b>
-                      <br />
-                      verify your email (in the account panel) to see them.
-                    </div>
-                  : <>
-                      <h3>
-                        Pending invitations
-                      </h3>
-                      <div className="listContainer">
-                        {
-                          <>
-                            {
-                              props.pendingLists.map(list => <ListCard 
-                                                        {...props}
-                                                        {...list}
-                                                        key={list.id} 
-                                                        listInEditModeId={listInEditModeId}
-                                                        setListInEditModeId={setListInEditModeId}
-                                                        isPendingList
-                                                        onAcceptCallback={() => onAcceptCallback(list.id)}
-                                                        onRejectCallback={() => removeFromPending(list.id)}/>)
-                            }
-                          </>
-                        }
-                      </div>
+      {
+        props.pendingLists.length !== 0 &&
+        (
+          !props.user.emailVerified
+            ? <div className="verifyToSeeDiv">
+                <b>you have pending invites to join a collaborative list!</b>
+                <br />
+                verify your email (in the account panel) to see them.
+              </div>
+            : <>
+                <div className="listContainer">
+                  <div className="sectionHeader">
+                    pending invitations
+                  </div>
+                  {
+                    <>
+                      {
+                        props.pendingLists.map(list => <ListCard 
+                                                  {...props}
+                                                  {...list}
+                                                  key={list.id} 
+                                                  listInEditModeId={listInEditModeId}
+                                                  setListInEditModeId={setListInEditModeId}
+                                                  isPendingList
+                                                  onAcceptCallback={() => onAcceptCallback(list.id)}
+                                                  onRejectCallback={() => removeFromPending(list.id)}/>)
+                      }
                     </>
-              )
-            }
-          </div>
-      
+                  }
+                </div>
+              </>
+        )
+      }
       <AddItem 
         isNarrow={isNarrow} 
         addTaskAndEdit={addListCallback} 

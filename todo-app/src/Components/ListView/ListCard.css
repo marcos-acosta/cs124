@@ -12,7 +12,7 @@
   border-radius: 10px;
   margin-bottom: 12px;
   display: grid;
-  grid-template-columns: 40px 1fr 40px 60px 50px;
+  grid-template-columns: 40px 1fr 60px 50px 50px;
   padding: 5px;
   font-size: 18px;
   cursor: pointer;
@@ -105,4 +105,35 @@
 
 .notClickable {
   cursor: default;
+}
+
+.acceptRejectButton {
+  border: none;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+}
+
+.acceptButton {
+  background-color: #2274A5;
+}
+
+.rejectButton {
+  background-color: rgb(221, 94, 94);
+}
+
+.acceptRejectSpanner {
+  grid-column: 3 / 6;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ownerDisambiguator {
+  display: inline-block;
+  margin-left: 10px;
+  color: rgb(126, 126, 126);
+  font-style: italic;
 }
