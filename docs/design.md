@@ -73,7 +73,7 @@ First, for the login and sign up stuff, we created a page that defaults to the l
 page, but has a button to log in with google and a button to sign up if you don't have an account. Here is a mockup
 of the design.
 
-<img src="images/designs/logindesign.PNG" width="200px">
+<img src="images/designs/logindesign1.PNG" width="200px">
 
 Once the user is logged in, there is a user icon in the top right corner that will expand to show who the user is signed
 in as and to log out. If the user's email is not verfied, it includes a button to do that and shows a notification on 
@@ -83,7 +83,7 @@ on the list, allows you to change individual user's permissions or remove their 
 only difference between an admin and the owner is that only the owner can delete the list. Here is the initial design of
 the sharing panel
 
-<img src="images/designs/sharingpaneldesign.PNG" width="200px">
+<img src="images/designs/sharepaneldesign.PNG" width="200px">
 
 Once a list is shared, it shows up in a "pending list" section and a user has to either accept or reject the list. That
 way a user can reject a potential spam list or something. The list will then show up in a "shared lists" section with an
