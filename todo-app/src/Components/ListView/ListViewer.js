@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import "./ListViewer.css";
 import AddItem from "./../AddItem";
 import InfoCard from "./../InfoCard";
+import SignedInStatus from "../AuthAndSharing/SignedInStatus";
 
 export default function ListViewer(props) {
   const [listInEditModeId, setListInEditModeId] = useState(null);
@@ -23,10 +24,15 @@ export default function ListViewer(props) {
   }
 
   return <>
-      <div className="header">
-        <h4>
-          <span className="todo">todo</span> 🦑
-        </h4>
+      <div className="headerRow">
+        <div className="todoHeader">
+          <h4>
+            <span className="todo">todo</span> 🦑
+          </h4>
+        </div>
+        <div className="authPanelContainer">
+          <SignedInStatus auth={props.auth} user={props.user} />
+        </div>
       </div>
       <div className="listContainer">
         { props.loading ? <InfoCard /> :

@@ -7,6 +7,7 @@ import ListSideMenu from './ListSideMenu';
 import { useState } from 'react';
 import InfoCard from './../InfoCard';
 import SharingPanel from './../AuthAndSharing/SharingPanel';
+import SignedInStatus from '../AuthAndSharing/SignedInStatus';
 
 const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
@@ -51,19 +52,22 @@ function TasksApp(props) {
                                             user={props.user}
                                             colorTheme={currentList.colorTheme} />
         }
-        <div className="headerRow">
+        <div className="titleHeaderRow">
           <button   onClick={() => props.setCurrentListId(null)} 
                     className="backButton" 
                     aria-label="back to list menu">
                       ← back
           </button>
-          <div className="toDoHeader">
+          <div className="titleHeader">
             <h2 className={currentList ? `color_${currentList.colorTheme}_ul` : ''}>
               {currentList.listName}
             </h2>
           </div>
+          <div className="authPanelContainerTaskView">
+            <SignedInStatus auth={props.auth} user={props.user} />
+          </div>
         </div>
-        <div id="pageContent">
+        <div class="pageContent">
           <div className="noTopMargin">
             <div className="sortByText">sort by:</div>
             <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />

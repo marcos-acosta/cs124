@@ -14,7 +14,11 @@ export default function SignedInStatus(props) {
   return (
     <div>
       <div className="accountIconDiv" onClick={() => setIsExpanded(!isExpanded)}>
-        <img src={AccountIcon} alt="account icon" className="accountIcon" />
+        <div className="accountIcon">
+          <div className="accountLetter">
+            🦑
+          </div>
+        </div>
         <div className={`expandCaretDiv ${isExpanded ? "flipped" : ""}`}>⌵</div>
       </div>
       {

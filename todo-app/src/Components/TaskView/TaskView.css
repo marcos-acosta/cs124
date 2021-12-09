@@ -5,13 +5,14 @@ body {
   margin-bottom: 70px;
 }
 
-.headerRow {
+.titleHeaderRow {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 100px 1fr 100px;
+  grid-template-rows: 1fr;
   justify-items: left;
 }
 
-#pageContent {
+.pageContent {
   display: grid;
   padding-left: 15px;
   padding-right: 15px;
@@ -56,13 +57,13 @@ body {
   cursor: pointer;
 }
 
-.toDoHeader {
+.titleHeader {
   grid-row: 1;
   grid-column: 2;
   padding-left: 20px;
 }
 
-.toDoHeader > h2 {
+.titleHeader > h2 {
   margin-block-end: 10px;
   text-align: left;
   font-size: 40px;
@@ -96,4 +97,10 @@ body {
   background-color: white;
   color: rgb(104, 104, 104);
   cursor: pointer;
+}
+
+.authPanelContainerTaskView {
+  grid-column: 3;
+  grid-row: 1;
+  margin-top: 30px;
 }

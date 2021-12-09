@@ -1,9 +1,23 @@
-.header {
-  text-align: center;
-  padding-top: 30px;
+.headerRow {
+  margin-top: 30px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 100px;
 }
 
-.header > h4 {
+.todoHeader {
+  text-align: center;
+  grid-row: 1;
+  grid-column: 1 / 3;
+  width: 100%;
+}
+
+.authPanelContainer {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.todoHeader > h4 {
   margin-top: 0;
   margin-bottom: 20px;
 }

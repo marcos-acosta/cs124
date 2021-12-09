@@ -59,7 +59,6 @@ export default function App(props) {
 
   return (
     <div className="minWidthContainer">
-      <SignedInStatus auth={props.auth} user={props.user} />
       {currentListId  ? <TaskSupplier   currentListId={currentListId}
                                         lists={!listsLoading && !listsError && listCollection.docs.map(doc => doc.data())}
                                         db={props.db}
@@ -67,7 +66,8 @@ export default function App(props) {
                                         setCurrentListId={setCurrentListId}
                                         addToListField={addToListField}
                                         removeFromListField={removeFromListField}
-                                        user={props.user} />
+                                        user={props.user}
+                                        auth={props.auth} />
                       : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())}
                                     pendingLists={(pendingLoading || pendingError) ? [] : pendingCollection.docs.map(doc => doc.data())}
                                     setCurrentListId={setCurrentListId} 
@@ -77,6 +77,7 @@ export default function App(props) {
                                     loading={listsLoading}
                                     error={listsError}
                                     user={props.user}
+                                    auth={props.auth}
                                     addToListField={addToListField}
                                     removeFromListField={removeFromListField}/>
       }
