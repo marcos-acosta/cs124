@@ -14,6 +14,10 @@ export default function TaskSupplier(props) {
   const isNarrow = useMediaQuery({maxWidth: 500});
   const isDesktopWide = useMediaQuery({minWidth: 800});
 
+  if (tasksError) {
+    props.setCurrentListId(null);
+  }
+
   const sortFunctions = {
     priority: (a, b) => frozen(b)['priority'] - frozen(a)['priority'],
     taskName: (a, b) => frozen(a)['taskName'].toLowerCase() < frozen(b)['taskName'].toLowerCase() ? -1 : 1,
@@ -70,7 +74,8 @@ export default function TaskSupplier(props) {
       : taskCollection.docs.map(doc => doc.data()).sort(sortFunctions[orderingBy]);
   }
 
-  return <TaskView  {...props}
+  return !tasksError && 
+         <TaskView  {...props}
                     setTaskProperty={setTaskProperty}
                     deleteTask={deleteTask}
                     deleteCompleted={deleteCompleted}
