@@ -45,7 +45,7 @@ export default function App(props) {
   const addToListField = (id, field, value) => {
     const docRef = fullListData.doc(id);
     docRef.get().then(listResponse =>
-      docRef.update({[field]: [...listResponse.data()[field], value]})
+      !listResponse.data()[field].find(value_ => value === value_) && docRef.update({[field]: [...listResponse.data()[field], value]})
     );
   }
 

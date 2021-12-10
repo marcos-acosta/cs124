@@ -12,7 +12,7 @@ export default function SharingPanel(props) {
   const handlePermissionsChange = (email, value) => {
     if (value === 'admin') {
       props.addToListField(props.currentListId, "admins", email);
-    } else {
+    } else if (value === 'basic') {
       props.removeFromListField(props.currentListId, "admins", email);
     }
   }
