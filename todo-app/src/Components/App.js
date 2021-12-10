@@ -5,7 +5,6 @@ import ListViewer from "./ListView/ListViewer";
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import firebase from 'firebase/compat';
 import "./App.css";
-import SignedInStatus from "./AuthAndSharing/SignedInStatus";
 
 const COLLECTION_NAME = "lists-lab5"
 
@@ -57,9 +56,7 @@ export default function App(props) {
     );
   }
 
-  return (
-    <div className="minWidthContainer">
-      {currentListId  ? <TaskSupplier   currentListId={currentListId}
+  return currentListId  ? <TaskSupplier   currentListId={currentListId}
                                         lists={!listsLoading && !listsError && listCollection.docs.map(doc => doc.data())}
                                         db={props.db}
                                         collectionName={COLLECTION_NAME}
@@ -68,19 +65,16 @@ export default function App(props) {
                                         removeFromListField={removeFromListField}
                                         user={props.user}
                                         auth={props.auth} />
-                      : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())}
-                                    pendingLists={(pendingLoading || pendingError) ? [] : pendingCollection.docs.map(doc => doc.data())}
-                                    setCurrentListId={setCurrentListId} 
-                                    deleteList={deleteList}
-                                    addList={addList}
-                                    setListProperty={setListProperty}
-                                    loading={listsLoading}
-                                    error={listsError}
-                                    user={props.user}
-                                    auth={props.auth}
-                                    addToListField={addToListField}
-                                    removeFromListField={removeFromListField}/>
-      }
-    </div>
-  )
+                        : <ListViewer lists={(listsLoading || listsError) ? [] : listCollection.docs.map(doc => doc.data())}
+                                      pendingLists={(pendingLoading || pendingError) ? [] : pendingCollection.docs.map(doc => doc.data())}
+                                      setCurrentListId={setCurrentListId} 
+                                      deleteList={deleteList}
+                                      addList={addList}
+                                      setListProperty={setListProperty}
+                                      loading={listsLoading}
+                                      error={listsError}
+                                      user={props.user}
+                                      auth={props.auth}
+                                      addToListField={addToListField}
+                                      removeFromListField={removeFromListField}/>
 }
