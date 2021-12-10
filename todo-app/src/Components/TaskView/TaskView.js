@@ -50,7 +50,8 @@ function TasksApp(props) {
                                             owner={currentList.owner}
                                             pendingInvitations={currentList.pendingInvitations}
                                             user={props.user}
-                                            colorTheme={currentList.colorTheme} />
+                                            colorTheme={currentList.colorTheme}
+                                            isNarrow={props.isNarrow} />
         }
         <div className="titleHeaderRow">
           <button   onClick={() => props.setCurrentListId(null)} 
@@ -67,7 +68,7 @@ function TasksApp(props) {
             <SignedInStatus auth={props.auth} user={props.user} />
           </div>
         </div>
-        <div class="pageContent">
+        <div className="pageContent">
           <div className="noTopMargin">
             <div className="sortByText">sort by:</div>
             <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />

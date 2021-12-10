@@ -27,7 +27,7 @@ export default function ListViewer(props) {
       <div className="headerRow">
         <div className="todoHeader">
           <h4>
-            <span className="todo">todo</span> 🦑
+            <span className="todo">todo</span>
           </h4>
         </div>
         <div className="authPanelContainer">
