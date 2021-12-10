@@ -56,7 +56,7 @@ export default function App(props) {
     );
   }
 
-  return currentListId  ? <TaskSupplier   currentListId={currentListId}
+  return currentListId  ? <TaskSupplier currentListId={currentListId}
                                         lists={!listsLoading && !listsError && listCollection.docs.map(doc => doc.data())}
                                         db={props.db}
                                         collectionName={COLLECTION_NAME}

@@ -56,10 +56,12 @@ export default function ListViewer(props) {
         props.pendingLists.length !== 0 &&
         (
           !props.user.emailVerified
-            ? <div className="verifyToSeeDiv">
-                <b>you have pending invites to join a collaborative list!</b>
-                <br />
-                verify your email (in the account panel) to see them.
+            ? <div className="verifyToSeeContainer">
+                <div className="verifyToSeeDiv">
+                  <b>you have pending invites to join a collaborative list!</b>
+                  <hr />
+                  verify your email (in the account panel) to see them.
+                </div>
               </div>
             : <>
                 <div className="listContainer">

@@ -18,6 +18,9 @@ export default function SignedInStatus(props) {
           <div className="accountLetter">
             🦑
           </div>
+          {
+            !props.user.emailVerified && <div className="notification">_</div>
+          }
         </div>
         <div className={`expandCaretDiv ${isExpanded ? "flipped" : ""}`}>⌵</div>
       </div>
@@ -37,9 +40,6 @@ export default function SignedInStatus(props) {
             <button onClick={() => props.auth.signOut()} className="accountButton signOutButton">sign out</button>
           </div>
         </div>
-      }
-      {
-        !props.user.emailVerified && <div className="notification">_</div>
       }
     </div>
   )
