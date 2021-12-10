@@ -17,6 +17,13 @@ export default function ListCard(props) {
   let textInput = useRef(null);
   const [startDisappearing, setstartDisappearing] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const listNameSpanAmount = props.isPendingList
+                              ? "spanOne"
+                              : props.sharedWith.includes(props.user.email)
+                                ? (props.owner === props.user.email
+                                    ? "spanOne"
+                                    : "canSpanTwo")
+                                : "canSpanThree"
 
   useEffect(() => {
     if (textInput.current && props.listInEditModeId === props.id) {
@@ -36,7 +43,7 @@ export default function ListCard(props) {
     setTimeout(() => props.deleteList(props.id), DISAPPEAR_DURATION_MS);
   }
 
-  return <div className={`listCard supportsInvisibility ${startDisappearing ? 'invisible' : ''} ${props.isPendingList ? "notClickable" : ""}`}>
+  return <div className={`listCard supportsInvisibility ${startDisappearing ? 'invisible' : ''} ${props.isPendingList ? "notClickable" : ""} ${props.owner !== props.user.email ? "extraRow" : ""}`}>
     <div className="listCardLeftPanel">
       <button   onClick={() => setShowColorPicker(!showColorPicker)} 
                 className={`colorDropdown ${(props.colorTheme !== 'default') ? `color_${props.colorTheme}_bg` : ''}`}
@@ -65,10 +72,10 @@ export default function ListCard(props) {
                 onKeyUp={e => {if (e.key === 'Enter') onBlurCallback()}}
                 onBlur={() => onBlurCallback()}
                 returnRef={(ref) => {textInput = ref}}
-                className="listNameInput"
+                className={`listNameInput ${listNameSpanAmount}`}
                 aria-label="edit list name" />
-          : <div className="listName" onClick={() => !props.isPendingList && props.setCurrentListId(props.id)}>
-              {props.listName}{props.owner !== props.user.email && <div className="ownerDisambiguator">by {props.owner}</div>}
+          : <div className={`listName ${listNameSpanAmount}`} onClick={() => !props.isPendingList && props.setCurrentListId(props.id)}>
+              {props.listName}
             </div>
       }
       {
@@ -100,6 +107,10 @@ export default function ListCard(props) {
               }
             </>
       }
-      
+      {
+        props.owner !== props.user.email && <div className="ownerDisambiguator">
+          {props.owner}
+        </div>
+      }
     </div>
 }
