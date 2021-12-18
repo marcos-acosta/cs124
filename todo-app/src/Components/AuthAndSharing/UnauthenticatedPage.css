@@ -1,0 +1,101 @@
+.header {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.header > h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.todo {
+  background-color: #2274A5;
+  color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 8px;
+}
+
+.centerContainer {
+  text-align: center;
+  width: 100%;
+}
+
+.authenticationContainer {
+  width: 80%;
+  min-width: 300px;
+  max-width: 600px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  display: inline-block;
+  text-align: left;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.authTitle {
+  font-weight: bold;
+  text-align: center;
+}
+
+hr {
+  border: 1px solid rgb(221, 221, 221);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.signInInput {
+  width: 100%;  
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 5px;
+  display: block;
+  margin-top: 20px;
+}
+
+form {
+  padding: 0;
+}
+
+.errorDiv {
+  font-size: 16px;
+  background-color: rgb(243, 243, 243);
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: red;
+  margin-top: 20px;
+}
+
+.signInSignUpSwitcher {
+  color: #2274A5;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.submitButton {
+  background-color: #2274A5;
+  font-size: 18px;
+  color: white;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  font-weight: bold;
+  width: 100%;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  border: none;
+}
+
+.submitButton:hover {
+  background-color: #16608b;
+}

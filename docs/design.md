@@ -66,6 +66,31 @@ red, orange, or yellow to indicate high, medium, or low priority.
 
 [Here is a link to a YouTube video](https://www.youtube.com/watch?v=wada-e1DRz4) demonstrating how you can use `todo` with only a keyboard and VoiceOver.
 
+### Lab 5 Updates
+There were a few new design choices for this lab.
+
+First, for the login and sign up stuff, we created a page that defaults to the login
+page, but has a button to log in with google and a button to sign up if you don't have an account. Here is a mockup
+of the design.
+
+<img src="images/designs/logindesign1.PNG" width="200px">
+
+Once the user is logged in, there is a user icon in the top right corner that will expand to show who the user is signed
+in as and to log out. If the user's email is not verfied, it includes a button to do that and shows a notification on 
+the user to prompt that there is an action needed. For the sharing, there is a share button that opens a "sharing panel"
+that includes an input box to share using email, a list of users that have access to the list, and if a user is an admin
+on the list, allows you to change individual user's permissions or remove their access entirely. We decided that the
+only difference between an admin and the owner is that only the owner can delete the list. Here is the initial design of
+the sharing panel
+
+<img src="images/designs/sharepaneldesign.PNG" width="200px">
+
+Once a list is shared, it shows up in a "pending list" section and a user has to either accept or reject the list. That
+way a user can reject a potential spam list or something. The list will then show up in a "shared lists" section with an
+indicator of who originally shared the list. Also, if a user's email is not verified, then they cannot see the list, and
+there is a notification to tell them so.
+
+
 ## Alternative designs
 A few alternative designs we considered were related to the task edit and
 deleted menus. We considered at one point using ellipses rather than an arrow
@@ -93,6 +118,15 @@ The other choice was to keep everything on one page, but have tasks underneath c
 <img src="images/designs/scrolllists.PNG" width="200px">
 
 This was the most intuitive, in our opinion, but was difficult to implement so we chose against it.
+
+In lab 5, some alternative designs for the sharing panel were instead of a popup panel, to incorporate it into a side
+panel, much like the one in the wide view. We decided that because you wouldn't always want to see that information that
+it would just take up too much space. For the login page, we had a similar train of thought where you could switch back
+and forth between login and sign up using a tab system. But because a user only needs to use the sign up page once, it 
+didn't make much sense to always have it available like that. 
+
+<img src="images/designs/logindesign2.PNG" width="200px">
+
 
 ## Final designs
 The general idea of our final design can be seen in this "template" page we developed:
@@ -158,3 +192,5 @@ In addition to (what we think is) a clean, uncluttered design, we think the meth
 We're also very proud of how when the user checks an item, it fades out before moving to the completed section. We believe it to be a nice usability touch, and nicely implemented.
 
 Another fun thing we implemented was to allow users to choose their own colors from our color scheme for the lists. This can be done from the main list viewer page, using a drop-down color picker where the checkbox on a task would be.
+
+Something that is nice that we did is to give the user security appropriate error messages if they have issues with authentication/authorization tasks. Like if they don't have an account, or they have a wrong username/password, it will tell the user the appropriate error.

@@ -9,10 +9,14 @@ export default function TaskSupplier(props) {
   const [frozenTask, setFrozenTask] = useState(null);
   const [taskInEditModeId, setTaskInEditModeId] = useState(null);
   const [orderingBy, setOrderingBy] = useState("created");
-  const taskQuery = props.db.collection("lists").doc(props.currentListId).collection("tasks");
+  const taskQuery = props.db.collection(props.collectionName).doc(props.currentListId).collection("tasks");
   const [taskCollection, tasksLoading, tasksError] = useCollection(taskQuery);
   const isNarrow = useMediaQuery({maxWidth: 500});
   const isDesktopWide = useMediaQuery({minWidth: 800});
+
+  if (tasksError) {
+    props.setCurrentListId(null);
+  }
 
   const sortFunctions = {
     priority: (a, b) => frozen(b)['priority'] - frozen(a)['priority'],
@@ -70,7 +74,8 @@ export default function TaskSupplier(props) {
       : taskCollection.docs.map(doc => doc.data()).sort(sortFunctions[orderingBy]);
   }
 
-  return <TaskView  {...props}
+  return !tasksError && 
+         <TaskView  {...props}
                     setTaskProperty={setTaskProperty}
                     deleteTask={deleteTask}
                     deleteCompleted={deleteCompleted}
@@ -83,5 +88,6 @@ export default function TaskSupplier(props) {
                     setTaskInEditModeId={setTaskInEditModeId}
                     isNarrow={isNarrow}
                     isDesktopWide={isDesktopWide}
-                    lists={props.lists} />
+                    lists={props.lists}
+                    addToListField={props.addToListField} />
 }

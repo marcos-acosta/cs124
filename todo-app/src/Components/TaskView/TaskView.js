@@ -1,11 +1,13 @@
 import './TaskView.css';
 import TaskList from './TaskList';
 import CompletedSection from './CompletedSection';
-import AddItem from './AddItem';
-import OptionSelector from './OptionSelector';
+import AddItem from './../AddItem';
+import OptionSelector from './../OptionSelector';
 import ListSideMenu from './ListSideMenu';
 import { useState } from 'react';
-import InfoCard from './InfoCard';
+import InfoCard from './../InfoCard';
+import SharingPanel from './../AuthAndSharing/SharingPanel';
+import SignedInStatus from '../AuthAndSharing/SignedInStatus';
 
 const SORTING_OPTIONS = [['oldestTop', 'oldest'], ['newestTop', 'newest'], ['taskName', 'name'], ['priority', 'priority']];
 
@@ -23,6 +25,7 @@ function TaskView(props) {
 
 function TasksApp(props) {
   const [expandedTaskId, setExpandedTaskId] = useState(null);
+  const [showSharingPanel, setShowSharingPanel] = useState(false);
   const currentList = props.lists.find(list => list.id === props.currentListId);
 
   const toggleExpandedTaskId = (id) => {
@@ -37,22 +40,41 @@ function TasksApp(props) {
 
   return (
       <div>
-        <div className="headerRow">
+        {
+          showSharingPanel && <SharingPanel onClosePanel={() => setShowSharingPanel(false)}
+                                            addToListField={props.addToListField}
+                                            currentListId={props.currentListId}
+                                            sharedEmails={currentList.sharedWith}
+                                            admins={currentList.admins}
+                                            removeFromListField={props.removeFromListField}
+                                            owner={currentList.owner}
+                                            pendingInvitations={currentList.pendingInvitations}
+                                            user={props.user}
+                                            colorTheme={currentList.colorTheme}
+                                            isNarrow={props.isNarrow} />
+        }
+        <div className="titleHeaderRow">
           <button   onClick={() => props.setCurrentListId(null)} 
                     className="backButton" 
                     aria-label="back to list menu">
                       ← back
           </button>
-          <div className="toDoHeader">
+          <div className="titleHeader">
             <h2 className={currentList ? `color_${currentList.colorTheme}_ul` : ''}>
               {currentList.listName}
             </h2>
           </div>
+          <div className="authPanelContainerTaskView">
+            <SignedInStatus auth={props.auth} user={props.user} />
+          </div>
         </div>
-        <div id="pageContent">
+        <div className="pageContent">
           <div className="noTopMargin">
             <div className="sortByText">sort by:</div>
             <OptionSelector options={SORTING_OPTIONS} onChangeCallback={props.setOrderingBy} />
+            <button className="sharingButton" onClick={() => setShowSharingPanel(true)}>
+              share
+            </button>
           </div>
           {
             props.loading ? <InfoCard /> : 

@@ -1,0 +1,110 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth.uid != null && request.auth.uid != null;
+    }
+    
+    function isSharedWithMe() {
+      return request.auth.token.email in resource.data.sharedWith;
+    }
+    
+    function havePendingInvite() {
+    	return request.auth.token.email in resource.data.pendingInvitations;
+    }
+    
+    function updatedDocHasCorrectOwner() {
+      return request.auth.token.email == request.resource.data.owner;
+    }
+    
+    function isDocAdmin() {
+    	return request.auth.token.email in resource.data.admins;
+    }
+    
+    function updatedDocHasSameOwner() {
+      return resource.data.owner == request.resource.data.owner;
+    }
+    
+    function updatedDocHasSameTimestamp() {
+      return resource.data.created == request.resource.data.created;
+    }
+    
+    function updatedDocHasSameId() {
+      return resource.data.id == request.resource.data.id;
+    }
+    
+    function updatedDocHasSameSharing() {
+      return resource.data.sharedWith == request.resource.data.sharedWith;
+    }
+    
+    function updatedDocHasSameAdmins() {
+      return resource.data.admins == request.resource.data.admins;
+    }
+    
+    function updatedDocHasSamePendingInvites() {
+      return resource.data.pendingInvitations == request.resource.data.pendingInvitations;
+    }
+    
+    function removedSelfFromPendingInvites() {
+    	return resource.data.pendingInvitations.removeAll(request.resource.data.pendingInvitations) == [request.auth.token.email];
+    }
+    
+    function addedSelfToSharedWith() {
+    	return request.resource.data.sharedWith.removeAll(resource.data.sharedWith) == [request.auth.token.email]
+    }
+    
+    function updatedDocHasSameName() {
+    	return resource.data.listName == request.resource.data.listName;
+    }
+    
+    function updatedDocHasSameColor() {
+    	return resource.data.colorTheme == request.resource.data.colorTheme;
+    }
+    
+    function nameAndColorUnchanged() {
+    	return updatedDocHasSameName() && updatedDocHasSameColor()
+    }
+    
+    function okChangesForPending() {
+    	return 	updatedDocHasSameAdmins() &&
+    	(updatedDocHasSameSharing() || addedSelfToSharedWith()) &&
+    	(updatedDocHasSamePendingInvites() || removedSelfFromPendingInvites());
+    }
+    
+    function essentialDataIsUnchanged() {
+    	return 	updatedDocHasSameOwner() && updatedDocHasSameTimestamp() && 
+      				updatedDocHasSameId();
+    }
+    
+    function noPermissionsChanged() {
+    	return 	updatedDocHasSameAdmins() && updatedDocHasSamePendingInvites() &&
+      				updatedDocHasSameSharing();
+    }
+    
+    match /lists-lab5/{list} {
+        allow read: if signedIn() && (isSharedWithMe() || havePendingInvite());
+        allow create: if signedIn() && updatedDocHasCorrectOwner();
+        allow update: if signedIn() &&
+        							essentialDataIsUnchanged() && 
+                      	(isDocAdmin() || nameAndColorUnchanged() && (
+                          (havePendingInvite() && okChangesForPending()) ||
+                          (isSharedWithMe() && noPermissionsChanged())));
+        allow delete: if signedIn() && isDocAdmin();
+        
+        match /tasks/{task} {
+        	function isParentListSharedWithMe() {
+          	return request.auth.token.email in get(/databases/$(database)/documents/lists-lab5/$(list)).data.sharedWith;
+          }
+        
+        	allow read, write: if signedIn() && isParentListSharedWithMe();
+        }
+    }
+    
+		match /lists/{list} {
+			allow read, write: if true;
+      match /tasks/{task} {
+      	allow read, write: if true;
+      }
+    }
+  }
+}

@@ -1,7 +1,3 @@
-.minWidthContainer {
-  min-width: 340px;
-}
-
 .color_purple_bg {
   background-color: #662C91;
   color: white;
@@ -72,4 +68,12 @@
   text-decoration-thickness: 5px;
   text-decoration-style: dashed;
   text-decoration-color: #414141;
+}
+
+input {
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+  cursor: pointer;
 }

@@ -1,0 +1,92 @@
+.accountIcon {
+  width: 45px;
+  height: 45px;
+  vertical-align: middle;
+  margin-right: 4px;
+  background-color: rgb(243, 243, 243);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.accountLetter {
+  padding-top: 8px;
+}
+
+.accountIconDiv {
+  cursor: pointer;
+  font-size: 20px;
+  color: rgb(104, 104, 104);
+  margin-top: 8px;
+  margin-left: 20px;
+}
+
+.flipped {
+  transform: rotate(-180deg);
+}
+
+.expandCaretDiv {
+  display: inline-block;
+  transition-property: transform;
+  transition-duration: 0.25s;
+}
+
+.accountPanel {
+  background-color: rgba(255, 255, 255, 0.945);
+  position: absolute;
+  top: 83px;
+  right: 15px;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 5px;
+  font-size: 16px;
+  display: grid;
+}
+
+.accountPanel > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.userEmail {
+  background-color: rgb(247, 247, 247);
+  padding: 10px;
+  margin-bottom: 8px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.accountButton {
+  width: 100%;
+  border: none;
+  padding: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.signOutButton {
+  background-color: rgb(104, 104, 104);
+  color: white;
+}
+
+.validateButton {
+  background-color: #DC493A;
+  color: white;
+}
+
+.notification {
+  background-color: #DC493A;
+  color: transparent;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+  margin-top: -38px;
+  margin-left: -5px;
+}
